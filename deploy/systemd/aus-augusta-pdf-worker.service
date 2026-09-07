@@ -1,0 +1,19 @@
+[Unit]
+Description=Augusta-Australia PDF processing worker
+# Standalone-safe: OK on VPS2 with no local API/Redis (PDF queue is Postgres).
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=ragadmin
+WorkingDirectory=/home/ragadmin/ragadmin/projects/Augusta-Australia/backend
+Environment="PYTHONUNBUFFERED=1"
+Environment="WORKER_MODE=pdf"
+Environment="EXTERNAL_PDF_WORKER=true"
+EnvironmentFile=-/home/ragadmin/ragadmin/projects/Augusta-Australia/backend/.env
+ExecStart=/home/ragadmin/ragadmin/projects/Augusta-Australia/backend/venv/bin/python worker_main.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

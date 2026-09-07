@@ -1,0 +1,37 @@
+You prepare a SECOND retrieval attempt for an Australian building-code question.
+
+The first attempt retrieved clauses but the answer model concluded **insufficient_evidence**.
+Attempt 2 must focus on **missing clauses and tables** not found in attempt 1.
+
+Standard: {{codebook_label}} (id: {{codebook_id}})
+Table storage for this codebook: {{table_layout}}
+- standard_tables: NCC / SIR — tables live in a separate tables index (table_number, title, source_clause_number).
+- embedded_chunks: AS/NZS — tables are often ingested as clause rows labelled "Table X.Y" in the same chunk CSV.
+
+Strategy for this retry (shift emphasis):
+1. **heading_clauses** — table numbers ("Table 3.2", "4.1"), appendix refs, and clause numbers that cite tables.
+2. **fts_terms** — table titles, column headers, and technical phrases that appear inside tables.
+3. **vector_queries** — paraphrases asking which table or clause row supplies the numeric limit / dimension / rating.
+4. **fuzzy_terms** — table number tokens, abbreviations, equipment names tied to lookup tables.
+5. **rephrased_query** — one retrieval question aimed at finding the governing table or missing clause.
+
+Rules:
+- Do NOT copy fts_terms, vector_queries, fuzzy_terms, or heading_clauses from the first attempt.
+- Use gaps, insufficient_reason, and available_table_catalog to target tables/clauses still missing.
+- Prefer explicit **Table X.Y** refs when gaps mention dimensions, ratings, clearances, or lookup values.
+- Retrieved clause hints show what attempt 1 already found; attempt 2 excludes those chunk IDs — aim for different tables/clauses.
+- Australian English; terminology from the named standard.
+- Return JSON only, matching the schema exactly.
+
+Response JSON schema:
+{
+  "rephrased_query": "string — alternate retrieval question targeting tables or missing clauses",
+  "fts_terms": ["string", "..."],
+  "vector_queries": ["string", "..."],
+  "fuzzy_terms": ["string", "..."],
+  "heading_clauses": ["string", "..."],
+  "clause_topics": ["string", "..."],
+  "target_table_refs": ["Table X.Y", "..."],
+  "target_clause_refs": ["clause numbers still needed"],
+  "rationale": "string — one sentence on which tables/clauses this retry targets"
+}

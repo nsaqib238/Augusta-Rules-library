@@ -1,0 +1,26 @@
+# LLM API Pricing
+
+Prices per **1M tokens** (USD). Sorted cheapest → most expensive by typical Augusta ask cost.
+
+\*Approx. 1K Augusta Qs assumes rough token use per question (illustrative, not a live meter).
+
+| Rank | Model | Input | Output | Approx. 1K Augusta Qs\* |
+| ---: | --- | ---: | ---: | ---: |
+| 1 | GPT-4.1 Nano | $0.10 | $0.40 | **$0.72** |
+| 2 | DeepSeek V4 Flash | $0.14 | $0.28 | **$0.78** |
+| 3 | Mistral Small 4 | $0.15 | $0.60 | **$1.08** |
+| 4 | Gemini 2.5 Flash | $0.30 | $2.50 | **$3.20** |
+| 5 | GPT-4.1 Mini | $0.40 | $1.60 | **$2.88** |
+| 6 | DeepSeek V4 Pro | $0.435 | $0.87 | **$2.44** |
+| 7 | Mistral Large 3 | $0.50 | $1.50 | **$3.20** |
+| 8 | Grok Build | $1.00 | $2.00 | **$5.60** |
+| 9 | Grok 4.3 / 4.20 | $1.25 | $2.50 | **$7.00** |
+| 10 | Mistral Medium 3.5 | $1.50 | $7.50 | **$12.00** |
+| 11 | GPT-4.1 | $2.00 | $8.00 | **$14.40** |
+| 12 | Grok 4.5 | $2.00 | $6.00 | **$12.80** |
+| **13** | **GPT-4o** | **$2.50** | **$10.00** | **$18.00** |
+
+## Augusta setup (reference)
+
+- **Primary:** Gemini (`LLM_PRIMARY_PROVIDER=gemini`)
+- **Secondary / failover:** OpenAI (`gpt-4o` or `gpt-4o-mini`)

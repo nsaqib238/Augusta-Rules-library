@@ -1,0 +1,17 @@
+[Unit]
+Description=Augusta-Australia FastAPI backend
+After=network.target redis-server.service
+Wants=redis-server.service
+
+[Service]
+User=ragadmin
+WorkingDirectory=/home/ragadmin/ragadmin/projects/Augusta-Australia/backend
+Environment="PYTHONUNBUFFERED=1"
+Environment="WORKER_MODE=api"
+EnvironmentFile=-/home/ragadmin/ragadmin/projects/Augusta-Australia/backend/.env
+ExecStart=/home/ragadmin/ragadmin/projects/Augusta-Australia/deploy/scripts/start-api.sh
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

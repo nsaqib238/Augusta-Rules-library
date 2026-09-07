@@ -1,0 +1,73 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #f6f2ea;
+  --foreground: #0f172a;
+  --augusta-ink: #101828;
+  --augusta-navy: #0b1220;
+  --augusta-panel: #fffaf1;
+  --augusta-gold: #c9a45c;
+  --augusta-gold-soft: #f1ddab;
+  --augusta-muted: #667085;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background:
+    radial-gradient(circle at top left, rgba(201, 164, 92, 0.22), transparent 32rem),
+    linear-gradient(135deg, #fbf7ef 0%, #f4efe6 42%, #e8edf3 100%);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgba(201, 164, 92, 0.28);
+  color: var(--augusta-ink);
+}
+
+@layer components {
+  .augusta-page-shell {
+    @apply min-h-screen bg-[radial-gradient(circle_at_15%_0%,rgba(201,164,92,0.22),transparent_30rem),linear-gradient(135deg,#fbf7ef_0%,#f4efe6_45%,#e8edf3_100%)];
+  }
+
+  .augusta-glass {
+    @apply border border-white/70 bg-white/80 shadow-[0_24px_80px_rgba(15,23,42,0.10)] backdrop-blur-2xl;
+  }
+
+  .augusta-card {
+    @apply rounded-[28px] border border-white/70 bg-white/85 shadow-[0_22px_70px_rgba(15,23,42,0.09)] backdrop-blur-xl;
+  }
+
+  .augusta-eyebrow {
+    @apply text-[11px] font-semibold uppercase tracking-[0.28em] text-[#9a7a35];
+  }
+
+  .augusta-button-primary {
+    @apply rounded-full bg-[#0b1220] px-5 py-2.5 text-sm font-semibold text-white shadow-[0_16px_32px_rgba(11,18,32,0.24)] transition hover:-translate-y-0.5 hover:bg-[#182033] disabled:cursor-not-allowed disabled:opacity-60;
+  }
+
+  .augusta-button-secondary {
+    @apply rounded-full border border-slate-200/80 bg-white/75 px-4 py-2 text-sm font-semibold text-slate-700 shadow-sm transition hover:-translate-y-0.5 hover:border-[#d6bf82] hover:bg-[#fffaf1];
+  }
+
+  .augusta-input {
+    @apply w-full rounded-2xl border border-slate-200/80 bg-white/90 px-4 py-3 text-sm text-slate-800 shadow-inner shadow-slate-100/60 outline-none transition placeholder:text-slate-400 focus:border-[#c9a45c] focus:ring-4 focus:ring-[#f1ddab]/45;
+  }
+}

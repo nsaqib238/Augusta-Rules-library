@@ -1,0 +1,1347 @@
+NCC 2022 — Test answers log (Vol 1 + Vol 2)
+============================================
+
+Dataset: ncc2022_vol1 / ncc2022_vol2
+State filter: (not recorded unless noted)
+
+
+################################################################################
+SESSION 2 — AFTER pipeline fix (routing + compact ranker + evidence slots)
+################################################################################
+Date: 4 Jun 2026
+Time: 13:51–13:59
+Backend: post-fix (ncc_query_routing, rag_ranker compact, rag_answer entity slots)
+
+Summary (Vol 1 — 5/5 questions run)
+------------------------------------
+| # | Question                                      | Before   | After    | Confidence |
+|---|-----------------------------------------------|----------|----------|------------|
+| 1 | Building occupant warning system requirements | PASS     | PASS     | 90%        |
+| 2 | Smoke detection — 3-storey Class 5            | FAIL     | PARTIAL  | 70%        |
+| 3 | Emergency lighting — Class 6                  | NOT RUN  | PASS     | 90%        |
+| 4 | Minimum exit door width — Class 5             | FAIL     | PASS     | 70%        |
+| 5 | FRL external walls — Class 5 Type A 4 storeys | FAIL     | PASS*    | 70%        |
+
+Overall: 4 pass, 1 partial fail (Q2 applicability). Up from 1 pass / 3 fail / 1 not run.
+*Q5: verify FRL 120/120/120 against NCC table for your exact scenario on site.
+
+Remaining gap: Q2 still cites Spec 20 (S20C4/S20C3) not Part E2 / Table E2.2a applicability.
+
+
+================================================================================
+Q1 — What are the requirements for a building occupant warning system under the NCC?
+================================================================================
+Time: 13:51
+Confidence: 90%
+Evidence blocks: 32 (evidence-bound)
+Result: PASS
+
+Top citations: S17C8, S20C7 (+ S31C19, J6D4 in supporting pool)
+
+--- Answer (summary) ---
+
+Practitioner summary
+Outcome: Based only on the cited clauses - apply the requirements below to the installation and use any verification items as applicable.
+
+A building occupant warning system must comply with specific requirements depending on the building's class and use. It should be connected to a required sprinkler system and activate upon detection of smoke. The system must comply with AS 1670.1 and provide adequate sound levels, with specific adjustments allowed for certain building classes to minimize trauma.
+
+What the cited clauses require
+- A building occupant warning system must comply with clause 3.22 of AS 1670.1.
+- The system must sound through all occupied areas unless specific exceptions apply.
+- In Class 2 and 3 buildings or Class 4 parts, sound pressure levels need not be measured within sole-occupancy units if certain conditions are met.
+- In Class 3 buildings used as residential care, the system must provide a warning and may adjust alarm volume and content.
+- In Class 9a health-care buildings, the system must provide a warning and may adjust alarm volume and content in ward areas.
+- In Class 9c buildings, the system must notify staff and may adjust alarm volume and content in resident areas.
+
+Exceptions, notes, and edge cases
+- Class 2/3/4 with smoke alarm: not less than 85 dB(A) at access door.
+- Class 2/3/4 with smoke detection: not less than 100 dB(A) at access door.
+- Class 3 residential care / 9a ward / 9c resident areas: alarm may be adjusted to minimize trauma.
+
+Citations
+- S17C8 - A required sprinkler system must be connected to and activate a building occupant warning system.
+- S20C7 - AS 1670.1 cl 3.22; sound pressure levels and class-specific adjustments.
+
+Evaluator notes
+- Strong pass; added S17C8 (sprinkler linkage) vs prior run (S20C7 only).
+- Note: sprinkler connection applies when sprinkler is required — not universal for all buildings; confirm class/triggers on site.
+- Still describes HOW to comply more than WHEN system is required (acceptable for this question wording).
+
+Codes: ncc2022_vol1 · 32 evidence blocks (evidence-bound answer).
+
+
+================================================================================
+Q2 — Is smoke detection required in a three-storey Class 5 building?
+================================================================================
+Time: 13:52
+Confidence: 70%
+Evidence blocks: 36 (evidence-bound)
+Result: PARTIAL FAIL
+
+Top citations in answer: S20C4, S20C3
+Supporting provisions pool: J9D4, E4D2, S18C3 + 33 more
+
+--- Answer (summary) ---
+
+Practitioner summary
+Outcome: Based only on the cited clauses - apply the requirements below to the installation and use any verification items as applicable.
+
+For a three-storey Class 5 building, smoke detection systems must comply with AS 1670.1 and activate a building occupant warning system. Smoke alarms must be powered from the consumer mains source and interconnected within the building. Specific requirements for installation locations and types of detectors may vary based on the building's layout and use of certain areas.
+
+What the cited clauses require
+- A smoke detection system must comply with AS 1670.1.
+- The smoke detection system must activate a building occupant warning system.
+- Smoke alarms must be powered from the consumer mains source.
+- Smoke alarms must be interconnected within the building.
+
+Exceptions, notes, and edge cases
+- Kitchens / spurious signal areas: alternative detectors may be used if smoke alarms installed elsewhere.
+- Buildings with compliant sprinkler: alarms not required in certain public spaces.
+
+Citations
+- S20C4 - Smoke detection systems must comply with AS 1670.1 and activate a building occupant warning system.
+- S20C3 - Smoke alarms must be powered from consumer mains and interconnected.
+
+Evaluator notes
+- Improved vs Session 1 (no longer "insufficient evidence") but STILL WRONG QUESTION ANSWERED.
+- User asked: is it REQUIRED? Answer gave: if you have one, it must comply (Spec 20).
+- Missing: Part E2 DTS, Table E2.2a, clear yes/no/depends for Class 5 @ 3 storeys.
+- S20C3 (smoke alarms) may be residential-style content — verify applicability to Class 5.
+- Next fix: stronger table fetch for E2.2a; applicability intent in answer prompt.
+
+Codes: ncc2022_vol1 · 36 evidence blocks (evidence-bound answer).
+
+
+================================================================================
+Q3 — When is emergency lighting required in a Class 6 building?
+================================================================================
+Time: 13:54
+Confidence: 90%
+Evidence blocks: 30 (evidence-bound)
+Result: PASS
+
+Top citations: E4D2 (+ E4D4, SA E4D2 in supporting pool)
+
+--- Answer (summary) ---
+
+Practitioner summary
+Outcome: Based only on the cited clauses - apply the requirements below to the installation and use any verification items as applicable.
+
+Emergency lighting must be installed in a Class 6 building if certain conditions are met, such as the storey having a floor area over 300 m² or specific room configurations. The requirements ensure safe egress in emergencies.
+
+What the cited clauses require
+- Install emergency lighting in every fire-isolated stairway, passageway, or ramp.
+- Install emergency lighting in every storey of a Class 6 building with an area over 300 m² in passageways, corridors, or hallways that are part of the path to an exit.
+- Install emergency lighting in any room with a floor area over 100 m² that does not open to a corridor or space with emergency lighting or to a road or open space.
+- Install emergency lighting in any room with a floor area over 300 m².
+- Install emergency lighting in every room or space with public access in a Class 6 building if the floor area is over 300 m², or if any point on the floor is more than 20 m from the nearest doorway leading directly to a stairway, ramp, passageway, road, or open space.
+
+Citations
+- E4D2 — all five bullet requirements above (WHEN + WHERE).
+
+Evaluator notes
+- Excellent pass: answers "when required" with numeric thresholds (100 m², 300 m², 20 m).
+- Matches brochure sample quality for Class 6 emergency lighting.
+- Confirm state variation (SA E4D2 in pool) if state filter used.
+
+Codes: ncc2022_vol1 · 30 evidence blocks (evidence-bound answer).
+
+
+================================================================================
+Q4 — What is the minimum width required for an exit door in a Class 5 building?
+================================================================================
+Time: 13:56
+Confidence: 70%
+Evidence blocks: 20 (evidence-bound) — single answer (no multi-candidate)
+Result: PASS
+
+Top citations: D2D9 (+ D2D3, E4D2 in supporting pool)
+
+--- Answer (summary) ---
+
+Practitioner summary
+Outcome: Based only on the cited clauses - apply the requirements below to the installation and use any verification items as applicable.
+
+For Class 5 buildings, the minimum unobstructed width of a doorway in a required exit or path of travel to an exit must be at least 750 mm, except where it opens to a sanitary compartment or bathroom.
+
+What the cited clauses require
+- The unobstructed width of a doorway in a required exit or path of travel to an exit must be not less than 750 mm, except where it opens to a sanitary compartment or bathroom.
+
+Citations
+- D2D9 - 750 mm minimum unobstructed doorway width (sanitary/bathroom exception).
+
+Evaluator notes
+- Major improvement vs Session 1 (3× insufficient_evidence).
+- Numeric answer with citation — usable for practitioners.
+- Test plan expected D3; D2D9 (Part D2 provision for escape) is valid NCC path for doorway width.
+- Confirm disability/access or other D3 requirements if door is also an required exit under D3.
+
+Codes: ncc2022_vol1 · 20 evidence blocks (evidence-bound answer).
+
+
+================================================================================
+Q5 — What fire-resistance level (FRL) applies to external walls of a Class 5 building that is Type A construction with a rise in storeys of 4?
+================================================================================
+Time: 13:57
+Confidence: 70%
+Evidence blocks: 21 (evidence-bound) — single answer (no multi-candidate)
+Result: PASS (verify on site)
+
+Top citations: S5C11 (+ SA C3D16, S32C2, C2D12 in supporting pool)
+
+--- Answer (summary) ---
+
+Practitioner summary
+Outcome: Based only on the cited clauses - apply the requirements below to the installation and use any verification items as applicable.
+
+For a Class 5 building with Type A construction and a rise in storeys of 4, the external walls must have a fire-resistance level (FRL) of 120/120/120. This requirement applies to both loadbearing and non-loadbearing walls.
+
+What the cited clauses require
+- External walls of a Class 5 building with Type A construction must have an FRL of 120/120/120.
+- This requirement applies regardless of the distance from a fire-source feature.
+
+Citations
+- S5C11 - Class 5 Type A external walls FRL 120/120/120.
+
+Evaluator notes
+- Major improvement vs Session 1 (insufficient_evidence × 2).
+- Clear numeric FRL answer with spec citation.
+- Practitioner should cross-check S5C11 / C2 tables for rise-in-storeys = 4 and fire-source feature distance (answer says "regardless of distance" — confirm in cited clause text).
+- No multi-candidate noise.
+
+Codes: ncc2022_vol1 · 21 evidence blocks (evidence-bound answer).
+
+
+################################################################################
+SESSION 3 — Vol 1 Set B (questions 6–10)
+################################################################################
+Date: 4 Jun 2026
+Time: 14:02–14:10
+Dataset: ncc2022_vol1
+State filter: (not recorded)
+
+Summary (Set B — 5/5 questions run)
+------------------------------------
+| # | Question                              | Result   | Confidence |
+|---|---------------------------------------|----------|------------|
+| 6 | Max travel distance to exit — Class 5 | PARTIAL  | 70%        |
+| 7 | Fire hydrant required — Class 6       | PARTIAL  | 70%        |
+| 8 | Accessible entrance — Class 2         | FAIL     | 0%         |
+| 9 | Stair riser/going — Class 5             | FAIL     | 0%         |
+| 10| Section J energy — Class 5 office       | PARTIAL  | 70%        |
+
+Overall Set B: 0 pass, 3 partial, 2 fail.
+Combined Vol 1 (Set A + B): 4 pass, 4 partial, 2 fail out of 10.
+
+
+================================================================================
+Q6 — What is the maximum travel distance to an exit in a Class 5 building?
+================================================================================
+Time: 14:02
+Confidence: 70%
+Evidence blocks: 22 (evidence-bound)
+Result: PARTIAL
+
+Top citations: TAS I13D6 (+ C4D15, J6D10 in supporting pool)
+
+--- Answer (summary) ---
+
+Practitioner summary
+Outcome: Based only on the cited clauses - apply the requirements below to the installation and use any verification items as applicable.
+
+In a Class 5 building, the maximum travel distance to an exit is generally 20 meters from any point on the floor to one of the exits. This requirement ensures that occupants can quickly reach an exit in case of an emergency.
+
+What the cited clauses require
+- Every building and divisional area of a workplace must have not less than 2 exits for escape purposes.
+- The number and location of the exits must be such that any point on the floor is not more than 20 meters from one of the exits.
+
+Citations
+- TAS I13D6 - The maximum travel distance to an exit is 20 meters.
+
+Evaluator notes
+- Numeric answer (20 m) — good shape for a dimension question.
+- FAIL for national/default use: cites **TAS I13D6** (Tasmania variation / workplace provision), not national Part D1/D2 DTS for Class 5.
+- No state filter recorded — answer may mislead users outside TAS.
+- Supporting pool includes C4D15, J6D10 (wrong neighbourhood). Re-run with state=TAS if testing TAS; otherwise expect D2D* national travel distance table.
+- Pass only if user is in Tasmania and provision applies to their building type.
+
+Codes: ncc2022_vol1 · 22 evidence blocks (evidence-bound answer).
+
+
+================================================================================
+Q7 — Is a fire hydrant system required in a Class 6 building?
+================================================================================
+Time: 14:03
+Confidence: 70%
+Evidence blocks: 15 (evidence-bound)
+Result: PARTIAL
+
+Top citations: NSW S43C11 (+ NSW A6G7, SA A6G7 in supporting pool)
+
+--- Answer (summary) ---
+
+Practitioner summary
+Outcome: Based only on the cited clauses - apply the requirements below to the installation and use any verification items as applicable.
+
+A fire hydrant system is required for fire-fighting purposes in a Class 6 building unless an alternative static water supply is provided. The system must comply with specific standards and be capable of providing the required flow rate for a specified duration.
+
+What the cited clauses require
+- Water for fire-fighting purposes must be available for Class 6 buildings.
+- A fire hydrant system must comply with E1D2.
+- Alternatively, a static water supply with suitable pumps, hoses, and fittings may be used if it meets flow rate and volume requirements.
+
+Citations
+- NSW S43C11 - Water for fire-fighting purposes must be available and consist of a fire hydrant system or a static water supply.
+
+Evaluator notes
+- Improved vs pure insufficient_evidence; gives yes-with-alternative (hydrant or static supply).
+- Same pattern as Q2 smoke: cites **state spec** (NSW S43C11) not national **E1 DTS + applicability table** for “when required”.
+- References E1D2 in prose but does not cite E1D2 in citations block.
+- Without state filter, NSW-specific answer may be wrong for VIC/QLD/etc.
+- Re-run with state=NSW for intentional NSW test; otherwise need national E1 path.
+
+Codes: ncc2022_vol1 · 15 evidence blocks (evidence-bound answer).
+
+
+================================================================================
+Q8 — What accessibility requirements apply to the entrance of a Class 2 building?
+================================================================================
+Time: 14:05
+Confidence: 0%
+Evidence blocks: 36 (evidence-bound)
+Result: FAIL
+
+Top citations in supporting pool: F4F2, F4D2, F6D2 + 33 more (sanitary / ventilation — not D4 access)
+
+--- Answer ---
+
+Insufficient evidence in the supplied clauses
+
+The evidence provided does not specify accessibility requirements at the entrance of a Class 2 building. Accessibility provisions may be covered under different parts of the NCC or related standards not included here.
+
+Why: Missing specific accessibility requirements for entrances in the provided evidence.
+
+What would help: Include specific accessibility standards or parts of the NCC that address entrances.
+
+Evaluator notes
+- Expected path: Part **D4** (access for people with disability), accessible path/entrance DTS.
+- Ranker/evidence pulled F4 (sanitary) / F6 (ventilation) instead of D4.
+- Routing gap: no D4 boost for “accessibility” + “entrance” + Class 2 — add to ncc_query_routing.
+- Guardrail correct (did not invent AS 1428.1 requirements).
+
+Codes: ncc2022_vol1 · 36 evidence blocks (evidence-bound answer).
+
+
+================================================================================
+Q9 — What are the maximum riser and minimum going dimensions for stairs in a Class 5 building?
+================================================================================
+Time: 14:07
+Confidence: 0%
+Evidence blocks: 7 (evidence-bound)
+Result: FAIL
+
+Top citations in supporting pool: E4D2, VIC S17C2, A6G6 + 4 more
+
+--- Answer ---
+
+Insufficient evidence in the supplied clauses
+
+The evidence provided does not include specific requirements for the maximum riser and minimum going dimensions for stairs in a Class 5 building according to the NCC. Additional information or access to the relevant sections of the NCC is needed.
+
+Why: Missing table or section on stair dimensions in the provided evidence.
+
+What would help: Access to the specific NCC section or table that details stair dimensions for Class 5 buildings.
+
+Evaluator notes
+- Regression vs Q4 (door width 750 mm from D2D9): stair dimensions not retrieved.
+- Only **7 evidence blocks** — retrieval starved (compare 20–36 on other questions).
+- Wrong anchors: emergency lighting (E4D2), classification (A6G6) — not D3D* stair construction.
+- Add routing: “riser”, “going”, “stairs” → Part D3 + dimension table boost.
+- Same failure class as pre-fix Q4 but narrower pool.
+
+Codes: ncc2022_vol1 · 7 evidence blocks (evidence-bound answer).
+
+
+================================================================================
+Q10 — What are the Section J energy efficiency requirements for a Class 5 office building?
+================================================================================
+Time: 14:08
+Confidence: 70%
+Evidence blocks: 36 (evidence-bound)
+Result: PARTIAL
+
+Top citations: J1F1, J1V1, J1P3 (+ J1O1 in supporting pool)
+
+--- Answer (summary) ---
+
+Practitioner summary
+Outcome: Based only on the cited clauses - apply the requirements below to the installation and use any verification items as applicable.
+
+For a Class 5 office building, energy efficiency requirements include reducing energy consumption and peak demand, reducing greenhouse gas emissions, and ensuring the building envelope maintains acceptable internal conditions. Compliance can be verified through a NABERS Energy rating of at least 5.5 stars, with specific conditions on greenhouse gas emissions and thermal comfort.
+
+What the cited clauses require
+- A Class 5 building must reduce energy consumption and peak demand.
+- The building must reduce greenhouse gas emissions.
+- The building envelope must assist in maintaining acceptable internal conditions.
+- Compliance is verified with a minimum 5.5-star NABERS Energy base building Commitment Agreement.
+- The energy model must demonstrate greenhouse gas emissions are not more than 67% of the 5.5-star level, excluding certain systems.
+- A thermal comfort level of Predicted Mean Vote between -1 to +1 must be achieved across at least 95% of the floor area for 98% of annual hours.
+
+Citations
+- J1F1 - Reduce energy consumption and peak demand; reduce greenhouse gas emissions.
+- J1V1 - 5.5-star NABERS Energy base building Commitment Agreement; GHG and thermal comfort verification.
+
+Evaluator notes
+- On-topic Section J citations (J1F1, J1V1) — correct part of NCC Vol 1.
+- Answer emphasizes **Verification Method (NABERS)** path, not default **DTS** (J4–J8 fabric, J7 lighting, etc.) many practitioners expect for “requirements”.
+- Partial pass: useful for VM/compliance-option context; incomplete for “what must the building meet under DTS”.
+- Numbers (5.5 stars, 67%, PMV) are evidence-bound if present in J1V1 text — confirm on site.
+- Better than insufficient; not a full practitioner DTS checklist.
+
+Codes: ncc2022_vol1 · 36 evidence blocks (evidence-bound answer).
+
+
+################################################################################
+SESSION 4 — Vol 1 Set B re-test (after routing fix v2)
+################################################################################
+Date: 4 Jun 2026
+Time: 14:20–14:30
+Dataset: ncc2022_vol1
+State filter: (not recorded)
+Backend: ncc_query_routing v2 (D4/stairs/travel/hydrant/J DTS, national-before-state)
+
+Summary (Set B re-test — 5/5 questions run)
+-------------------------------------------
+| # | Question                              | Session 3 | Session 4 | Confidence |
+|---|---------------------------------------|-----------|-----------|------------|
+| 6 | Max travel distance to exit — Class 5 | PARTIAL   | PASS      | 90%        |
+| 7 | Fire hydrant required — Class 6       | PARTIAL   | PASS      | 70%        |
+| 8 | Accessible entrance — Class 2         | FAIL      | PASS      | 70%        |
+| 9 | Stair riser/going — Class 5           | FAIL      | PARTIAL   | 70%        |
+| 10| Section J energy — Class 5 office       | PARTIAL   | PASS      | 70%        |
+
+Overall Set B re-test: 4 pass, 1 partial, 0 fail (was 0 pass, 3 partial, 2 fail).
+Combined Vol 1 all sessions (Set A Session 2 + Set B Session 4): ~8 pass, ~2 partial, 0 fail on re-run set.
+
+
+================================================================================
+Q6 — What is the maximum travel distance to an exit in a Class 5 building?
+================================================================================
+Time: 14:20
+Confidence: 90%
+Evidence blocks: 23 (evidence-bound)
+Result: PASS
+
+Top citations: D2D5 (+ A6G6, J6D10, D2D11 in supporting pool)
+
+--- Answer (summary) ---
+
+Practitioner summary
+In a Class 5 building, no point on a floor should be more than 20 meters from an exit or a point from which travel in different directions to two exits is available. The distance to a single exit serving a storey at the level of access to a road or open space may be increased to 30 meters.
+
+What the cited clauses require
+- No point on a floor must be more than 20 meters from an exit or a point from which travel in different directions to two exits is available.
+- The maximum distance to one of those exits must not exceed 40 meters.
+- In a Class 5 building, the distance to a single exit serving a storey at the level of access to a road or open space may be increased to 30 meters.
+
+Citations
+- D2D5 — 20 m general; 30 m Class 5 single exit at level of access to road/open space.
+
+Evaluator notes
+- Major fix vs Session 3: national **D2D5** instead of TAS I13D6.
+- Numeric distances (20 m, 30 m, 40 m) — practitioner-usable.
+- PASS.
+
+Codes: ncc2022_vol1 · 23 evidence blocks (evidence-bound answer).
+
+
+================================================================================
+Q7 — Is a fire hydrant system required in a Class 6 building?
+================================================================================
+Time: 14:22
+Confidence: 70%
+Evidence blocks: 30 (evidence-bound)
+Result: PASS
+
+Top citations: E1D2 (+ A6G7, E1D8, E1D11 in supporting pool)
+
+--- Answer (summary) ---
+
+Practitioner summary
+A fire hydrant system is required for a Class 6 building if the total floor area exceeds 500 m² and a fire brigade station is within 50 km and equipped to use a hydrant. The system must comply with AS 2419.1. Exceptions apply to certain sole-occupancy units and specific building types.
+
+Citations
+- E1D2 — required when floor area > 500 m² + brigade conditions; AS 2419.1; exceptions noted.
+
+Evaluator notes
+- Major fix vs Session 3: national **E1D2** applicability (yes/depends + conditions) instead of NSW S43C11 only.
+- Answers the actual question (is it required?) with triggers.
+- PASS.
+
+Codes: ncc2022_vol1 · 30 evidence blocks (evidence-bound answer).
+
+
+================================================================================
+Q8 — What accessibility requirements apply to the entrance of a Class 2 building?
+================================================================================
+Time: 14:24
+Confidence: 70%
+Evidence blocks: 33 (evidence-bound)
+Result: PASS
+
+Top citations: D4D3 (+ F4F2, F6D2, F4D2 in supporting pool — not used in answer)
+
+--- Answer (summary) ---
+
+Practitioner summary
+For a Class 2 building, accessibility at the entrance must include an accessway from the main pedestrian entry, through the principal pedestrian entrance, and through at least 50% of all pedestrian entrances. Doorways must have a clear opening width of at least 850 mm.
+
+What the cited clauses require
+- Accessway from main points of pedestrian entry at allotment boundary.
+- Access through principal entrance and at least 50% of all pedestrian entrances.
+- Doorways on accessway: clear opening width not less than 850 mm.
+
+Exceptions
+- Non-accessible entrance must not be more than 50 m from an accessible entrance (except D4D5 exemptions).
+
+Citations
+- D4D3 — accessway, 50% entrances, 850 mm doorway width.
+
+Evaluator notes
+- Major fix vs Session 3: insufficient_evidence → **D4D3** with numeric 850 mm.
+- D4 routing fix worked; F4/F6 in pool but not cited in answer.
+- PASS.
+
+Codes: ncc2022_vol1 · 33 evidence blocks (evidence-bound answer).
+
+
+================================================================================
+Q9 — What are the maximum riser and minimum going dimensions for stairs in a Class 5 building?
+================================================================================
+Time: 14:25
+Confidence: 70%
+Evidence blocks: 26 (evidence-bound)
+Result: PARTIAL
+
+Top citations: WA I4D4 (+ D3D14, D3D5, A6G12 in supporting pool)
+
+--- Answer (summary) ---
+
+Practitioner summary
+For stairs in a Class 5 building, the riser must not exceed 180 mm and the going must not be less than 280 mm. These dimensions apply unless the stairs are part of a fire-isolated stairway.
+
+Citations
+- WA I4D4 — riser ≤ 180 mm, going ≥ 280 mm; does not apply to fire-isolated stairway steps.
+
+Evaluator notes
+- Major fix vs Session 3: insufficient_evidence → numeric answer (180 mm / 280 mm).
+- PARTIAL: cites **WA I4D4** (Western Australia variation) not national D2D/D3D — same state-variation pattern as Session 3 Q6 (TAS).
+- Supporting pool has D3D14, D3D5 — national clauses retrieved but not chosen for citations.
+- Next: strengthen national D2D/D3D preference for stair dimensions when no state filter.
+
+Codes: ncc2022_vol1 · 26 evidence blocks (evidence-bound answer).
+
+
+================================================================================
+Q10 — What are the Section J energy efficiency requirements for a Class 5 office building?
+================================================================================
+Time: 14:27
+Confidence: 70%
+Evidence blocks: 4 (evidence-bound)
+Result: PASS (narrow scope)
+
+Top citations: J7D4 (+ A6G6, J6D12 in supporting pool)
+
+--- Answer (summary) ---
+
+Practitioner summary
+For a Class 5 office building, energy efficiency requirements under Section J include artificial lighting and power control. Requirements include individual operation of lighting, separate control in natural lighting zones, 95% of fittings over 250 m² on time/occupancy control, and daylight sensors in circulation spaces.
+
+Citations
+- J7D4 — lighting control requirements (individual switch, natural light zones, 95% over 250 m², circulation daylight sensors).
+
+Evaluator notes
+- Major fix vs Session 3: **J7D4 DTS** instead of J1V1 NABERS 5.5-star VM path.
+- PASS for lighting/power slice of Section J; answer does not cover J4 fabric / J6 HVAC / full J checklist.
+- Only 4 evidence blocks — narrow pool but sufficient for cited answer.
+- PARTIAL if user expected full Section J overview; PASS for practical J7 answer.
+
+Codes: ncc2022_vol1 · 4 evidence blocks (evidence-bound answer).
+
+
+################################################################################
+SESSION 5 — Vol 1 Set C (questions 11–15)
+################################################################################
+Date: 4 Jun 2026
+Time: 14:37–14:46
+Dataset: ncc2022_vol1
+State filter: (not recorded)
+Backend: ncc_query_routing v2 (same as Session 4)
+
+Summary (Set C — 5/5 questions run)
+------------------------------------
+| # | Question                                              | Result  | Confidence |
+|---|-------------------------------------------------------|---------|------------|
+| 11| Sprinkler required — 4-storey Class 5, 2,500 m²       | PASS    | 70%        |
+| 12| When fire-isolated stairway required — Class 5        | PASS    | 70%        |
+| 13| FRL fire door in fire-isolated exit                   | PASS    | 70%        |
+| 14| Mechanical smoke exhaust — basement carpark Class 7   | PARTIAL | 90%        |
+| 15| Minimum sanitary facilities — Class 5 office          | PARTIAL | 90%        |
+
+Overall Set C: 3 pass, 2 partial, 0 fail.
+Combined Vol 1 (Sets A–C, best run per question): ~11 pass, ~4 partial, 0 fail.
+
+
+================================================================================
+Q11 — Is a sprinkler system required in a four-storey Class 5 office building with a total floor area of 2,500 m²?
+================================================================================
+Time: 14:37
+Confidence: 70%
+Evidence blocks: 28 (evidence-bound)
+Result: PASS
+
+Top citations: E2D9 (+ VIC S17C2, S17C2, S18C3 in supporting pool — not used in answer)
+
+--- Answer (summary) ---
+
+Practitioner summary
+A sprinkler system is required for a Class 5 office building with a rise in storeys of more than 3, if the building is not more than 25 m in effective height. The system must comply with Specification 17, and a FPAA101D or FPAA101H system cannot be used.
+
+What the cited clauses require
+- Class 5 with rise in storeys > 3 must have a sprinkler system complying with Specification 17.
+- Sprinkler must not be FPAA101D or FPAA101H (with further restrictions on Class 2/3 parts).
+- Building must not exceed 25 m effective height.
+
+Citations
+- E2D9 — Class 5 > 3 storeys → sprinkler per Spec 17; FPAA101D/H restrictions.
+
+Evaluator notes
+- Answers applicability (yes for 4-storey scenario: rise > 3) — not Spec 17 install-only.
+- Cites **E2D9** (Part E2) not E1D3; acceptable for Class 5 sprinkler trigger in NCC 2022 Vol 1.
+- Floor area 2,500 m² in question not explicitly discussed; rise-in-storeys trigger is the decisive factor here.
+- PASS vs Set C criteria (yes/no/depends + triggers).
+
+Codes: ncc2022_vol1 · 28 evidence blocks (evidence-bound answer).
+
+
+================================================================================
+Q12 — When is a fire-isolated stairway required in a Class 5 building?
+================================================================================
+Time: 14:38
+Confidence: 70%
+Evidence blocks: 27 (evidence-bound)
+Result: PASS
+
+Top citations: D2D4 (+ E1D3, E2D4, E1D14 in supporting pool)
+
+--- Answer (summary) ---
+
+Practitioner summary
+A fire-isolated stairway must be provided in a Class 5 building when it serves as a required exit unless it connects, passes through, or passes by not more than two consecutive storeys. An extra storey may be included if the building has a compliant sprinkler system or if the exit is separated from the extra storey by specific fire-resistant construction.
+
+What the cited clauses require
+- Fire-isolated stairway for any required exit in Class 5.
+- Must not connect more than two consecutive storeys unless sprinkler or FRL separation conditions met.
+- Extra storey separation: –/60/60 non-loadbearing or 90/90/90 (Type A) / 60/60/60 (Type B/C) loadbearing.
+
+Citations
+- D2D4 — fire-isolated stairway for required exit; consecutive storey limits and exceptions.
+
+Evaluator notes
+- Addresses *when* / configuration triggers — not riser/going dimensions (unlike Q9).
+- Narrow scope: D2D4 consecutive-storeys rule, not broader rise-in-storeys trigger (e.g. effective height).
+- National **D2D4** cited — no state variation issue.
+- PASS for Set C criteria.
+
+Codes: ncc2022_vol1 · 27 evidence blocks (evidence-bound answer).
+
+
+================================================================================
+Q13 — What fire-resistance level applies to a fire door in a fire-isolated exit?
+================================================================================
+Time: 14:40
+Confidence: 70%
+Evidence blocks: 31 (evidence-bound)
+Result: PASS
+
+Top citations: C4D5 (+ E4F1, D3D8, TAS I12D7 in supporting pool — TAS not used in answer)
+
+--- Answer (summary) ---
+
+Practitioner summary
+A fire door in a fire-isolated exit must have an FRL of -/60/30 (integrity 60 min, insulation 30 min). Fire doors must be self-closing or automatic closing and comply with Specification 12.
+
+What the cited clauses require
+- Doorways in fire-isolated exits protected by -/60/30 fire door.
+- Self-closing or automatic closing.
+- Comply with Specification 12.
+
+Citations
+- C4D5 — -/60/30 FRL; self-closing; Spec 12.
+
+Evaluator notes
+- Specific numeric FRL (-/60/30) — practitioner-usable.
+- Cites **C4D5** (not C2/C3 as listed in test criteria — still valid door FRL clause in Vol 1).
+- National clause chosen over TAS I12D7 in pool.
+- PASS.
+
+Codes: ncc2022_vol1 · 31 evidence blocks (evidence-bound answer).
+
+
+================================================================================
+Q14 — Is mechanical smoke exhaust required for a basement carpark in a Class 7 building?
+================================================================================
+Time: 14:42
+Confidence: 90%
+Evidence blocks: 5 (evidence-bound)
+Result: PARTIAL
+
+Top citations: E2D10 (+ A6G8, C4D8 in supporting pool)
+
+--- Answer (summary) ---
+
+Practitioner summary
+Mechanical smoke exhaust may be required for a basement carpark in a Class 7 building depending on building height, floor area, and volume. If building ≤ 25 m effective height and ≤ 18,000 m² / 108,000 m³, one of: sprinkler, fire detection/alarm, automatic smoke exhaust, smoke-and-heat vents, or natural smoke venting. If area/volume exceeded, automatic smoke exhaust or smoke-and-heat vents depending on ceiling height (> 12 m).
+
+What the cited clauses require
+- Threshold-based choice among several smoke-management options (not smoke exhaust alone).
+- Area/volume/ceiling-height triggers from E2D10.
+
+Citations
+- E2D10 — smoke management options by height, area, volume, ceiling height.
+
+Evaluator notes
+- Correct Part **E2** path (not F4 ventilation only) — good.
+- PARTIAL: hedged “may be required”; does not clearly answer basement carpark Class 7 yes/no — reads as general fire-compartment warehouse rules.
+- Question-specific basement/carpark triggers not isolated; 2,500 m²-style scenario not mapped to a direct answer.
+- Only 5 evidence blocks — narrow pool.
+- Next: route/prefetch E2 basement or enclosed carpark clauses for Class 7.
+
+Codes: ncc2022_vol1 · 5 evidence blocks (evidence-bound answer).
+
+
+================================================================================
+Q15 — What are the minimum sanitary facility requirements for a Class 5 office building?
+================================================================================
+Time: 14:45
+Confidence: 90%
+Evidence blocks: 34 (evidence-bound)
+Result: PARTIAL
+
+Top citations: F4F1, F4D4, F4D6 (+ E4D2, A6G6, F4D4 in supporting pool)
+
+--- Answer (summary) ---
+
+Practitioner summary
+For a Class 5 office building, provide suitable sanitary facilities including closet pans and washbasins based on the number of male and female employees. At least one accessible unisex sanitary compartment on every storey containing sanitary compartments.
+
+What the cited clauses require
+- Suitable sanitary facilities and hygiene space (F4F1).
+- Closet pans and washbasins per male/female employee numbers (F4D4).
+- At least one accessible unisex compartment per storey with sanitary compartments (F4D6).
+
+Citations
+- F4F1 — suitable sanitary facilities.
+- F4D4 — pans/basins by employee count.
+- F4D6 — accessible unisex per storey.
+
+Evaluator notes
+- Correct Part **F4** clauses; no insufficient_evidence.
+- PARTIAL: points to F4D4 table but does **not** quote minimum counts/ratios (e.g. pans per N employees).
+- Practitioner must look up table — acceptable direction but below “good answer” bar in TestQ&A.md.
+- PASS on parts cited; PARTIAL on numeric completeness.
+
+Codes: ncc2022_vol1 · 34 evidence blocks (evidence-bound answer).
+
+
+################################################################################
+NCC 2022 VOLUME 2 (ncc2022_vol2)
+################################################################################
+
+################################################################################
+SESSION 6 — Vol 2 Set A (first run)
+################################################################################
+Date: 4 Jun 2026
+Time: 14:51–14:58
+Dataset: ncc2022_vol2
+State filter: (not recorded)
+Backend: ncc_query_routing v2 (Vol 1-focused; no Vol 2 H-part routes)
+
+Summary (Vol 2 — 5/5 questions run)
+------------------------------------
+| # | Question                                      | Result  | Confidence |
+|---|-----------------------------------------------|---------|------------|
+| 1 | Bushfire construction — Class 1 BAL-12.5      | PARTIAL | 70%        |
+| 2 | Minimum ceiling height — Class 1 habitable room | FAIL  | 30%        |
+| 3 | Smoke alarm required — Class 1a               | FAIL    | 0%         |
+| 4 | Bracing — timber-framed Class 1               | FAIL    | 70%        |
+| 5 | Energy efficiency — Class 1 house fabric      | PASS    | 70%        |
+
+Overall Vol 2 Session 6: 1 pass, 1 partial, 3 fail.
+Vol 2 routing/retrieval gap: H3 (smoke), H4 (room heights), H1 (structure/bracing) not reaching answer LLM; H7 bushfire over-fetched for non-bushfire questions.
+
+
+================================================================================
+Q1 — What are the bushfire construction requirements for a Class 1 building in a Bushfire Attack Level 12.5 (BAL-12.5) area?
+================================================================================
+Time: 14:51
+Confidence: 70%
+Evidence blocks: 31 (evidence-bound)
+Result: PARTIAL
+
+Top citations: H7P5, TAS H7P5, NSW H7D4 (+ H2D5, H3P1 in supporting pool)
+
+--- Answer (summary) ---
+
+Practitioner summary
+For Class 1 in BAL-12.5, construction must reduce ignition risk, maintain structural integrity during a bushfire, and protect life and property. Compliance via AS 3959 or NASH Standard; NSW modifications via development consent and RFS consultation.
+
+What the cited clauses require
+- Reduce risk of ignition from bushfire (H7P5).
+- Maintain structural integrity during design bushfire (H7P5).
+- TAS: vehicular access for firefighting; water supply for firefighting (TAS H7P5).
+- NSW: AS 3959/NASH may be modified by development consent (NSW H7D4).
+
+Citations
+- H7P5 — performance objectives (ignition, structural integrity).
+- TAS H7P5 — firefighting access and water (state variation).
+- NSW H7D4 — AS 3959/NASH modification path.
+
+Evaluator notes
+- On-theme Part **H7** bushfire (Vol 2 equivalent of bushfire provisions; TestQ&A.md cites legacy “Part C2”).
+- PARTIAL: **performance requirements only** — no BAL-12.5-specific construction DTS (ember screens, glazing, sub-floor, wall/cladding, etc.).
+- State variations (TAS, NSW) cited without state filter — same pattern as Vol 1 Q6/Q9.
+- AS 3959 referenced but BAL-12.5 construction detail not extracted from evidence.
+- PASS on direction; FAIL on BAL-specific practitioner detail → **PARTIAL**.
+
+Codes: ncc2022_vol2 · 31 evidence blocks (evidence-bound answer).
+
+
+================================================================================
+Q2 — What is the minimum ceiling height required for a habitable room in a Class 1 building?
+================================================================================
+Time: 14:52
+Confidence: 30%
+Evidence blocks: 19 (evidence-bound)
+Result: FAIL
+
+Top citations: (insufficient) — pool includes QLD H1P3, H2P3, A6G2
+
+--- Answer (summary) ---
+
+Insufficient evidence in the supplied clauses
+Evidence does not specify minimum ceiling height for a habitable room in Class 1. Relevant clause mentions room height must not unduly interfere with intended function, but no specific height given.
+
+Evaluator notes
+- **FAIL** — should cite Vol 2 **H4** (or Housing Provisions) room height DTS with numeric minimum (typically 2.4 m habitable room).
+- Pool has H2P3 (wrong part) and state QLD H1P3 — ranker/evidence did not surface H4D or height table.
+- Same failure class as Vol 1 pre-fix: right volume, wrong part retrieved.
+
+Codes: ncc2022_vol2 · 19 evidence blocks (evidence-bound answer).
+
+
+================================================================================
+Q3 — Is a smoke alarm required in a Class 1a dwelling under the NCC?
+================================================================================
+Time: 14:54
+Confidence: 0%
+Evidence blocks: 7 (evidence-bound)
+Result: FAIL
+
+Top citations: (insufficient) — pool includes H7P5, H7O1, H3F2
+
+--- Answer (summary) ---
+
+Insufficient evidence in the supplied clauses
+Evidence focuses on general fire safety but lacks smoke alarm installation provisions for Class 1a.
+
+Evaluator notes
+- **FAIL** — applicability question (yes + where) unanswered.
+- Only **7 evidence blocks** — severe evidence cap / retrieval miss.
+- Pool skewed to **H7 bushfire** (H7P5) not **H3** smoke alarm DTS (location, interconnection, AS 3786).
+- Classic “is X required?” failure — same pattern as Vol 1 Q2 smoke before fix.
+
+Codes: ncc2022_vol2 · 7 evidence blocks (evidence-bound answer).
+
+
+================================================================================
+Q4 — What bracing is required for a timber-framed Class 1 building?
+================================================================================
+Time: 14:55
+Confidence: 70%
+Evidence blocks: 20 (evidence-bound)
+Result: FAIL
+
+Top citations: (insufficient) — pool includes H7F4, H3P1, H3F1
+
+--- Answer (summary) ---
+
+Insufficient evidence in the supplied clauses
+Evidence focuses on fire protection and bushfire resistance, not structural bracing for timber-framed Class 1.
+
+Evaluator notes
+- **FAIL** — should cite **H1** structure / ABCB Housing Provisions bracing (wind category, bracing walls, tables).
+- Pool again dominated by H3/H7 — wrong thematic retrieval for structure question.
+- TestQ&A.md references “Part B3”; Vol 2 2022 uses **H1** + Housing Provisions.
+
+Codes: ncc2022_vol2 · 20 evidence blocks (evidence-bound answer).
+
+
+================================================================================
+Q5 — What are the energy efficiency requirements for the building fabric of a new Class 1 house?
+================================================================================
+Time: 14:56
+Confidence: 70%
+Evidence blocks: 25 (evidence-bound)
+Result: PASS
+
+Top citations: S42C4, H6D2, H6V2 (+ H2P3, H2D5, H3P1 in supporting pool)
+
+--- Answer (summary) ---
+
+Practitioner summary
+Building fabric must comply with ABCB Housing Provisions Part 13.2: thermal insulation (13.2.2), thermal breaks (13.2.3, 13.2.5), floor edge insulation (13.2.6), ceiling insulation loss compensation, and building sealing (Part 13.4). DTS or house energy rating software pathway.
+
+What the cited clauses require
+- H6D2 — comply with Part 13.2 Housing Provisions for building fabric.
+- H6V2 — thermal insulation requirements.
+- S42C4 — energy efficiency for building fabric.
+- Thermal breaks, floor edge insulation, sealing per cited Housing Provision clauses.
+
+Citations
+- S42C4, H6D2, H6V2 — fabric insulation and compliance path.
+
+Evaluator notes
+- **PASS** — correct **H6** energy efficiency part (TestQ&A.md says “H2” but Vol 2 2022 energy is H6).
+- Useful DTS checklist (insulation, thermal breaks, sealing); no climate-zone R-values quoted — acceptable overview.
+- Best Vol 2 result this session.
+
+Codes: ncc2022_vol2 · 25 evidence blocks (evidence-bound answer).
+
+
+################################################################################
+SESSION 7 — Vol 2 Set A re-test (after Vol 2 H-part routing)
+################################################################################
+Date: 4 Jun 2026
+Time: 15:03–15:13
+Dataset: ncc2022_vol2
+State filter: (not recorded)
+Backend: ncc_query_routing v3 (Vol 2 H1/H3/H4/H6/H7 routes + H7 shield)
+
+Summary (Vol 2 re-test — 5/5 questions run)
+-------------------------------------------
+| # | Question                                      | Session 6 | Session 7 | Confidence |
+|---|-----------------------------------------------|-----------|-----------|------------|
+| 1 | Bushfire construction — Class 1 BAL-12.5      | PARTIAL   | PARTIAL   | 70%        |
+| 2 | Minimum ceiling height — Class 1 habitable room | FAIL    | FAIL      | 50%        |
+| 3 | Smoke alarm required — Class 1a               | FAIL      | PASS      | 90%        |
+| 4 | Bracing — timber-framed Class 1               | FAIL      | PARTIAL   | 90%        |
+| 5 | Energy efficiency — Class 1 house fabric      | PASS      | PASS      | 70%        |
+
+Overall Vol 2 Session 7: 2 pass, 2 partial, 1 fail (was 1 pass, 1 partial, 3 fail).
+Major fixes: Q3 smoke (H3D6), Q4 bracing (H1D6/H1D2). Remaining gaps: Q1 BAL-12.5 construction detail, Q2 H4 numeric height.
+
+
+================================================================================
+Q1 — What are the bushfire construction requirements for a Class 1 building in a Bushfire Attack Level 12.5 (BAL-12.5) area?
+================================================================================
+Time: 15:03
+Confidence: 70%
+Evidence blocks: 36 (evidence-bound)
+Result: PARTIAL
+
+Top citations: H7P5, H7D4, NSW H7D4 (+ H2P3, H2D5 in supporting pool)
+
+--- Answer (summary) ---
+
+Practitioner summary
+For Class 1 in BAL-12.5, construction must reduce ignition risk, maintain structural integrity, and prevent internal ignition. Compliance via AS 3959 or NASH Standard; local/NSW modifications via Planning for Bush Fire Protection and development consent.
+
+What the cited clauses require
+- Reduce ignition risk (annual exceedance probability ≤ 1:50) (H7P5).
+- Account for fire duration/intensity; prevent internal ignition; maintain structural integrity (H7P5).
+- H7D4 exceptions: Group F rainforest, mangroves, grasslands < 300 mm.
+- NSW H7D4: AS 3959/NASH modified by Planning for Bush Fire Protection and development consent.
+
+Citations
+- H7P5 — performance objectives.
+- H7D4 — vegetation exceptions.
+- NSW H7D4 — NSW compliance modification path.
+
+Evaluator notes
+- National **H7D4** now cited (Session 6 had TAS H7P5 + NSW only).
+- Still **PARTIAL**: no BAL-12.5-specific construction DTS (ember protection, glazing, sub-floor, cladding) — performance + exceptions only.
+- AS 3959 referenced but construction elements for BAL-12.5 not extracted.
+- State NSW cited without state filter.
+
+Codes: ncc2022_vol2 · 36 evidence blocks (evidence-bound answer).
+
+
+================================================================================
+Q2 — What is the minimum ceiling height required for a habitable room in a Class 1 building?
+================================================================================
+Time: 15:05
+Confidence: 50%
+Evidence blocks: 12 (evidence-bound)
+Result: FAIL
+
+Top citations: (insufficient) — pool includes H2P3, H4F2, H4D4 (+9 more)
+
+--- Answer (summary) ---
+
+Insufficient evidence in the supplied clauses
+Evidence discusses room heights suitable for intended use but does not provide specific minimum measurements for Class 1 habitable rooms.
+
+Evaluator notes
+- **FAIL** — numeric minimum (e.g. 2.4 m) still not in answer.
+- Routing improvement: **H4F2, H4D4** now in pool (Session 6 had H2P3/QLD H1P3 only) — retrieval closer but ranker/answer cap still drops height table.
+- Only 12 evidence blocks — narrow pool for answer LLM.
+- Next: prefetch H4D1 room height table; boost TABLE unit_type for vol2_room_height.
+
+Codes: ncc2022_vol2 · 12 evidence blocks (evidence-bound answer).
+
+
+================================================================================
+Q3 — Is a smoke alarm required in a Class 1a dwelling under the NCC?
+================================================================================
+Time: 15:07
+Confidence: 90%
+Evidence blocks: 30 (evidence-bound)
+Result: PASS
+
+Top citations: H3D6 (+ H2D5, TAS H7P3 in supporting pool — H7 not used in answer)
+
+--- Answer (summary) ---
+
+Practitioner summary
+For Class 1a, smoke alarms must comply with AS 3786, connect to consumer mains with battery backup, and be interconnected for a common alarm throughout the dwelling.
+
+What the cited clauses require
+- Comply with AS 3786 (H3D6).
+- Connected to consumer mains where available; battery backup secondary power (H3D6).
+- Interconnected common alarm within dwelling (H3D6).
+- Exception: need not interconnect with another Class 1 building or separate private garage.
+
+Citations
+- H3D6 — AS 3786, mains + backup, interconnection.
+
+Evaluator notes
+- Major fix vs Session 6: insufficient_evidence (7 blocks) → **H3D6** (30 blocks).
+- Vol 2 H3 routing worked; H7 bushfire no longer dominates answer.
+- PASS: mandatory requirements for Class 1a clearly stated (implicit yes).
+- Minor: could lead with explicit “yes, required” before how-to — acceptable for practitioners.
+
+Codes: ncc2022_vol2 · 30 evidence blocks (evidence-bound answer).
+
+
+================================================================================
+Q4 — What bracing is required for a timber-framed Class 1 building?
+================================================================================
+Time: 15:09
+Confidence: 90%
+Evidence blocks: 15 (evidence-bound)
+Result: PARTIAL
+
+Top citations: H1D6, H1D2, H1D11 (+ H7F4, H3P1 in supporting pool — not used in answer)
+
+--- Answer (summary) ---
+
+Practitioner summary
+Timber-framed Class 1 bracing must comply with structural provisions: AS 1720.1/1720.5 or AS 1684.2–1684.4 as appropriate, ABCB Housing Provisions Section 2 (H1D3–H1D12), and deck/balcony bracing per Housing Provisions 12.3.4.
+
+What the cited clauses require
+- Timber framing per AS 1720.1, 1720.5, 1684.2, 1684.3, or 1684.4 (H1D6).
+- Comply with Housing Provisions Section 2 or H1D3–H1D12 (H1D2).
+- Deck/balcony bracing — prevent lateral movement, cl 12.3.4 (H1D11).
+
+Citations
+- H1D6 — timber framing standards.
+- H1D2 — Housing Provisions Section 2 / H1D3–H1D12.
+- H1D11 — deck/balcony bracing.
+
+Evaluator notes
+- Major fix vs Session 6: insufficient_evidence → national **H1** structure clauses.
+- PARTIAL: points to AS 1684 / Housing Provisions but no bracing wall **table numbers** or wind-category ratios.
+- H1 routing worked; H7/H3 in pool but not cited.
+
+Codes: ncc2022_vol2 · 15 evidence blocks (evidence-bound answer).
+
+
+================================================================================
+Q5 — What are the energy efficiency requirements for the building fabric of a new Class 1 house?
+================================================================================
+Time: 15:11
+Confidence: 70%
+Evidence blocks: 36 (evidence-bound)
+Result: PASS
+
+Top citations: H6D2, S42C2 (+ H2P3, H2D5, H7F4 in supporting pool)
+
+--- Answer (summary) ---
+
+Practitioner summary
+Building fabric must meet thermal performance via Housing Provisions Part 13.2 (fabric), 13.3 (glazing/shading), 13.4 (sealing), 13.5 (ceiling fans), or achieve ≥ 7-star energy rating via house energy rating software (S42C2). Climate zone 1/2 exceptions for 6–6.5 stars with covered outdoor living.
+
+What the cited clauses require
+- H6D2 — Parts 13.2–13.5 Housing Provisions.
+- S42C2 — minimum 7-star rating (with zone 1/2 outdoor-living exceptions).
+
+Citations
+- H6D2 — fabric, glazing, sealing, ceiling fans.
+- S42C2 — 7-star energy rating path.
+
+Evaluator notes
+- **PASS** — consistent with Session 6; H6 path stable.
+- Broader than Session 6 (adds 13.3 glazing, 13.5 fans, 7-star S42C2).
+- H7F4 in pool but not cited — H7 shield working on non-bushfire query.
+
+Codes: ncc2022_vol2 · 36 evidence blocks (evidence-bound answer).
+
+
+################################################################################
+SESSION 8 — Vol 2 Set B (questions 6–10)
+################################################################################
+Date: 4 Jun 2026
+Time: 15:21–15:28
+Dataset: ncc2022_vol2
+State filter: (not recorded)
+Backend: ncc_query_routing v3/v4 (Vol 2 H-routes; Set B topics not yet routed)
+
+Summary (Vol 2 Set B — 5/5 questions run)
+-----------------------------------------
+| # | Question                                      | Result  | Confidence |
+|---|-----------------------------------------------|---------|------------|
+| 6 | Bathroom floor waterproofing — Class 1        | FAIL    | 0%         |
+| 7 | Natural light & ventilation — habitable room  | PARTIAL | 70%        |
+| 8 | Swimming pool safety barrier — Class 1        | PARTIAL | 90%        |
+| 9 | Stair riser/going — Class 1                 | FAIL    | 0%         |
+| 10| NatHERS compliance path — Class 1 house       | PASS    | 70%        |
+
+Overall Vol 2 Set B Session 8: 1 pass, 2 partial, 2 fail.
+New routing gaps: H4 wet areas (Q6), H5 stairs (Q9), H7 pool DTS vs H7P (Q8), H4D numeric light/vent (Q7).
+
+
+================================================================================
+Q6 — What waterproofing requirements apply to the floor of a bathroom in a Class 1 building?
+================================================================================
+Time: 15:21
+Confidence: 0%
+Evidence blocks: 28 (evidence-bound)
+Result: FAIL
+
+Top citations: (insufficient) — pool includes H2D5, H7F4, H3P1 (+25 more)
+
+--- Answer (summary) ---
+
+Insufficient evidence in the supplied clauses
+Evidence includes general weatherproofing and dampness provisions but not bathroom floor waterproofing specifically.
+
+Evaluator notes
+- **FAIL** — should cite **H4D2, H4D3** (wet areas) and AS 3740 where referenced.
+- Pool polluted by **H2D5** (weatherproofing), **H7F4** (bushfire) — no Vol 2 route for wet-area waterproofing.
+- Next: add `vol2_wet_areas` route (H4D2, H4D3 prefetch).
+
+Codes: ncc2022_vol2 · 28 evidence blocks (evidence-bound answer).
+
+
+================================================================================
+Q7 — What are the natural light and ventilation requirements for a habitable room in a Class 1 building?
+================================================================================
+Time: 15:22
+Confidence: 70%
+Evidence blocks: 27 (evidence-bound)
+Result: PARTIAL
+
+Top citations: H4F4, H4V2 (+ H2P3, H2D5, H3F2 in supporting pool)
+
+--- Answer (summary) ---
+
+Practitioner summary
+Habitable rooms need openings for adequate natural light; artificial lighting for safe movement when natural light is insufficient. Natural light may be verified using the average daylight factor formula.
+
+What the cited clauses require
+- Openings in habitable rooms for adequate natural light (H4F4).
+- Artificial lighting for safe movement (H4F4).
+- Verification via average daylight factor (H4V2).
+
+Citations
+- H4F4 — natural light openings; artificial lighting backup.
+- H4V2 — daylight factor verification.
+
+Evaluator notes
+- On-theme **H4** (light) — correct part family.
+- **PARTIAL**: performance/verification (H4F4, H4V2) without **H4D** DTS numeric limits (window %, openable area, ventilation rates).
+- Ventilation requirements not clearly separated from light.
+- H2P3/H2D5 in pool but not cited.
+
+Codes: ncc2022_vol2 · 27 evidence blocks (evidence-bound answer).
+
+
+================================================================================
+Q8 — What are the safety barrier requirements for a swimming pool on a Class 1 property?
+================================================================================
+Time: 15:23
+Confidence: 90%
+Evidence blocks: 13 (evidence-bound)
+Result: PARTIAL
+
+Top citations: H7P1 (+ A1G1, A1G2, S3C6 in supporting pool)
+
+--- Answer (summary) ---
+
+Practitioner summary
+A pool safety barrier must be continuous, strong/rigid, restrict young children's access, with self-closing self-latching gates and child-resistant latches.
+
+What the cited clauses require
+- Continuous barrier for full extent of hazard (H7P1).
+- Strength/rigidity for foreseeable impact (H7P1).
+- Restrict young children's access (H7P1).
+- Gates/doors: child-resistant latches, auto close and latch (H7P1).
+
+Citations
+- H7P1 — barrier continuity, strength, access restriction, gate latching.
+
+Evaluator notes
+- Correct **H7 pool** topic (not bushfire BAL) — H7P1 is pool performance, not H7F4 bushfire.
+- **PARTIAL**: **H7P1 performance only** — no **H7D2** DTS (barrier height mm, AS 1926, gate specifications).
+- Useful qualitative requirements; missing numeric/standard citations practitioners expect.
+- Next: route `vol2_pool` → H7D2 prefetch; prefer H7D over H7P for construction questions.
+
+Codes: ncc2022_vol2 · 13 evidence blocks (evidence-bound answer).
+
+
+================================================================================
+Q9 — What are the maximum riser and minimum going dimensions for stairs in a Class 1 building?
+================================================================================
+Time: 15:25
+Confidence: 0%
+Evidence blocks: 17 (evidence-bound)
+Result: FAIL
+
+Top citations: (insufficient) — pool includes H2D5, H7F4, H3P1 (+14 more)
+
+--- Answer (summary) ---
+
+Insufficient evidence in the supplied clauses
+No specific maximum riser or minimum going dimensions for Class 1 stairs in supplied evidence.
+
+Evaluator notes
+- **FAIL** — should cite **H5D*** or Housing Provisions stair dimensions with numeric mm.
+- Same failure pattern as Set A Q2 (room height): wrong-part pool (**H2D5, H7F4**), no **H5** route.
+- Vol 1 `stairs` route does not apply to Vol 2 dataset.
+- Next: add `vol2_stairs` route (H5D1 prefetch, riser/going terms).
+
+Codes: ncc2022_vol2 · 17 evidence blocks (evidence-bound answer).
+
+
+================================================================================
+Q10 — What energy efficiency provisions apply when using the NatHERS compliance path for a new Class 1 house?
+================================================================================
+Time: 15:26
+Confidence: 70%
+Evidence blocks: 17 (evidence-bound)
+Result: PASS
+
+Top citations: H6D2, S42C4, S42C3 (+ H6V2 in supporting pool)
+
+--- Answer (summary) ---
+
+Practitioner summary
+NatHERS path: comply with H6P1 via house energy rating software plus Housing Provisions Section 13 (fabric, thermal breaks, sealing). Whole-of-home rating not less than 60 (S42C3). S42C4 ties fabric to Housing Provision clauses.
+
+What the cited clauses require
+- H6D2 — H6P1 via rating software + Section 13 Housing Provisions.
+- S42C4 — fabric insulation, thermal breaks, sealing per Housing Provisions.
+- S42C3 — whole-of-home rating ≥ 60.
+
+Citations
+- H6D2, S42C4, S42C3 — NatHERS/VM path distinct from fabric-only DTS overview.
+
+Evaluator notes
+- **PASS** — addresses **NatHERS/verification path** (S42C*, whole-of-home 60), not just Q5 fabric DTS repeat.
+- Note: 7-star thermal requirement (S42C2) not cited — question asked NatHERS path broadly; S42C3/C4 sufficient.
+- H6 routing from Set A carries over well.
+
+Codes: ncc2022_vol2 · 17 evidence blocks (evidence-bound answer).
+
+
+################################################################################
+SESSION 9 — Vol 2 agent test (20 questions, Sets A+B+C)
+################################################################################
+Date: 12 Jun 2026
+Time: ~15:42–16:08 (28 min total for 20 LLM calls)
+Dataset: ncc2022_vol2
+State filter: (none)
+Runner: `py -3.10 backend/scripts/run_ncc_agent_test.py --set all --limit 20`
+Output: `docs/agent-test-vol2-session9.json`, `docs/agent-test-vol2-session9.log`
+Backend: ncc_query_routing v5 + v6 (Set C routes, H2 shield)
+
+Summary (automated rule scorer — 20/20 questions)
+-------------------------------------------------
+| # | Topic            | Grade   | Conf | Notes |
+|---|------------------|---------|------|-------|
+| 1 | bushfire BAL-12.5 | PARTIAL | 70%  | H7D1–D5 in pool; AS 3959 answer; H2P3 noise |
+| 2 | room height      | FAIL    | 50%  | H4D1 in pool — insufficient (no 2.4 m in unit text) |
+| 3 | smoke alarm      | PASS    | 90%  | H3D6 answer content |
+| 4 | bracing          | PARTIAL | 90%  | H1D6 in pool; AS 1684 answer |
+| 5 | energy fabric    | PASS    | 70%  | H6D2, S42C4 |
+| 6 | wet areas        | PARTIAL | 90%  | H4D2/D3 + AS 3740 in answer (manual: PASS) |
+| 7 | light/vent       | PARTIAL | 70%  | H4D5/D6 in pool; H4F performance mix |
+| 8 | pool barrier     | PASS    | 70%  | H7D2 cited |
+| 9 | stairs           | FAIL    | 0%   | H5D1/D2 in pool — insufficient (no mm in unit text) |
+| 10| NatHERS          | PASS    | 70%  | S42C3/C4, H6V2 |
+| 11| footings         | PASS    | 70%  | H1D2 (wanted H1D4/5) |
+| 12| roof cyclonic    | PASS    | 70%  | weak H2 lead in pool |
+| 13| glazing energy   | PARTIAL | 90%  | H6 path noisy |
+| 14| deck             | PARTIAL | 70%  | H1D11 in pool |
+| 15| termite          | PARTIAL | 90%  | applicability unclear |
+| 16| weatherproof     | PASS    | 90%  | H2D* |
+| 17| Class 10 carport | PASS    | 90%  | H1D2, A1G2 |
+| 18| garage fire sep  | FAIL    | 50%  | → fixed v6 (see retest) |
+| 19| condensation     | PARTIAL | 90%  | H7P5 noise |
+| 20| livable H8       | PASS    | 70%  | answer on-topic |
+
+Automated totals: **9 pass, 8 partial, 3 fail** (~45% pass, ~40% partial, ~15% fail).
+
+Post-run fix (v6): H2 global shield, Set C routes (footings, garage_fire, termite, …).
+Retest Q2, Q9, Q18 (`agent-test-vol2-retest-2-9-18.json`):
+- Q18 garage fire: **PASS** (H3D5, H3D3) — was FAIL
+- Q2 room height: **FAIL** — H4D1 first in pool; still insufficient (data/ingest)
+- Q9 stairs: **FAIL** — H5D1/D2 in pool; still insufficient (data/ingest)
+
+Systemic finding: **H2P3/H2D5** appeared in most evidence pools (retrieval pollution). v6 penalizes H2 except `vol2_weatherproof` queries.
+
+Remaining Vol 2 gaps (not routing-only):
+- Q2, Q9: correct DTS anchors retrieved but **clause text lacks numeric table values** — check Housing Provisions table ingest for H4D1, H5D1.
+- Q1, Q7, Q13–Q15, Q19: partial — performance vs DTS or missing numbers.
+
+Full machine output: `docs/agent-test-vol2-session9.json` (781 lines).
+
+
+################################################################################
+SESSION 1 — BEFORE pipeline fix (reference)
+################################################################################
+Date: 4 Jun 2026, 12:05–12:35
+
+| # | Question                         | Result   | Confidence |
+|---|----------------------------------|----------|------------|
+| 1 | Occupant warning                 | PASS     | 70%        |
+| 2 | Smoke + Class 5                  | FAIL     | 50%        |
+| 3 | Emergency lighting Class 6       | NOT RUN  | —          |
+| 4 | Exit door width Class 5          | FAIL     | 0%         |
+| 5 | FRL Class 5 Type A 4 storeys     | FAIL     | 0%         |
+
+Session 1 failures: ranker/evidence cap; multi-candidate triple insufficient on Q4/Q5; Q2 insufficient_evidence.
+
+
+================================================================================
+Next actions
+================================================================================
+Vol 1 (deferred — acceptable for now).
+
+Vol 2 agent test follow-up:
+1. Q2/Q9: investigate ncc_units text for H4D1, H5D1 — Housing Provisions table rows may be missing from embeddings.
+2. Re-run full 20-question agent test after ingest fix: `py -3.10 scripts/run_ncc_agent_test.py --set all --limit 20`
+3. Script + docs: `docs/AGENT-NCC-QA-TEST.md`, `backend/scripts/run_ncc_agent_test.py`
+
+Vol 3: not started.

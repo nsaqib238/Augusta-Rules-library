@@ -1,0 +1,302 @@
+<!--
+  Augusta Search — welcome / onboarding email (Brevo-style layout)
+
+  HOW TO USE
+  ──────────
+  1. Replace placeholders: {{first_name}}, {{cta_url}}, {{unsubscribe_url}}, etc.
+  2. Host logo at https://ausstd.augustasearch.com/img/NewOfficetools.png (or your CDN).
+  3. Optional hero image: set HERO_IMAGE_URL (600×400 recommended).
+  4. Copy HTML into Brevo, Mailgun, SendGrid, or Supabase email template editor.
+  5. Send a test to yourself (Gmail + Outlook) before campaigns.
+
+  Tip: Many editors have an "Import HTML" option — paste this file contents.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Welcome to Augusta Search</title>
+  <!--[if mso]>
+  <noscript>
+    <xml>
+      <o:OfficeDocumentSettings>
+        <o:PixelsPerInch>96</o:PixelsPerInch>
+      </o:OfficeDocumentSettings>
+    </xml>
+  </noscript>
+  <![endif]-->
+</head>
+<body style="margin:0; padding:0; background-color:#eef2f6; font-family: Arial, Helvetica, sans-serif; -webkit-text-size-adjust:100%;">
+
+  <!-- Preheader (hidden preview text) -->
+  <div style="display:none; max-height:0; overflow:hidden; mso-hide:all;">
+    Standards answers with cited clauses — AS/NZS, NCC, and SIR in one workspace.
+  </div>
+
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#eef2f6;">
+    <tr>
+      <td align="center" style="padding: 24px 12px;">
+
+        <!-- Main container 600px -->
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" style="max-width:600px; width:100%; border-collapse:collapse; background-color:#ffffff; border-radius:12px; overflow:hidden; box-shadow:0 4px 24px rgba(15,23,42,0.08);">
+
+          <!-- Logo header -->
+          <tr>
+            <td align="center" style="padding: 28px 24px 20px; background-color:#ffffff;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;">
+                <tr>
+                  <td style="background-color:#fffaf1; padding:8px 14px; border-radius:10px; border:1px solid #e8d5a8;">
+                    <a href="https://www.augustasearch.com/" target="_blank" style="text-decoration:none;">
+                      <img
+                        src="https://ausstd.augustasearch.com/img/NewOfficetools.png"
+                        alt="Augusta Search"
+                        width="200"
+                        style="display:block; border:0; width:200px; max-width:100%; height:auto;"
+                      />
+                    </a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Hero band -->
+          <tr>
+            <td style="padding:0; background: linear-gradient(135deg, #0b1220 0%, #1f2937 100%); background-color:#0b1220;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                <tr>
+                  <td valign="top" style="padding: 32px 28px 28px; width:58%;">
+                    <p style="margin:0 0 8px; font-size:11px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:#f1ddab;">
+                      Engineering code intelligence
+                    </p>
+                    <h1 style="margin:0 0 12px; font-size:26px; line-height:1.25; font-weight:700; color:#ffffff;">
+                      Turn standards research into cited answers you can trust.
+                    </h1>
+                    <p style="margin:0; font-size:14px; line-height:1.55; color:#cbd5e1;">
+                      Search AS/NZS, NCC, and SIR with traceable clause references — built for compliance, design, and construction.
+                    </p>
+                  </td>
+                  <td valign="bottom" align="right" style="padding: 0 20px 0 0; width:42%;">
+                    <!-- Optional: replace src with your hero photo URL -->
+                    <img
+                      src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=400&q=80"
+                      alt=""
+                      width="220"
+                      style="display:block; border:0; width:220px; max-width:100%; height:auto; border-radius:12px 12px 0 0;"
+                    />
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Greeting + intro -->
+          <tr>
+            <td style="padding: 36px 32px 8px; background-color:#ffffff;">
+              <p style="margin:0 0 16px; font-size:18px; font-weight:700; color:#0b1220; text-align:center;">
+                Hey {{first_name}},
+              </p>
+              <p style="margin:0 0 20px; font-size:15px; line-height:1.6; color:#475569; text-align:center;">
+                Welcome to <strong style="color:#0b1220;">Augusta Search</strong>. You now have access to a workspace
+                designed for engineers who need answers grounded in the code — not generic AI guesses.
+              </p>
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center">
+                <tr>
+                  <td align="center" style="border-radius:999px; background-color:#0b1220;">
+                    <a
+                      href="{{cta_url}}"
+                      target="_blank"
+                      style="display:inline-block; padding:14px 32px; font-size:15px; font-weight:700; color:#ffffff; text-decoration:none;"
+                    >
+                      Open my Augusta Search account
+                    </a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Section title -->
+          <tr>
+            <td style="padding: 32px 32px 16px; background-color:#ffffff;">
+              <h2 style="margin:0; font-size:20px; font-weight:700; color:#0b1220; text-align:center;">
+                3 ways to get value from day one
+              </h2>
+            </td>
+          </tr>
+
+          <!-- 3 columns -->
+          <tr>
+            <td style="padding: 8px 20px 28px; background-color:#ffffff;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                <tr>
+                  <!-- Col 1 -->
+                  <td valign="top" width="33%" style="padding:8px;">
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#fffaf1; border-radius:12px; border:1px solid #f1ddab;">
+                      <tr>
+                        <td style="padding:20px 16px; text-align:center;">
+                          <p style="margin:0 0 8px; font-size:28px;">⚡</p>
+                          <p style="margin:0 0 8px; font-size:14px; font-weight:700; color:#0b1220;">Ask AS/NZS Q&amp;A</p>
+                          <p style="margin:0 0 16px; font-size:12px; line-height:1.5; color:#64748b;">
+                            Query uploaded standards with cited clauses for electrical, mechanical, fire, and hydraulics.
+                          </p>
+                          <a href="{{cta_url}}" style="font-size:12px; font-weight:700; color:#9a7a35; text-decoration:none;">Start a question →</a>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                  <!-- Col 2 -->
+                  <td valign="top" width="33%" style="padding:8px;">
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#fffaf1; border-radius:12px; border:1px solid #f1ddab;">
+                      <tr>
+                        <td style="padding:20px 16px; text-align:center;">
+                          <p style="margin:0 0 8px; font-size:28px;">🏛️</p>
+                          <p style="margin:0 0 8px; font-size:14px; font-weight:700; color:#0b1220;">NCC &amp; SIR</p>
+                          <p style="margin:0 0 16px; font-size:12px; line-height:1.5; color:#64748b;">
+                            National Construction Code and Services &amp; Installation Rules with state-aware context.
+                          </p>
+                          <a href="{{cta_url}}" style="font-size:12px; font-weight:700; color:#9a7a35; text-decoration:none;">Explore codes →</a>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                  <!-- Col 3 -->
+                  <td valign="top" width="33%" style="padding:8px;">
+                    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#fffaf1; border-radius:12px; border:1px solid #f1ddab;">
+                      <tr>
+                        <td style="padding:20px 16px; text-align:center;">
+                          <p style="margin:0 0 8px; font-size:28px;">📄</p>
+                          <p style="margin:0 0 8px; font-size:14px; font-weight:700; color:#0b1220;">Export &amp; save Q&amp;A</p>
+                          <p style="margin:0 0 16px; font-size:12px; line-height:1.5; color:#64748b;">
+                            Print professional PDF exports and build your saved Q&amp;A library for projects.
+                          </p>
+                          <a href="{{cta_url}}" style="font-size:12px; font-weight:700; color:#9a7a35; text-decoration:none;">Export an answer →</a>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Divider -->
+          <tr>
+            <td style="padding:0 32px;"><hr style="border:0; border-top:1px solid #e2e8f0; margin:0;" /></td>
+          </tr>
+
+          <!-- Secondary feature block -->
+          <tr>
+            <td style="padding: 28px 32px; background-color:#ffffff; text-align:center;">
+              <p style="margin:0 0 8px; font-size:32px;">📋</p>
+              <h2 style="margin:0 0 12px; font-size:18px; font-weight:700; color:#0b1220;">
+                Evidence-bound answers, not chatbot guesses
+              </h2>
+              <p style="margin:0 0 8px; font-size:14px; line-height:1.6; color:#475569; text-align:left; max-width:480px; margin-left:auto; margin-right:auto;">
+                ✓ Practitioner summary and clause requirements<br />
+                ✓ Exceptions and on-site confirmation prompts<br />
+                ✓ Citations you can verify against the official code
+              </p>
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" align="center" style="margin-top:20px;">
+                <tr>
+                  <td align="center" style="border-radius:999px; background-color:#c9a45c;">
+                    <a
+                      href="{{cta_url}}"
+                      target="_blank"
+                      style="display:inline-block; padding:12px 28px; font-size:14px; font-weight:700; color:#0b1220; text-decoration:none;"
+                    >
+                      Go to the workspace
+                    </a>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Tips band -->
+          <tr>
+            <td style="padding: 28px 24px; background-color:#fffaf1;">
+              <h2 style="margin:0 0 20px; font-size:17px; font-weight:700; color:#0b1220; text-align:center;">
+                Tips from the Augusta Search team
+              </h2>
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                <tr>
+                  <td width="33%" valign="top" style="padding:8px; text-align:center;">
+                    <p style="margin:0 0 6px; font-size:22px;">🎯</p>
+                    <p style="margin:0; font-size:12px; line-height:1.45; color:#334155; font-weight:600;">Select the right code edition and volume before you ask.</p>
+                  </td>
+                  <td width="33%" valign="top" style="padding:8px; text-align:center;">
+                    <p style="margin:0 0 6px; font-size:22px;">🔗</p>
+                    <p style="margin:0; font-size:12px; line-height:1.45; color:#334155; font-weight:600;">Always verify citations against the official publication.</p>
+                  </td>
+                  <td width="33%" valign="top" style="padding:8px; text-align:center;">
+                    <p style="margin:0 0 6px; font-size:22px;">💾</p>
+                    <p style="margin:0; font-size:12px; line-height:1.45; color:#334155; font-weight:600;">Save useful Q&amp;A to your library for reuse on site.</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Sign-off -->
+          <tr>
+            <td style="padding: 24px 32px; background-color:#0b1220; border-radius:0;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td valign="middle" style="padding-right:14px;">
+                    <div style="width:44px; height:44px; border-radius:50%; background-color:#c9a45c; text-align:center; line-height:44px; font-size:18px; font-weight:700; color:#0b1220;">
+                      NS
+                    </div>
+                  </td>
+                  <td valign="middle">
+                    <p style="margin:0; font-size:15px; font-weight:700; color:#ffffff;">Best,</p>
+                    <p style="margin:4px 0 0; font-size:14px; color:#94a3b8;">Your Augusta Search team</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Footer -->
+          <tr>
+            <td style="padding: 28px 24px; background-color:#070d18; text-align:center;">
+              <p style="margin:0 0 12px;">
+                <a href="https://www.augustasearch.com/" style="color:#f1ddab; text-decoration:none; font-size:13px; font-weight:700;">augustasearch.com</a>
+                &nbsp;·&nbsp;
+                <a href="https://ausstd.augustasearch.com/login" style="color:#94a3b8; text-decoration:none; font-size:13px;">Sign in</a>
+              </p>
+              <p style="margin:0 0 16px; font-size:11px; line-height:1.5; color:#64748b;">
+                Augusta Search · Operating globally · Based in Australia<br />
+                {{company_address}}
+              </p>
+              <p style="margin:0 0 12px; font-size:11px; line-height:1.5; color:#64748b;">
+                You received this email because you signed up for Augusta Search.<br />
+                <strong>Important:</strong> Augusta Search is an AI assistance / research tool —
+                <strong>not</strong> a substitute for professional engineering judgment, legal advice,
+                or formal compliance review. Always verify citations against the official publication.
+              </p>
+              <p style="margin:0; font-size:11px;">
+                <a href="{{view_in_browser_url}}" style="color:#94a3b8; text-decoration:underline;">View in browser</a>
+                &nbsp;|&nbsp;
+                <a href="mailto:{{support_email}}" style="color:#94a3b8; text-decoration:underline;">Contact us</a>
+                &nbsp;|&nbsp;
+                <a href="{{terms_url}}" style="color:#94a3b8; text-decoration:underline;">Terms</a>
+                &nbsp;|&nbsp;
+                <a href="{{privacy_url}}" style="color:#94a3b8; text-decoration:underline;">Privacy</a>
+                &nbsp;|&nbsp;
+                <a href="{{unsubscribe_url}}" style="color:#94a3b8; text-decoration:underline;">Unsubscribe</a>
+              </p>
+            </td>
+          </tr>
+
+        </table>
+        <!-- /main container -->
+
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>

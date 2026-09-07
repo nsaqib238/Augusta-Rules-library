@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Augusta Search — Ad V1 Verify (93 × 131 mm)</title>
+  <style>
+  @page { size: 93mm 131mm; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #cbd5e1; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .ad {
+    width: 93mm; height: 131mm; margin: 8px auto; padding: 4.5mm 4.5mm 3.5mm;
+    position: relative; overflow: hidden;
+    font-family: "Segoe UI", system-ui, sans-serif; color: #e2e8f0;
+    background: linear-gradient(165deg, #0b1220 0%, #1f2937 58%, #263245 100%);
+    box-shadow: 0 8px 28px rgba(15, 23, 42, 0.18);
+  }
+  .variant-tag { position: absolute; top: 2mm; right: 3mm; font-size: 5pt; color: #64748b; letter-spacing: 0.08em; }
+  .eyebrow { margin: 0 0 2.5mm; font-size: 5.8pt; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: #c9a45c; }
+  .logo-panel { display: inline-block; margin-bottom: 3mm; padding: 1.8mm 2.5mm; background: #fffaf1; border: 0.35mm solid #e8d5a8; border-radius: 2mm; line-height: 0; }
+  .logo-panel img { display: block; width: 34mm; height: auto; }
+  h1 { margin: 0 0 2mm; font-size: 12.8pt; line-height: 1.12; font-weight: 700; color: #fff; }
+  .sub { margin: 0 0 3mm; font-size: 7.6pt; line-height: 1.38; color: #cbd5e1; }
+  .sub strong { color: #f1ddab; font-weight: 600; }
+  ul { margin: 0; padding: 0 0 0 3.5mm; list-style: none; }
+  li { position: relative; margin: 0 0 1.6mm; padding-left: 3mm; font-size: 7.2pt; line-height: 1.32; color: #e2e8f0; }
+  li::before { content: ""; position: absolute; left: 0; top: 1.1mm; width: 1.4mm; height: 1.4mm; border-radius: 50%; background: #c9a45c; }
+  .cta { position: absolute; left: 4.5mm; right: 4.5mm; bottom: 7.5mm; display: flex; align-items: center; gap: 2.5mm; padding: 2.2mm 2.5mm; background: rgba(255,255,255,0.08); border: 0.3mm solid rgba(241,221,171,0.45); border-radius: 2mm; }
+  .cta-text { flex: 1; }
+  .cta-label { margin: 0; font-size: 5.5pt; letter-spacing: 0.12em; text-transform: uppercase; color: #94a3b8; font-weight: 600; }
+  .cta-url { margin: 0.6mm 0 0; font-size: 9.2pt; font-weight: 700; color: #f1ddab; }
+  #qr { flex-shrink: 0; width: 13mm; height: 13mm; background: #fff; border-radius: 1.2mm; padding: 0.8mm; }
+  #qr canvas, #qr img { display: block; width: 100% !important; height: 100% !important; }
+  .legal { position: absolute; left: 4.5mm; right: 4.5mm; bottom: 2.2mm; margin: 0; font-size: 4.6pt; line-height: 1.25; color: #64748b; text-align: center; }
+  @media print { html, body { background: #fff; } .ad { margin: 0; box-shadow: none; } .variant-tag { display: none; } }
+  </style>
+</head>
+<body>
+  <article class="ad">
+    <span class="variant-tag">SAMPLE V1</span>
+    <p class="eyebrow">Engineering standards research</p>
+    <div class="logo-panel"><img src="../NewOfficetools.png" alt="Augusta Search" /></div>
+    <h1>Find the clause faster.<br />Verify it yourself.</h1>
+    <p class="sub"><strong>Augusta Search</strong> — for engineers, consultants and compliance professionals.</p>
+    <ul>
+      <li><strong>AS/NZS, NCC &amp; SIR</strong> in one workspace</li>
+      <li><strong>Cited clauses</strong> — not generic AI guesses</li>
+      <li><strong>Save &amp; export Q&amp;A</strong> for project records</li>
+      <li><strong>Grounded answers</strong> from the code you select</li>
+    </ul>
+    <div class="cta">
+      <div class="cta-text"><p class="cta-label">Start here</p><p class="cta-url">augustasearch.com</p></div>
+      <div id="qr"></div>
+    </div>
+    <p class="legal">Research assistance only — verify against the applicable standard.</p>
+  </article>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+  <script>QRCode.toCanvas(document.createElement("canvas"), "https://augustasearch.com/", { width: 120, margin: 0, color: { dark: "#0b1220", light: "#ffffff" } }, function (e, c) { if (!e && c) document.getElementById("qr").appendChild(c); });</script>
+</body>
+</html>

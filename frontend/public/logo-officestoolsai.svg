@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 300" width="920" height="300" role="img" aria-label="augustasearch - Smarter Workspaces. Powered by AI.">
+  <defs>
+    <!-- Chiseled / embossed fill for dark wordmark -->
+    <linearGradient id="wordFill" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3a3a42"/>
+      <stop offset="35%" stop-color="#151518"/>
+      <stop offset="100%" stop-color="#030305"/>
+    </linearGradient>
+    <linearGradient id="wordStrokeHi" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5c5c68" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#1a1a1f" stop-opacity="0.2"/>
+    </linearGradient>
+    <linearGradient id="tagFill" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#45454e"/>
+      <stop offset="100%" stop-color="#0a0a0c"/>
+    </linearGradient>
+    <filter id="iconEmboss" x="-30%" y="-30%" width="160%" height="160%" color-interpolation-filters="sRGB">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="0.8" result="b"/>
+      <feSpecularLighting in="b" surfaceScale="2" specularConstant="0.35" specularExponent="24" lighting-color="#c8c8d0" result="s">
+        <fePointLight x="-200" y="-280" z="180"/>
+      </feSpecularLighting>
+      <feComposite in="s" in2="SourceAlpha" operator="in" result="lit"/>
+      <feBlend in="SourceGraphic" in2="lit" mode="screen" result="out"/>
+    </filter>
+  </defs>
+
+  <rect width="100%" height="100%" fill="#000000"/>
+
+  <!-- Network / node icon (top-right of wordmark) -->
+  <g transform="translate(668 42)" filter="url(#iconEmboss)" fill="none" stroke-linecap="round">
+    <g stroke="#141418" stroke-width="5">
+      <line x1="0" y1="0" x2="0" y2="-38"/>
+      <line x1="0" y1="0" x2="33" y2="-19"/>
+      <line x1="0" y1="0" x2="33" y2="19"/>
+      <line x1="0" y1="0" x2="0" y2="38"/>
+      <line x1="0" y1="0" x2="-33" y2="19"/>
+      <line x1="0" y1="0" x2="-33" y2="-19"/>
+    </g>
+    <g stroke="#4a4a55" stroke-width="1.2" opacity="0.85">
+      <line x1="0" y1="0" x2="0" y2="-38"/>
+      <line x1="0" y1="0" x2="33" y2="-19"/>
+      <line x1="0" y1="0" x2="33" y2="19"/>
+      <line x1="0" y1="0" x2="0" y2="38"/>
+      <line x1="0" y1="0" x2="-33" y2="19"/>
+      <line x1="0" y1="0" x2="-33" y2="-19"/>
+    </g>
+    <!-- Hub + terminal nodes -->
+    <circle cx="0" cy="0" r="10" fill="#0a0a0d" stroke="#3d3d48" stroke-width="1.5"/>
+    <circle cx="0" cy="-42" r="6" fill="#08080a" stroke="#4a4a55" stroke-width="1.2"/>
+    <circle cx="36" cy="-21" r="6" fill="#08080a" stroke="#4a4a55" stroke-width="1.2"/>
+    <circle cx="36" cy="21" r="6" fill="#08080a" stroke="#4a4a55" stroke-width="1.2"/>
+    <circle cx="0" cy="42" r="6" fill="#08080a" stroke="#4a4a55" stroke-width="1.2"/>
+    <circle cx="-36" cy="21" r="6" fill="#08080a" stroke="#4a4a55" stroke-width="1.2"/>
+    <circle cx="-36" cy="-21" r="6" fill="#08080a" stroke="#4a4a55" stroke-width="1.2"/>
+  </g>
+
+  <!-- Wordmark: subtle rim (top-left light) + body -->
+  <text
+    x="460"
+    y="168"
+    text-anchor="middle"
+    font-family="ui-rounded, 'SF Pro Rounded', 'Segoe UI', system-ui, -apple-system, sans-serif"
+    font-size="64"
+    font-weight="600"
+    letter-spacing="-0.02em"
+    fill="none"
+    stroke="url(#wordStrokeHi)"
+    stroke-width="1.1"
+    paint-order="stroke fill"
+  >augustasearch</text>
+  <text
+    x="460"
+    y="168"
+    text-anchor="middle"
+    font-family="ui-rounded, 'SF Pro Rounded', 'Segoe UI', system-ui, -apple-system, sans-serif"
+    font-size="64"
+    font-weight="600"
+    letter-spacing="-0.02em"
+    fill="url(#wordFill)"
+  >augustasearch</text>
+
+  <!-- Tagline -->
+  <text
+    x="460"
+    y="228"
+    text-anchor="middle"
+    font-family="ui-sans-serif, 'Segoe UI', system-ui, sans-serif"
+    font-size="21"
+    font-weight="500"
+    letter-spacing="0.02em"
+    fill="url(#tagFill)"
+  >Smarter Workspaces. Powered by AI.</text>
+  <text
+    x="460"
+    y="228"
+    text-anchor="middle"
+    font-family="ui-sans-serif, 'Segoe UI', system-ui, sans-serif"
+    font-size="21"
+    font-weight="500"
+    letter-spacing="0.02em"
+    fill="none"
+    stroke="#4a4a55"
+    stroke-width="0.35"
+    stroke-opacity="0.45"
+  >Smarter Workspaces. Powered by AI.</text>
+</svg>

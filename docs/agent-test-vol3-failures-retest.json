@@ -1,0 +1,210 @@
+{
+  "dataset_id": "ncc2022_vol3",
+  "total_planned": 6,
+  "summary": {
+    "pass": 3,
+    "partial": 0,
+    "fail": 3,
+    "error": 0
+  },
+  "results": [
+    {
+      "num": 4,
+      "topic": "org",
+      "question": "When is an overflow relief gully required for a sanitary drainage system?",
+      "grade": "fail",
+      "confidence": 0.0,
+      "used_clauses": [
+        "TAS E3P2",
+        "VIC C2D4",
+        "TAS C2D6",
+        "TAS E4D2",
+        "VIC E4D2",
+        "E1P1"
+      ],
+      "evidence_unit_count": 6,
+      "elapsed_s": 163.8,
+      "notes": [
+        "insufficient_evidence or very low confidence"
+      ],
+      "answer_preview": "**Insufficient evidence in the supplied clauses**\n\nThe provided evidence does not specify when an overflow relief gully must be installed for a sanitary drainage system. The evidence lacks specific requirements or conditions for overflow relief gullies.\n\n**Why:** The evidence does not include specific requirements for overflow relief gullies.\n\n**What would help:** Include specific clauses from AS/"
+    },
+    {
+      "num": 5,
+      "topic": "fire_hydrant",
+      "question": "What are the requirements for fire hydrant installation on a property?",
+      "grade": "pass",
+      "confidence": 0.9,
+      "used_clauses": [
+        "SA B6D2",
+        "C3D3",
+        "C3D2",
+        "C1D5",
+        "C3D4",
+        "B4D4",
+        "B1F3",
+        "C1D3",
+        "C2D4",
+        "B4D2",
+        "B4D5",
+        "S41C7",
+        "B4D3",
+        "A5G6",
+        "A5G5",
+        "B4F1",
+        "B1D5",
+        "B4P3",
+        "B5D4",
+        "S41C3",
+        "B5D5",
+        "B1F2",
+        "VIC B3D3"
+      ],
+      "evidence_unit_count": 23,
+      "elapsed_s": 59.1,
+      "notes": [
+        "pool ok: ['SA B6D2', 'C3D3', 'C3D2', 'C1D5']",
+        "route: ['vol3_fire_hydrant']"
+      ],
+      "answer_preview": "**Practitioner summary**\n\n**Outcome:** Based **only on the cited clauses** - apply the requirements below to the installation and use any verification items as applicable.\n\nFire hydrants on a property must comply with AS 2419.1 according to the National Construction Code. This standard outlines the specific requirements for the installation and maintenance of fire hydrant systems. Compliance ensur"
+    },
+    {
+      "num": 7,
+      "topic": "non_drinking_water",
+      "question": "What are the requirements for using recycled water in a toilet flush system?",
+      "grade": "pass",
+      "confidence": 0.7,
+      "used_clauses": [
+        "VIC E4P1",
+        "TAS E4D2",
+        "C1F1",
+        "C2F1",
+        "D1P1",
+        "D1D2",
+        "B3D2",
+        "B3F1",
+        "B3P1",
+        "B3P3",
+        "D1P2",
+        "D1F1",
+        "C1P5",
+        "B1D5",
+        "C1V1",
+        "B1D2",
+        "B1F1",
+        "C1V4",
+        "B2D2",
+        "B1F3",
+        "B1P1",
+        "B4D3",
+        "C1P1",
+        "C2P4",
+        "C2V3",
+        "C1V2",
+        "E1P1",
+        "S41C2",
+        "C3D5",
+        "C2P1",
+        "C2F2",
+        "C2P6",
+        "C2P5",
+        "TAS E4D1",
+        "VIC E3D1",
+        "VIC E2D1"
+      ],
+      "evidence_unit_count": 36,
+      "elapsed_s": 105.6,
+      "notes": [
+        "pool ok: ['VIC E4P1', 'TAS E4D2', 'C1F1', 'C2F1']",
+        "route: ['vol3_sanitary_plumbing', 'vol3_non_drinking']"
+      ],
+      "answer_preview": "**Practitioner summary**\n\n**Outcome:** Based **only on the cited clauses** - apply the requirements below to the installation and use any verification items as applicable.\n\nThe use of recycled water in a toilet flush system is permitted under certain conditions. Non-drinking water services must not be connected to outlets for human consumption, food preparation, utensil washing, or personal hygien"
+    },
+    {
+      "num": 9,
+      "topic": "gas",
+      "question": "What are the gas piping installation requirements for a residential building?",
+      "grade": "fail",
+      "confidence": 0.0,
+      "used_clauses": [
+        "SA B2D2",
+        "B2F2",
+        "B2P3",
+        "B2D10",
+        "B2P4",
+        "B2D1",
+        "Table S3C6_4",
+        "B4D4",
+        "B3D3",
+        "SA B6D2",
+        "B2D2",
+        "B2F1",
+        "B2P1",
+        "B4D6",
+        "B1P1",
+        "B1F1",
+        "B1D4",
+        "B3D4",
+        "B6D6",
+        "B7P3",
+        "B4P2",
+        "S3C6",
+        "C1D4",
+        "S41C5",
+        "S41C6",
+        "C3P7",
+        "D1F1",
+        "D1P2",
+        "E1P1",
+        "S41C2",
+        "C1P5",
+        "C2P5",
+        "C2D5",
+        "C2P3",
+        "A6G2",
+        "TAS B2D2"
+      ],
+      "evidence_unit_count": 36,
+      "elapsed_s": 100.8,
+      "notes": [
+        "insufficient_evidence or very low confidence"
+      ],
+      "answer_preview": "**Insufficient evidence in the supplied clauses**\n\nThe provided evidence does not include specific installation requirements for gas piping in residential buildings according to the National Construction Code. The evidence focuses on heated water systems and related provisions.\n\n**Why:** The evidence blocks do not address gas piping installation requirements.\n\n**What would help:** Include evidence"
+    },
+    {
+      "num": 11,
+      "topic": "swimming_pool",
+      "question": "What are the plumbing requirements for a residential swimming pool?",
+      "grade": "pass",
+      "confidence": 0.9,
+      "used_clauses": [
+        "B4D4",
+        "SA B6D2",
+        "D1D2"
+      ],
+      "evidence_unit_count": 3,
+      "elapsed_s": 100.8,
+      "notes": [
+        "pool ok: ['B4D4', 'SA B6D2', 'D1D2']",
+        "route: ['vol3_pool']"
+      ],
+      "answer_preview": "**Practitioner summary**\n\n**Outcome:** Based **only on the cited clauses** - apply the requirements below to the installation and use any verification items as applicable.\n\nFor a residential swimming pool, the plumbing requirements include connecting any pumped discharge from the pool to the sanitary drainage system. Compliance with specific performance requirements for sanitary drainage systems i"
+    },
+    {
+      "num": 13,
+      "topic": "mechanical_services",
+      "question": "What mechanical services ventilation requirements apply to a commercial kitchen exhaust?",
+      "grade": "fail",
+      "confidence": 0.0,
+      "used_clauses": [
+        "E1D2"
+      ],
+      "evidence_unit_count": 1,
+      "elapsed_s": 95.6,
+      "notes": [
+        "insufficient_evidence or very low confidence"
+      ],
+      "answer_preview": "**Insufficient evidence in the supplied clauses**\n\nThe provided evidence does not contain specific mechanical services ventilation requirements for a commercial kitchen exhaust in accordance with the NCC. The evidence block primarily contains general definitions and terms.\n\n**Why:** The evidence block does not address mechanical services ventilation requirements for commercial kitchens.\n\n**What wo"
+    }
+  ]
+}

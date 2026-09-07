@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Augusta Search — Quarter Page Ad SUBMIT (93 × 131 mm)</title>
+  <style>
+  @page { size: 93mm 131mm; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .ad {
+    width: 93mm; height: 131mm; margin: 0 auto; padding: 4mm 4.5mm 3.5mm;
+    position: relative; overflow: hidden;
+    font-family: "Segoe UI", system-ui, sans-serif; color: #e2e8f0;
+    background: linear-gradient(160deg, #0a1f14 0%, #0f2d1c 45%, #1a3d28 100%);
+  }
+  .accent-bar { position: absolute; top: 0; left: 0; right: 0; height: 2.5mm; background: linear-gradient(90deg, #16a34a, #22c55e, #4ade80); }
+  .eyebrow { margin: 3mm 0 2mm; font-size: 5.6pt; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #86efac; }
+  .logo-panel { display: inline-block; margin-bottom: 2.5mm; padding: 1.6mm 2.2mm; background: #fffaf1; border: 0.35mm solid #e8d5a8; border-radius: 2mm; line-height: 0; }
+  .logo-panel img { display: block; width: 32mm; height: auto; }
+  h1 { margin: 0 0 2mm; font-size: 11.8pt; line-height: 1.15; font-weight: 700; color: #fff; }
+  h1 em { font-style: normal; color: #bbf7d0; }
+  .sub { margin: 0 0 2.8mm; font-size: 7.4pt; line-height: 1.36; color: #d1fae5; }
+  ul { margin: 0; padding: 0; list-style: none; }
+  li { margin: 0 0 1.5mm; padding: 1.4mm 2mm; font-size: 6.9pt; line-height: 1.3; color: #ecfdf5; background: rgba(255,255,255,0.06); border-left: 0.8mm solid #22c55e; border-radius: 0 1.5mm 1.5mm 0; }
+  li strong { color: #fff; }
+  .cta { position: absolute; left: 4.5mm; right: 4.5mm; bottom: 7.5mm; display: flex; align-items: center; gap: 2.5mm; padding: 2mm 2.5mm; background: #14532d; border: 0.3mm solid #4ade80; border-radius: 2mm; }
+  .cta-label { margin: 0; font-size: 5.4pt; letter-spacing: 0.1em; text-transform: uppercase; color: #86efac; font-weight: 600; }
+  .cta-url { margin: 0.5mm 0 0; font-size: 9pt; font-weight: 700; color: #f1ddab; }
+  #qr {
+    flex-shrink: 0; width: 13mm; height: 13mm; background: #fff;
+    border-radius: 1.2mm; padding: 0.8mm; overflow: hidden;
+  }
+  #qr img, #qr canvas { display: block; width: 100% !important; height: 100% !important; object-fit: contain; }
+  .legal { position: absolute; left: 4.5mm; right: 4.5mm; bottom: 2.2mm; margin: 0; font-size: 4.5pt; line-height: 1.25; color: #6ee7b7; opacity: 0.75; text-align: center; }
+  @media print { .ad { margin: 0; } }
+  </style>
+</head>
+<body>
+  <article class="ad" aria-label="Augusta Search quarter page advertisement">
+    <div class="accent-bar"></div>
+    <p class="eyebrow">NCC · SIR · AS/NZS research</p>
+    <div class="logo-panel"><img src="../NewOfficetools.png" alt="Augusta Search" /></div>
+    <h1>NCC &amp; standards answers — <em>with citations.</em></h1>
+    <p class="sub">Built for teams who need defensible, traceable compliance research — not chatbot guesses.</p>
+    <ul>
+      <li><strong>Emergency lighting &amp; egress</strong> — ask NCC in plain English</li>
+      <li><strong>Electrical &amp; fire rules</strong> — AS/NZS with clause refs</li>
+      <li><strong>Export Q&amp;A</strong> — keep evidence for audits &amp; briefings</li>
+      <li><strong>Free tier</strong> includes NCC + SIR search</li>
+    </ul>
+    <div class="cta">
+      <div style="flex:1">
+        <p class="cta-label">Try Augusta Search</p>
+        <p class="cta-url" id="cta-url">augustasearch.com</p>
+      </div>
+      <div id="qr" aria-label="QR code — scan to visit website"></div>
+    </div>
+    <p class="legal">Research aid only — confirm against current official publications.</p>
+  </article>
+  <!-- ═══ CHANGE YOUR URL HERE (must include https://) ═══ -->
+  <script>window.AD_LANDING_URL = "https://augustasearch.com/";</script>
+  <script>
+    (function () {
+      var url = (window.AD_LANDING_URL || "https://augustasearch.com/").trim();
+      var host = url.replace(/^https?:\/\//i, "").replace(/\/$/, "");
+      var cta = document.getElementById("cta-url");
+      if (cta) cta.textContent = host;
+
+      var box = document.getElementById("qr");
+      if (!box) return;
+
+      /* Primary: image QR (reliable when printing to PDF) */
+      var img = document.createElement("img");
+      img.alt = "QR code";
+      img.width = 200;
+      img.height = 200;
+      img.src =
+        "https://api.qrserver.com/v1/create-qr-code/?size=200x200&margin=0&data=" +
+        encodeURIComponent(url);
+      img.onload = function () { box.appendChild(img); };
+      img.onerror = function () {
+        /* Fallback: local QR library */
+        var s = document.createElement("script");
+        s.src = "https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js";
+        s.onload = function () {
+          QRCode.toCanvas(
+            document.createElement("canvas"),
+            url,
+            { width: 200, margin: 0, color: { dark: "#0a1f14", light: "#ffffff" } },
+            function (err, canvas) { if (!err && canvas) box.appendChild(canvas); }
+          );
+        };
+        document.body.appendChild(s);
+      };
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+{
+  "name": "rag-ai-electrical-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "@supabase/supabase-js": "^2.38.0",
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "autoprefixer": "^10.4.0",
+    "html-to-image": "^1.11.13",
+    "html2pdf.js": "^0.14.0",
+    "lucide-react": "^0.294.0",
+    "postcss": "^8.4.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-google-recaptcha": "^3.1.0",
+    "react-router-dom": "^6.8.0",
+    "react-scripts": "5.0.1",
+    "tailwindcss": "^3.3.0",
+    "typescript": "^4.9.0"
+  },
+  "scripts": {
+    "sync-logo": "node -e \"const fs=require('fs'),p=require('path');const d=p.join('public','img');const names=['NewOfficetools.png','AugustaSearch-wordmark.png'];try{fs.mkdirSync(d,{recursive:true});for(const n of names){const src=p.join('img',n);const dst=p.join('public','img',n);if(fs.existsSync(src))fs.copyFileSync(src,dst);}}catch(e){console.warn('sync-logo:',e.message);process.exit(0)}\"",
+    "prestart": "npm run sync-logo",
+    "predev": "npm run sync-logo",
+    "prebuild": "npm run sync-logo",
+    "start": "node --no-deprecation ./node_modules/react-scripts/bin/react-scripts.js start",
+    "build": "node ./node_modules/react-scripts/bin/react-scripts.js build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "dev": "node --no-deprecation ./node_modules/react-scripts/bin/react-scripts.js start"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "proxy": "http://localhost:8000",
+  "devDependencies": {
+    "@types/react-google-recaptcha": "^2.1.9"
+  }
+}

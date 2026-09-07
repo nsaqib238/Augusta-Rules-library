@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Augusta Search — Ad V4 Light (93 × 131 mm)</title>
+  <style>
+  @page { size: 93mm 131mm; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #cbd5e1; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .ad {
+    width: 93mm; height: 131mm; margin: 8px auto; padding: 4.5mm;
+    position: relative; overflow: hidden;
+    font-family: "Segoe UI", system-ui, sans-serif;
+    background: linear-gradient(180deg, #fffaf1 0%, #ffffff 35%, #f8fafc 100%);
+    color: #0f172a;
+    border: 0.4mm solid #e2e8f0;
+    box-shadow: 0 8px 28px rgba(15, 23, 42, 0.12);
+  }
+  .variant-tag { position: absolute; top: 2mm; right: 3mm; font-size: 5pt; color: #94a3b8; }
+  .top { display: flex; align-items: center; gap: 3mm; margin-bottom: 3mm; padding-bottom: 2.5mm; border-bottom: 0.35mm solid #e8d5a8; }
+  .logo-panel { flex-shrink: 0; padding: 1.2mm 1.8mm; background: #0b1220; border-radius: 1.5mm; line-height: 0; }
+  .logo-panel img { width: 22mm; height: auto; display: block; }
+  .brand { flex: 1; }
+  .brand h1 { margin: 0; font-size: 10.5pt; font-weight: 700; color: #0b1220; line-height: 1.15; }
+  .brand p { margin: 0.8mm 0 0; font-size: 6.5pt; color: #64748b; line-height: 1.3; }
+  .headline { margin: 0 0 2.5mm; font-size: 13pt; font-weight: 800; line-height: 1.1; color: #7c5f1e; letter-spacing: -0.02em; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.8mm; margin-bottom: 2.5mm; }
+  .cell { padding: 2mm; background: #fff; border: 0.25mm solid #e2e8f0; border-radius: 1.5mm; }
+  .cell strong { display: block; font-size: 6.8pt; color: #0b1220; margin-bottom: 0.8mm; }
+  .cell span { font-size: 6.2pt; line-height: 1.28; color: #475569; }
+  .free { margin: 0 0 2.5mm; padding: 2mm 2.5mm; background: #0b1220; border-radius: 2mm; text-align: center; }
+  .free p { margin: 0; font-size: 7pt; color: #f1ddab; font-weight: 600; }
+  .free small { display: block; margin-top: 0.8mm; font-size: 5.8pt; color: #94a3b8; font-weight: 400; }
+  .cta { position: absolute; left: 4.5mm; right: 4.5mm; bottom: 7.5mm; display: flex; align-items: center; gap: 2.5mm; }
+  .cta-url { flex: 1; margin: 0; font-size: 10pt; font-weight: 700; color: #9a7a35; }
+  #qr { width: 13mm; height: 13mm; border: 0.3mm solid #e2e8f0; border-radius: 1.2mm; padding: 0.8mm; background: #fff; flex-shrink: 0; }
+  #qr canvas { width: 100% !important; height: 100% !important; display: block; }
+  .legal { position: absolute; left: 4.5mm; right: 4.5mm; bottom: 2.2mm; margin: 0; font-size: 4.5pt; color: #94a3b8; text-align: center; }
+  @media print { html, body { background: #fff; } .ad { margin: 0; box-shadow: none; border: none; } .variant-tag { display: none; } }
+  </style>
+</head>
+<body>
+  <article class="ad">
+    <span class="variant-tag">SAMPLE V4</span>
+    <div class="top">
+      <div class="logo-panel"><img src="../NewOfficetools.png" alt="Augusta Search" /></div>
+      <div class="brand">
+        <h1>Augusta Search</h1>
+        <p>Standards &amp; code research for Australian projects</p>
+      </div>
+    </div>
+    <p class="headline">Stop scrolling.<br />Start citing.</p>
+    <div class="grid">
+      <div class="cell"><strong>NCC &amp; SIR</strong><span>Free-tier access to national code search</span></div>
+      <div class="cell"><strong>AS/NZS</strong><span>Upload your licensed PDFs (Pro plan)</span></div>
+      <div class="cell"><strong>Cited answers</strong><span>Clause references — not AI fluff</span></div>
+      <div class="cell"><strong>Export</strong><span>Q&amp;A records for teams &amp; clients</span></div>
+    </div>
+    <div class="free">
+      <p>Start free at augustasearch.com</p>
+      <small>NCC + SIR included on Sole plan</small>
+    </div>
+    <div class="cta">
+      <p class="cta-url">augustasearch.com</p>
+      <div id="qr"></div>
+    </div>
+    <p class="legal">Research aid only — verify against official publications.</p>
+  </article>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+  <script>QRCode.toCanvas(document.createElement("canvas"), "https://augustasearch.com/", { width: 120, margin: 0, color: { dark: "#0b1220", light: "#ffffff" } }, function (e, c) { if (!e && c) document.getElementById("qr").appendChild(c); });</script>
+</body>
+</html>

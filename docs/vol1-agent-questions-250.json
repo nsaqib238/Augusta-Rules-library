@@ -1,0 +1,3627 @@
+{
+  "dataset_id": "ncc2022_vol1",
+  "count": 250,
+  "description": "Auto-generated Vol 1 agent test bank \u2014 15 topic types \u00d7 class/storey variations",
+  "questions": [
+    {
+      "num": 1,
+      "topic": "occupant_warning",
+      "question": "What are the requirements for a building occupant warning system in a 2-storey Class 2 building?",
+      "expect_prefixes": [
+        "S20C",
+        "S17C",
+        "E4D"
+      ],
+      "forbid_prefixes": [],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 2,
+      "topic": "occupant_warning",
+      "question": "What are the requirements for a building occupant warning system in a 3-storey Class 2 building?",
+      "expect_prefixes": [
+        "S20C",
+        "S17C",
+        "E4D"
+      ],
+      "forbid_prefixes": [],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 3,
+      "topic": "occupant_warning",
+      "question": "What are the requirements for a building occupant warning system in a 4-storey Class 2 building?",
+      "expect_prefixes": [
+        "S20C",
+        "S17C",
+        "E4D"
+      ],
+      "forbid_prefixes": [],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 4,
+      "topic": "occupant_warning",
+      "question": "What are the requirements for a building occupant warning system in a 5-storey Class 2 building?",
+      "expect_prefixes": [
+        "S20C",
+        "S17C",
+        "E4D"
+      ],
+      "forbid_prefixes": [],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 5,
+      "topic": "occupant_warning",
+      "question": "What are the requirements for a building occupant warning system in a 2-storey Class 3 building?",
+      "expect_prefixes": [
+        "S20C",
+        "S17C",
+        "E4D"
+      ],
+      "forbid_prefixes": [],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 6,
+      "topic": "occupant_warning",
+      "question": "What are the requirements for a building occupant warning system in a 3-storey Class 3 building?",
+      "expect_prefixes": [
+        "S20C",
+        "S17C",
+        "E4D"
+      ],
+      "forbid_prefixes": [],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 7,
+      "topic": "occupant_warning",
+      "question": "What are the requirements for a building occupant warning system in a 4-storey Class 3 building?",
+      "expect_prefixes": [
+        "S20C",
+        "S17C",
+        "E4D"
+      ],
+      "forbid_prefixes": [],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 8,
+      "topic": "occupant_warning",
+      "question": "What are the requirements for a building occupant warning system in a 5-storey Class 3 building?",
+      "expect_prefixes": [
+        "S20C",
+        "S17C",
+        "E4D"
+      ],
+      "forbid_prefixes": [],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 9,
+      "topic": "occupant_warning",
+      "question": "What are the requirements for a building occupant warning system in a 2-storey Class 4 building?",
+      "expect_prefixes": [
+        "S20C",
+        "S17C",
+        "E4D"
+      ],
+      "forbid_prefixes": [],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 10,
+      "topic": "occupant_warning",
+      "question": "What are the requirements for a building occupant warning system in a 3-storey Class 4 building?",
+      "expect_prefixes": [
+        "S20C",
+        "S17C",
+        "E4D"
+      ],
+      "forbid_prefixes": [],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 11,
+      "topic": "occupant_warning",
+      "question": "What are the requirements for a building occupant warning system in a 4-storey Class 4 building?",
+      "expect_prefixes": [
+        "S20C",
+        "S17C",
+        "E4D"
+      ],
+      "forbid_prefixes": [],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 12,
+      "topic": "occupant_warning",
+      "question": "What are the requirements for a building occupant warning system in a 5-storey Class 4 building?",
+      "expect_prefixes": [
+        "S20C",
+        "S17C",
+        "E4D"
+      ],
+      "forbid_prefixes": [],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 13,
+      "topic": "occupant_warning",
+      "question": "What are the requirements for a building occupant warning system in a 2-storey Class 5 building?",
+      "expect_prefixes": [
+        "S20C",
+        "S17C",
+        "E4D"
+      ],
+      "forbid_prefixes": [],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 14,
+      "topic": "occupant_warning",
+      "question": "What are the requirements for a building occupant warning system in a 3-storey Class 5 building?",
+      "expect_prefixes": [
+        "S20C",
+        "S17C",
+        "E4D"
+      ],
+      "forbid_prefixes": [],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 15,
+      "topic": "occupant_warning",
+      "question": "What are the requirements for a building occupant warning system in a 4-storey Class 5 building?",
+      "expect_prefixes": [
+        "S20C",
+        "S17C",
+        "E4D"
+      ],
+      "forbid_prefixes": [],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 16,
+      "topic": "occupant_warning",
+      "question": "What are the requirements for a building occupant warning system in a 5-storey Class 5 building?",
+      "expect_prefixes": [
+        "S20C",
+        "S17C",
+        "E4D"
+      ],
+      "forbid_prefixes": [],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 17,
+      "topic": "occupant_warning",
+      "question": "What are the requirements for a building occupant warning system in a 2-storey Class 6 building?",
+      "expect_prefixes": [
+        "S20C",
+        "S17C",
+        "E4D"
+      ],
+      "forbid_prefixes": [],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 18,
+      "topic": "occupant_warning",
+      "question": "What are the requirements for a building occupant warning system in a 3-storey Class 6 building?",
+      "expect_prefixes": [
+        "S20C",
+        "S17C",
+        "E4D"
+      ],
+      "forbid_prefixes": [],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 19,
+      "topic": "occupant_warning",
+      "question": "What are the requirements for a building occupant warning system in a 4-storey Class 6 building?",
+      "expect_prefixes": [
+        "S20C",
+        "S17C",
+        "E4D"
+      ],
+      "forbid_prefixes": [],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 20,
+      "topic": "occupant_warning",
+      "question": "What are the requirements for a building occupant warning system in a 5-storey Class 6 building?",
+      "expect_prefixes": [
+        "S20C",
+        "S17C",
+        "E4D"
+      ],
+      "forbid_prefixes": [],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 21,
+      "topic": "occupant_warning",
+      "question": "What are the requirements for a building occupant warning system in a 2-storey Class 7 building?",
+      "expect_prefixes": [
+        "S20C",
+        "S17C",
+        "E4D"
+      ],
+      "forbid_prefixes": [],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 22,
+      "topic": "occupant_warning",
+      "question": "What are the requirements for a building occupant warning system in a 3-storey Class 7 building?",
+      "expect_prefixes": [
+        "S20C",
+        "S17C",
+        "E4D"
+      ],
+      "forbid_prefixes": [],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 23,
+      "topic": "occupant_warning",
+      "question": "What are the requirements for a building occupant warning system in a 4-storey Class 7 building?",
+      "expect_prefixes": [
+        "S20C",
+        "S17C",
+        "E4D"
+      ],
+      "forbid_prefixes": [],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 24,
+      "topic": "occupant_warning",
+      "question": "What are the requirements for a building occupant warning system in a 5-storey Class 7 building?",
+      "expect_prefixes": [
+        "S20C",
+        "S17C",
+        "E4D"
+      ],
+      "forbid_prefixes": [],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 25,
+      "topic": "occupant_warning",
+      "question": "What are the requirements for a building occupant warning system in a 2-storey Class 7a building?",
+      "expect_prefixes": [
+        "S20C",
+        "S17C",
+        "E4D"
+      ],
+      "forbid_prefixes": [],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 26,
+      "topic": "occupant_warning",
+      "question": "What are the requirements for a building occupant warning system in a 3-storey Class 7a building?",
+      "expect_prefixes": [
+        "S20C",
+        "S17C",
+        "E4D"
+      ],
+      "forbid_prefixes": [],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 27,
+      "topic": "occupant_warning",
+      "question": "What are the requirements for a building occupant warning system in a 4-storey Class 7a building?",
+      "expect_prefixes": [
+        "S20C",
+        "S17C",
+        "E4D"
+      ],
+      "forbid_prefixes": [],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 28,
+      "topic": "occupant_warning",
+      "question": "What are the requirements for a building occupant warning system in a 5-storey Class 7a building?",
+      "expect_prefixes": [
+        "S20C",
+        "S17C",
+        "E4D"
+      ],
+      "forbid_prefixes": [],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 29,
+      "topic": "occupant_warning",
+      "question": "What are the requirements for a building occupant warning system in a 2-storey Class 8 building?",
+      "expect_prefixes": [
+        "S20C",
+        "S17C",
+        "E4D"
+      ],
+      "forbid_prefixes": [],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 30,
+      "topic": "occupant_warning",
+      "question": "What are the requirements for a building occupant warning system in a 3-storey Class 8 building?",
+      "expect_prefixes": [
+        "S20C",
+        "S17C",
+        "E4D"
+      ],
+      "forbid_prefixes": [],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 31,
+      "topic": "occupant_warning",
+      "question": "What are the requirements for a building occupant warning system in a 4-storey Class 8 building?",
+      "expect_prefixes": [
+        "S20C",
+        "S17C",
+        "E4D"
+      ],
+      "forbid_prefixes": [],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 32,
+      "topic": "occupant_warning",
+      "question": "What are the requirements for a building occupant warning system in a 5-storey Class 8 building?",
+      "expect_prefixes": [
+        "S20C",
+        "S17C",
+        "E4D"
+      ],
+      "forbid_prefixes": [],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 33,
+      "topic": "occupant_warning",
+      "question": "What are the requirements for a building occupant warning system in a 2-storey Class 9a building?",
+      "expect_prefixes": [
+        "S20C",
+        "S17C",
+        "E4D"
+      ],
+      "forbid_prefixes": [],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 34,
+      "topic": "occupant_warning",
+      "question": "What are the requirements for a building occupant warning system in a 3-storey Class 9a building?",
+      "expect_prefixes": [
+        "S20C",
+        "S17C",
+        "E4D"
+      ],
+      "forbid_prefixes": [],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 35,
+      "topic": "occupant_warning",
+      "question": "What are the requirements for a building occupant warning system in a 4-storey Class 9a building?",
+      "expect_prefixes": [
+        "S20C",
+        "S17C",
+        "E4D"
+      ],
+      "forbid_prefixes": [],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 36,
+      "topic": "occupant_warning",
+      "question": "What are the requirements for a building occupant warning system in a 5-storey Class 9a building?",
+      "expect_prefixes": [
+        "S20C",
+        "S17C",
+        "E4D"
+      ],
+      "forbid_prefixes": [],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 37,
+      "topic": "occupant_warning",
+      "question": "What are the requirements for a building occupant warning system in a 2-storey Class 9c building?",
+      "expect_prefixes": [
+        "S20C",
+        "S17C",
+        "E4D"
+      ],
+      "forbid_prefixes": [],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 38,
+      "topic": "occupant_warning",
+      "question": "What are the requirements for a building occupant warning system in a 3-storey Class 9c building?",
+      "expect_prefixes": [
+        "S20C",
+        "S17C",
+        "E4D"
+      ],
+      "forbid_prefixes": [],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 39,
+      "topic": "occupant_warning",
+      "question": "What are the requirements for a building occupant warning system in a 4-storey Class 9c building?",
+      "expect_prefixes": [
+        "S20C",
+        "S17C",
+        "E4D"
+      ],
+      "forbid_prefixes": [],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 40,
+      "topic": "occupant_warning",
+      "question": "What are the requirements for a building occupant warning system in a 5-storey Class 9c building?",
+      "expect_prefixes": [
+        "S20C",
+        "S17C",
+        "E4D"
+      ],
+      "forbid_prefixes": [],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 41,
+      "topic": "smoke_applicability",
+      "question": "Is smoke detection required in a 2-storey Class 2 building?",
+      "expect_prefixes": [
+        "E2D",
+        "E2"
+      ],
+      "forbid_prefixes": [
+        "S20C4",
+        "S21"
+      ],
+      "need_applicability": true,
+      "need_numeric": false
+    },
+    {
+      "num": 42,
+      "topic": "smoke_applicability",
+      "question": "Is smoke detection required in a 3-storey Class 2 building?",
+      "expect_prefixes": [
+        "E2D",
+        "E2"
+      ],
+      "forbid_prefixes": [
+        "S20C4",
+        "S21"
+      ],
+      "need_applicability": true,
+      "need_numeric": false
+    },
+    {
+      "num": 43,
+      "topic": "smoke_applicability",
+      "question": "Is smoke detection required in a 4-storey Class 2 building?",
+      "expect_prefixes": [
+        "E2D",
+        "E2"
+      ],
+      "forbid_prefixes": [
+        "S20C4",
+        "S21"
+      ],
+      "need_applicability": true,
+      "need_numeric": false
+    },
+    {
+      "num": 44,
+      "topic": "smoke_applicability",
+      "question": "Is smoke detection required in a 5-storey Class 2 building?",
+      "expect_prefixes": [
+        "E2D",
+        "E2"
+      ],
+      "forbid_prefixes": [
+        "S20C4",
+        "S21"
+      ],
+      "need_applicability": true,
+      "need_numeric": false
+    },
+    {
+      "num": 45,
+      "topic": "smoke_applicability",
+      "question": "Is smoke detection required in a 2-storey Class 3 building?",
+      "expect_prefixes": [
+        "E2D",
+        "E2"
+      ],
+      "forbid_prefixes": [
+        "S20C4",
+        "S21"
+      ],
+      "need_applicability": true,
+      "need_numeric": false
+    },
+    {
+      "num": 46,
+      "topic": "smoke_applicability",
+      "question": "Is smoke detection required in a 3-storey Class 3 building?",
+      "expect_prefixes": [
+        "E2D",
+        "E2"
+      ],
+      "forbid_prefixes": [
+        "S20C4",
+        "S21"
+      ],
+      "need_applicability": true,
+      "need_numeric": false
+    },
+    {
+      "num": 47,
+      "topic": "smoke_applicability",
+      "question": "Is smoke detection required in a 4-storey Class 3 building?",
+      "expect_prefixes": [
+        "E2D",
+        "E2"
+      ],
+      "forbid_prefixes": [
+        "S20C4",
+        "S21"
+      ],
+      "need_applicability": true,
+      "need_numeric": false
+    },
+    {
+      "num": 48,
+      "topic": "smoke_applicability",
+      "question": "Is smoke detection required in a 5-storey Class 3 building?",
+      "expect_prefixes": [
+        "E2D",
+        "E2"
+      ],
+      "forbid_prefixes": [
+        "S20C4",
+        "S21"
+      ],
+      "need_applicability": true,
+      "need_numeric": false
+    },
+    {
+      "num": 49,
+      "topic": "smoke_applicability",
+      "question": "Is smoke detection required in a 2-storey Class 4 building?",
+      "expect_prefixes": [
+        "E2D",
+        "E2"
+      ],
+      "forbid_prefixes": [
+        "S20C4",
+        "S21"
+      ],
+      "need_applicability": true,
+      "need_numeric": false
+    },
+    {
+      "num": 50,
+      "topic": "smoke_applicability",
+      "question": "Is smoke detection required in a 3-storey Class 4 building?",
+      "expect_prefixes": [
+        "E2D",
+        "E2"
+      ],
+      "forbid_prefixes": [
+        "S20C4",
+        "S21"
+      ],
+      "need_applicability": true,
+      "need_numeric": false
+    },
+    {
+      "num": 51,
+      "topic": "smoke_applicability",
+      "question": "Is smoke detection required in a 4-storey Class 4 building?",
+      "expect_prefixes": [
+        "E2D",
+        "E2"
+      ],
+      "forbid_prefixes": [
+        "S20C4",
+        "S21"
+      ],
+      "need_applicability": true,
+      "need_numeric": false
+    },
+    {
+      "num": 52,
+      "topic": "smoke_applicability",
+      "question": "Is smoke detection required in a 5-storey Class 4 building?",
+      "expect_prefixes": [
+        "E2D",
+        "E2"
+      ],
+      "forbid_prefixes": [
+        "S20C4",
+        "S21"
+      ],
+      "need_applicability": true,
+      "need_numeric": false
+    },
+    {
+      "num": 53,
+      "topic": "smoke_applicability",
+      "question": "Is smoke detection required in a 2-storey Class 5 building?",
+      "expect_prefixes": [
+        "E2D",
+        "E2"
+      ],
+      "forbid_prefixes": [
+        "S20C4",
+        "S21"
+      ],
+      "need_applicability": true,
+      "need_numeric": false
+    },
+    {
+      "num": 54,
+      "topic": "smoke_applicability",
+      "question": "Is smoke detection required in a 3-storey Class 5 building?",
+      "expect_prefixes": [
+        "E2D",
+        "E2"
+      ],
+      "forbid_prefixes": [
+        "S20C4",
+        "S21"
+      ],
+      "need_applicability": true,
+      "need_numeric": false
+    },
+    {
+      "num": 55,
+      "topic": "smoke_applicability",
+      "question": "Is smoke detection required in a 4-storey Class 5 building?",
+      "expect_prefixes": [
+        "E2D",
+        "E2"
+      ],
+      "forbid_prefixes": [
+        "S20C4",
+        "S21"
+      ],
+      "need_applicability": true,
+      "need_numeric": false
+    },
+    {
+      "num": 56,
+      "topic": "smoke_applicability",
+      "question": "Is smoke detection required in a 5-storey Class 5 building?",
+      "expect_prefixes": [
+        "E2D",
+        "E2"
+      ],
+      "forbid_prefixes": [
+        "S20C4",
+        "S21"
+      ],
+      "need_applicability": true,
+      "need_numeric": false
+    },
+    {
+      "num": 57,
+      "topic": "smoke_applicability",
+      "question": "Is smoke detection required in a 2-storey Class 6 building?",
+      "expect_prefixes": [
+        "E2D",
+        "E2"
+      ],
+      "forbid_prefixes": [
+        "S20C4",
+        "S21"
+      ],
+      "need_applicability": true,
+      "need_numeric": false
+    },
+    {
+      "num": 58,
+      "topic": "smoke_applicability",
+      "question": "Is smoke detection required in a 3-storey Class 6 building?",
+      "expect_prefixes": [
+        "E2D",
+        "E2"
+      ],
+      "forbid_prefixes": [
+        "S20C4",
+        "S21"
+      ],
+      "need_applicability": true,
+      "need_numeric": false
+    },
+    {
+      "num": 59,
+      "topic": "smoke_applicability",
+      "question": "Is smoke detection required in a 4-storey Class 6 building?",
+      "expect_prefixes": [
+        "E2D",
+        "E2"
+      ],
+      "forbid_prefixes": [
+        "S20C4",
+        "S21"
+      ],
+      "need_applicability": true,
+      "need_numeric": false
+    },
+    {
+      "num": 60,
+      "topic": "smoke_applicability",
+      "question": "Is smoke detection required in a 5-storey Class 6 building?",
+      "expect_prefixes": [
+        "E2D",
+        "E2"
+      ],
+      "forbid_prefixes": [
+        "S20C4",
+        "S21"
+      ],
+      "need_applicability": true,
+      "need_numeric": false
+    },
+    {
+      "num": 61,
+      "topic": "smoke_applicability",
+      "question": "Is smoke detection required in a 2-storey Class 7 building?",
+      "expect_prefixes": [
+        "E2D",
+        "E2"
+      ],
+      "forbid_prefixes": [
+        "S20C4",
+        "S21"
+      ],
+      "need_applicability": true,
+      "need_numeric": false
+    },
+    {
+      "num": 62,
+      "topic": "smoke_applicability",
+      "question": "Is smoke detection required in a 3-storey Class 7 building?",
+      "expect_prefixes": [
+        "E2D",
+        "E2"
+      ],
+      "forbid_prefixes": [
+        "S20C4",
+        "S21"
+      ],
+      "need_applicability": true,
+      "need_numeric": false
+    },
+    {
+      "num": 63,
+      "topic": "smoke_applicability",
+      "question": "Is smoke detection required in a 4-storey Class 7 building?",
+      "expect_prefixes": [
+        "E2D",
+        "E2"
+      ],
+      "forbid_prefixes": [
+        "S20C4",
+        "S21"
+      ],
+      "need_applicability": true,
+      "need_numeric": false
+    },
+    {
+      "num": 64,
+      "topic": "smoke_applicability",
+      "question": "Is smoke detection required in a 5-storey Class 7 building?",
+      "expect_prefixes": [
+        "E2D",
+        "E2"
+      ],
+      "forbid_prefixes": [
+        "S20C4",
+        "S21"
+      ],
+      "need_applicability": true,
+      "need_numeric": false
+    },
+    {
+      "num": 65,
+      "topic": "smoke_applicability",
+      "question": "Is smoke detection required in a 2-storey Class 7a building?",
+      "expect_prefixes": [
+        "E2D",
+        "E2"
+      ],
+      "forbid_prefixes": [
+        "S20C4",
+        "S21"
+      ],
+      "need_applicability": true,
+      "need_numeric": false
+    },
+    {
+      "num": 66,
+      "topic": "smoke_applicability",
+      "question": "Is smoke detection required in a 3-storey Class 7a building?",
+      "expect_prefixes": [
+        "E2D",
+        "E2"
+      ],
+      "forbid_prefixes": [
+        "S20C4",
+        "S21"
+      ],
+      "need_applicability": true,
+      "need_numeric": false
+    },
+    {
+      "num": 67,
+      "topic": "smoke_applicability",
+      "question": "Is smoke detection required in a 4-storey Class 7a building?",
+      "expect_prefixes": [
+        "E2D",
+        "E2"
+      ],
+      "forbid_prefixes": [
+        "S20C4",
+        "S21"
+      ],
+      "need_applicability": true,
+      "need_numeric": false
+    },
+    {
+      "num": 68,
+      "topic": "smoke_applicability",
+      "question": "Is smoke detection required in a 5-storey Class 7a building?",
+      "expect_prefixes": [
+        "E2D",
+        "E2"
+      ],
+      "forbid_prefixes": [
+        "S20C4",
+        "S21"
+      ],
+      "need_applicability": true,
+      "need_numeric": false
+    },
+    {
+      "num": 69,
+      "topic": "smoke_applicability",
+      "question": "Is smoke detection required in a 2-storey Class 8 building?",
+      "expect_prefixes": [
+        "E2D",
+        "E2"
+      ],
+      "forbid_prefixes": [
+        "S20C4",
+        "S21"
+      ],
+      "need_applicability": true,
+      "need_numeric": false
+    },
+    {
+      "num": 70,
+      "topic": "smoke_applicability",
+      "question": "Is smoke detection required in a 3-storey Class 8 building?",
+      "expect_prefixes": [
+        "E2D",
+        "E2"
+      ],
+      "forbid_prefixes": [
+        "S20C4",
+        "S21"
+      ],
+      "need_applicability": true,
+      "need_numeric": false
+    },
+    {
+      "num": 71,
+      "topic": "smoke_applicability",
+      "question": "Is smoke detection required in a 4-storey Class 8 building?",
+      "expect_prefixes": [
+        "E2D",
+        "E2"
+      ],
+      "forbid_prefixes": [
+        "S20C4",
+        "S21"
+      ],
+      "need_applicability": true,
+      "need_numeric": false
+    },
+    {
+      "num": 72,
+      "topic": "smoke_applicability",
+      "question": "Is smoke detection required in a 5-storey Class 8 building?",
+      "expect_prefixes": [
+        "E2D",
+        "E2"
+      ],
+      "forbid_prefixes": [
+        "S20C4",
+        "S21"
+      ],
+      "need_applicability": true,
+      "need_numeric": false
+    },
+    {
+      "num": 73,
+      "topic": "smoke_applicability",
+      "question": "Is smoke detection required in a 2-storey Class 9a building?",
+      "expect_prefixes": [
+        "E2D",
+        "E2"
+      ],
+      "forbid_prefixes": [
+        "S20C4",
+        "S21"
+      ],
+      "need_applicability": true,
+      "need_numeric": false
+    },
+    {
+      "num": 74,
+      "topic": "smoke_applicability",
+      "question": "Is smoke detection required in a 3-storey Class 9a building?",
+      "expect_prefixes": [
+        "E2D",
+        "E2"
+      ],
+      "forbid_prefixes": [
+        "S20C4",
+        "S21"
+      ],
+      "need_applicability": true,
+      "need_numeric": false
+    },
+    {
+      "num": 75,
+      "topic": "smoke_applicability",
+      "question": "Is smoke detection required in a 4-storey Class 9a building?",
+      "expect_prefixes": [
+        "E2D",
+        "E2"
+      ],
+      "forbid_prefixes": [
+        "S20C4",
+        "S21"
+      ],
+      "need_applicability": true,
+      "need_numeric": false
+    },
+    {
+      "num": 76,
+      "topic": "smoke_applicability",
+      "question": "Is smoke detection required in a 5-storey Class 9a building?",
+      "expect_prefixes": [
+        "E2D",
+        "E2"
+      ],
+      "forbid_prefixes": [
+        "S20C4",
+        "S21"
+      ],
+      "need_applicability": true,
+      "need_numeric": false
+    },
+    {
+      "num": 77,
+      "topic": "smoke_applicability",
+      "question": "Is smoke detection required in a 2-storey Class 9c building?",
+      "expect_prefixes": [
+        "E2D",
+        "E2"
+      ],
+      "forbid_prefixes": [
+        "S20C4",
+        "S21"
+      ],
+      "need_applicability": true,
+      "need_numeric": false
+    },
+    {
+      "num": 78,
+      "topic": "smoke_applicability",
+      "question": "Is smoke detection required in a 3-storey Class 9c building?",
+      "expect_prefixes": [
+        "E2D",
+        "E2"
+      ],
+      "forbid_prefixes": [
+        "S20C4",
+        "S21"
+      ],
+      "need_applicability": true,
+      "need_numeric": false
+    },
+    {
+      "num": 79,
+      "topic": "smoke_applicability",
+      "question": "Is smoke detection required in a 4-storey Class 9c building?",
+      "expect_prefixes": [
+        "E2D",
+        "E2"
+      ],
+      "forbid_prefixes": [
+        "S20C4",
+        "S21"
+      ],
+      "need_applicability": true,
+      "need_numeric": false
+    },
+    {
+      "num": 80,
+      "topic": "smoke_applicability",
+      "question": "Is smoke detection required in a 5-storey Class 9c building?",
+      "expect_prefixes": [
+        "E2D",
+        "E2"
+      ],
+      "forbid_prefixes": [
+        "S20C4",
+        "S21"
+      ],
+      "need_applicability": true,
+      "need_numeric": false
+    },
+    {
+      "num": 81,
+      "topic": "emergency_lighting",
+      "question": "When is emergency lighting required in a 2-storey Class 2 building?",
+      "expect_prefixes": [
+        "E4D",
+        "E4"
+      ],
+      "forbid_prefixes": [
+        "J7"
+      ],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 82,
+      "topic": "emergency_lighting",
+      "question": "When is emergency lighting required in a 3-storey Class 2 building?",
+      "expect_prefixes": [
+        "E4D",
+        "E4"
+      ],
+      "forbid_prefixes": [
+        "J7"
+      ],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 83,
+      "topic": "emergency_lighting",
+      "question": "When is emergency lighting required in a 4-storey Class 2 building?",
+      "expect_prefixes": [
+        "E4D",
+        "E4"
+      ],
+      "forbid_prefixes": [
+        "J7"
+      ],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 84,
+      "topic": "emergency_lighting",
+      "question": "When is emergency lighting required in a 5-storey Class 2 building?",
+      "expect_prefixes": [
+        "E4D",
+        "E4"
+      ],
+      "forbid_prefixes": [
+        "J7"
+      ],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 85,
+      "topic": "emergency_lighting",
+      "question": "When is emergency lighting required in a 2-storey Class 3 building?",
+      "expect_prefixes": [
+        "E4D",
+        "E4"
+      ],
+      "forbid_prefixes": [
+        "J7"
+      ],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 86,
+      "topic": "emergency_lighting",
+      "question": "When is emergency lighting required in a 3-storey Class 3 building?",
+      "expect_prefixes": [
+        "E4D",
+        "E4"
+      ],
+      "forbid_prefixes": [
+        "J7"
+      ],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 87,
+      "topic": "emergency_lighting",
+      "question": "When is emergency lighting required in a 4-storey Class 3 building?",
+      "expect_prefixes": [
+        "E4D",
+        "E4"
+      ],
+      "forbid_prefixes": [
+        "J7"
+      ],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 88,
+      "topic": "emergency_lighting",
+      "question": "When is emergency lighting required in a 5-storey Class 3 building?",
+      "expect_prefixes": [
+        "E4D",
+        "E4"
+      ],
+      "forbid_prefixes": [
+        "J7"
+      ],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 89,
+      "topic": "emergency_lighting",
+      "question": "When is emergency lighting required in a 2-storey Class 4 building?",
+      "expect_prefixes": [
+        "E4D",
+        "E4"
+      ],
+      "forbid_prefixes": [
+        "J7"
+      ],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 90,
+      "topic": "emergency_lighting",
+      "question": "When is emergency lighting required in a 3-storey Class 4 building?",
+      "expect_prefixes": [
+        "E4D",
+        "E4"
+      ],
+      "forbid_prefixes": [
+        "J7"
+      ],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 91,
+      "topic": "emergency_lighting",
+      "question": "When is emergency lighting required in a 4-storey Class 4 building?",
+      "expect_prefixes": [
+        "E4D",
+        "E4"
+      ],
+      "forbid_prefixes": [
+        "J7"
+      ],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 92,
+      "topic": "emergency_lighting",
+      "question": "When is emergency lighting required in a 5-storey Class 4 building?",
+      "expect_prefixes": [
+        "E4D",
+        "E4"
+      ],
+      "forbid_prefixes": [
+        "J7"
+      ],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 93,
+      "topic": "emergency_lighting",
+      "question": "When is emergency lighting required in a 2-storey Class 5 building?",
+      "expect_prefixes": [
+        "E4D",
+        "E4"
+      ],
+      "forbid_prefixes": [
+        "J7"
+      ],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 94,
+      "topic": "emergency_lighting",
+      "question": "When is emergency lighting required in a 3-storey Class 5 building?",
+      "expect_prefixes": [
+        "E4D",
+        "E4"
+      ],
+      "forbid_prefixes": [
+        "J7"
+      ],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 95,
+      "topic": "emergency_lighting",
+      "question": "When is emergency lighting required in a 4-storey Class 5 building?",
+      "expect_prefixes": [
+        "E4D",
+        "E4"
+      ],
+      "forbid_prefixes": [
+        "J7"
+      ],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 96,
+      "topic": "emergency_lighting",
+      "question": "When is emergency lighting required in a 5-storey Class 5 building?",
+      "expect_prefixes": [
+        "E4D",
+        "E4"
+      ],
+      "forbid_prefixes": [
+        "J7"
+      ],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 97,
+      "topic": "emergency_lighting",
+      "question": "When is emergency lighting required in a 2-storey Class 6 building?",
+      "expect_prefixes": [
+        "E4D",
+        "E4"
+      ],
+      "forbid_prefixes": [
+        "J7"
+      ],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 98,
+      "topic": "emergency_lighting",
+      "question": "When is emergency lighting required in a 3-storey Class 6 building?",
+      "expect_prefixes": [
+        "E4D",
+        "E4"
+      ],
+      "forbid_prefixes": [
+        "J7"
+      ],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 99,
+      "topic": "emergency_lighting",
+      "question": "When is emergency lighting required in a 4-storey Class 6 building?",
+      "expect_prefixes": [
+        "E4D",
+        "E4"
+      ],
+      "forbid_prefixes": [
+        "J7"
+      ],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 100,
+      "topic": "emergency_lighting",
+      "question": "When is emergency lighting required in a 5-storey Class 6 building?",
+      "expect_prefixes": [
+        "E4D",
+        "E4"
+      ],
+      "forbid_prefixes": [
+        "J7"
+      ],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 101,
+      "topic": "emergency_lighting",
+      "question": "When is emergency lighting required in a 2-storey Class 7 building?",
+      "expect_prefixes": [
+        "E4D",
+        "E4"
+      ],
+      "forbid_prefixes": [
+        "J7"
+      ],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 102,
+      "topic": "emergency_lighting",
+      "question": "When is emergency lighting required in a 3-storey Class 7 building?",
+      "expect_prefixes": [
+        "E4D",
+        "E4"
+      ],
+      "forbid_prefixes": [
+        "J7"
+      ],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 103,
+      "topic": "emergency_lighting",
+      "question": "When is emergency lighting required in a 4-storey Class 7 building?",
+      "expect_prefixes": [
+        "E4D",
+        "E4"
+      ],
+      "forbid_prefixes": [
+        "J7"
+      ],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 104,
+      "topic": "emergency_lighting",
+      "question": "When is emergency lighting required in a 5-storey Class 7 building?",
+      "expect_prefixes": [
+        "E4D",
+        "E4"
+      ],
+      "forbid_prefixes": [
+        "J7"
+      ],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 105,
+      "topic": "emergency_lighting",
+      "question": "When is emergency lighting required in a 2-storey Class 7a building?",
+      "expect_prefixes": [
+        "E4D",
+        "E4"
+      ],
+      "forbid_prefixes": [
+        "J7"
+      ],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 106,
+      "topic": "emergency_lighting",
+      "question": "When is emergency lighting required in a 3-storey Class 7a building?",
+      "expect_prefixes": [
+        "E4D",
+        "E4"
+      ],
+      "forbid_prefixes": [
+        "J7"
+      ],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 107,
+      "topic": "emergency_lighting",
+      "question": "When is emergency lighting required in a 4-storey Class 7a building?",
+      "expect_prefixes": [
+        "E4D",
+        "E4"
+      ],
+      "forbid_prefixes": [
+        "J7"
+      ],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 108,
+      "topic": "emergency_lighting",
+      "question": "When is emergency lighting required in a 5-storey Class 7a building?",
+      "expect_prefixes": [
+        "E4D",
+        "E4"
+      ],
+      "forbid_prefixes": [
+        "J7"
+      ],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 109,
+      "topic": "emergency_lighting",
+      "question": "When is emergency lighting required in a 2-storey Class 8 building?",
+      "expect_prefixes": [
+        "E4D",
+        "E4"
+      ],
+      "forbid_prefixes": [
+        "J7"
+      ],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 110,
+      "topic": "emergency_lighting",
+      "question": "When is emergency lighting required in a 3-storey Class 8 building?",
+      "expect_prefixes": [
+        "E4D",
+        "E4"
+      ],
+      "forbid_prefixes": [
+        "J7"
+      ],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 111,
+      "topic": "emergency_lighting",
+      "question": "When is emergency lighting required in a 4-storey Class 8 building?",
+      "expect_prefixes": [
+        "E4D",
+        "E4"
+      ],
+      "forbid_prefixes": [
+        "J7"
+      ],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 112,
+      "topic": "emergency_lighting",
+      "question": "When is emergency lighting required in a 5-storey Class 8 building?",
+      "expect_prefixes": [
+        "E4D",
+        "E4"
+      ],
+      "forbid_prefixes": [
+        "J7"
+      ],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 113,
+      "topic": "emergency_lighting",
+      "question": "When is emergency lighting required in a 2-storey Class 9a building?",
+      "expect_prefixes": [
+        "E4D",
+        "E4"
+      ],
+      "forbid_prefixes": [
+        "J7"
+      ],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 114,
+      "topic": "emergency_lighting",
+      "question": "When is emergency lighting required in a 3-storey Class 9a building?",
+      "expect_prefixes": [
+        "E4D",
+        "E4"
+      ],
+      "forbid_prefixes": [
+        "J7"
+      ],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 115,
+      "topic": "emergency_lighting",
+      "question": "When is emergency lighting required in a 4-storey Class 9a building?",
+      "expect_prefixes": [
+        "E4D",
+        "E4"
+      ],
+      "forbid_prefixes": [
+        "J7"
+      ],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 116,
+      "topic": "emergency_lighting",
+      "question": "When is emergency lighting required in a 5-storey Class 9a building?",
+      "expect_prefixes": [
+        "E4D",
+        "E4"
+      ],
+      "forbid_prefixes": [
+        "J7"
+      ],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 117,
+      "topic": "emergency_lighting",
+      "question": "When is emergency lighting required in a 2-storey Class 9c building?",
+      "expect_prefixes": [
+        "E4D",
+        "E4"
+      ],
+      "forbid_prefixes": [
+        "J7"
+      ],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 118,
+      "topic": "emergency_lighting",
+      "question": "When is emergency lighting required in a 3-storey Class 9c building?",
+      "expect_prefixes": [
+        "E4D",
+        "E4"
+      ],
+      "forbid_prefixes": [
+        "J7"
+      ],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 119,
+      "topic": "emergency_lighting",
+      "question": "When is emergency lighting required in a 4-storey Class 9c building?",
+      "expect_prefixes": [
+        "E4D",
+        "E4"
+      ],
+      "forbid_prefixes": [
+        "J7"
+      ],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 120,
+      "topic": "emergency_lighting",
+      "question": "When is emergency lighting required in a 5-storey Class 9c building?",
+      "expect_prefixes": [
+        "E4D",
+        "E4"
+      ],
+      "forbid_prefixes": [
+        "J7"
+      ],
+      "need_applicability": false,
+      "need_numeric": false
+    },
+    {
+      "num": 121,
+      "topic": "exit_door_width",
+      "question": "What is the minimum width required for an exit door in a Class 2 building?",
+      "expect_prefixes": [
+        "D2D",
+        "D3D"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 122,
+      "topic": "exit_door_width",
+      "question": "What is the minimum width required for an exit door in a Class 3 building?",
+      "expect_prefixes": [
+        "D2D",
+        "D3D"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 123,
+      "topic": "exit_door_width",
+      "question": "What is the minimum width required for an exit door in a Class 4 building?",
+      "expect_prefixes": [
+        "D2D",
+        "D3D"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 124,
+      "topic": "exit_door_width",
+      "question": "What is the minimum width required for an exit door in a Class 5 building?",
+      "expect_prefixes": [
+        "D2D",
+        "D3D"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 125,
+      "topic": "exit_door_width",
+      "question": "What is the minimum width required for an exit door in a Class 6 building?",
+      "expect_prefixes": [
+        "D2D",
+        "D3D"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 126,
+      "topic": "exit_door_width",
+      "question": "What is the minimum width required for an exit door in a Class 7 building?",
+      "expect_prefixes": [
+        "D2D",
+        "D3D"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 127,
+      "topic": "exit_door_width",
+      "question": "What is the minimum width required for an exit door in a Class 7a building?",
+      "expect_prefixes": [
+        "D2D",
+        "D3D"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 128,
+      "topic": "exit_door_width",
+      "question": "What is the minimum width required for an exit door in a Class 8 building?",
+      "expect_prefixes": [
+        "D2D",
+        "D3D"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 129,
+      "topic": "exit_door_width",
+      "question": "What is the minimum width required for an exit door in a Class 9a building?",
+      "expect_prefixes": [
+        "D2D",
+        "D3D"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 130,
+      "topic": "exit_door_width",
+      "question": "What is the minimum width required for an exit door in a Class 9c building?",
+      "expect_prefixes": [
+        "D2D",
+        "D3D"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 131,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 2 Type A building with a rise in storeys of 2?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 132,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 2 Type B building with a rise in storeys of 2?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 133,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 2 Type C building with a rise in storeys of 2?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 134,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 2 Type A building with a rise in storeys of 3?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 135,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 2 Type B building with a rise in storeys of 3?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 136,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 2 Type C building with a rise in storeys of 3?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 137,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 2 Type A building with a rise in storeys of 4?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 138,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 2 Type B building with a rise in storeys of 4?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 139,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 2 Type C building with a rise in storeys of 4?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 140,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 2 Type A building with a rise in storeys of 5?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 141,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 2 Type B building with a rise in storeys of 5?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 142,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 2 Type C building with a rise in storeys of 5?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 143,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 3 Type A building with a rise in storeys of 2?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 144,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 3 Type B building with a rise in storeys of 2?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 145,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 3 Type C building with a rise in storeys of 2?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 146,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 3 Type A building with a rise in storeys of 3?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 147,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 3 Type B building with a rise in storeys of 3?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 148,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 3 Type C building with a rise in storeys of 3?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 149,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 3 Type A building with a rise in storeys of 4?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 150,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 3 Type B building with a rise in storeys of 4?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 151,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 3 Type C building with a rise in storeys of 4?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 152,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 3 Type A building with a rise in storeys of 5?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 153,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 3 Type B building with a rise in storeys of 5?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 154,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 3 Type C building with a rise in storeys of 5?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 155,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 4 Type A building with a rise in storeys of 2?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 156,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 4 Type B building with a rise in storeys of 2?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 157,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 4 Type C building with a rise in storeys of 2?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 158,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 4 Type A building with a rise in storeys of 3?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 159,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 4 Type B building with a rise in storeys of 3?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 160,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 4 Type C building with a rise in storeys of 3?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 161,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 4 Type A building with a rise in storeys of 4?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 162,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 4 Type B building with a rise in storeys of 4?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 163,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 4 Type C building with a rise in storeys of 4?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 164,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 4 Type A building with a rise in storeys of 5?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 165,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 4 Type B building with a rise in storeys of 5?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 166,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 4 Type C building with a rise in storeys of 5?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 167,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 5 Type A building with a rise in storeys of 2?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 168,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 5 Type B building with a rise in storeys of 2?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 169,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 5 Type C building with a rise in storeys of 2?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 170,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 5 Type A building with a rise in storeys of 3?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 171,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 5 Type B building with a rise in storeys of 3?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 172,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 5 Type C building with a rise in storeys of 3?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 173,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 5 Type A building with a rise in storeys of 4?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 174,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 5 Type B building with a rise in storeys of 4?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 175,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 5 Type C building with a rise in storeys of 4?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 176,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 5 Type A building with a rise in storeys of 5?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 177,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 5 Type B building with a rise in storeys of 5?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 178,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 5 Type C building with a rise in storeys of 5?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 179,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 6 Type A building with a rise in storeys of 2?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 180,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 6 Type B building with a rise in storeys of 2?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 181,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 6 Type C building with a rise in storeys of 2?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 182,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 6 Type A building with a rise in storeys of 3?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 183,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 6 Type B building with a rise in storeys of 3?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 184,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 6 Type C building with a rise in storeys of 3?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 185,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 6 Type A building with a rise in storeys of 4?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 186,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 6 Type B building with a rise in storeys of 4?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 187,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 6 Type C building with a rise in storeys of 4?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 188,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 6 Type A building with a rise in storeys of 5?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 189,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 6 Type B building with a rise in storeys of 5?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 190,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 6 Type C building with a rise in storeys of 5?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 191,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 7 Type A building with a rise in storeys of 2?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 192,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 7 Type B building with a rise in storeys of 2?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 193,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 7 Type C building with a rise in storeys of 2?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 194,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 7 Type A building with a rise in storeys of 3?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 195,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 7 Type B building with a rise in storeys of 3?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 196,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 7 Type C building with a rise in storeys of 3?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 197,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 7 Type A building with a rise in storeys of 4?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 198,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 7 Type B building with a rise in storeys of 4?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 199,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 7 Type C building with a rise in storeys of 4?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 200,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 7 Type A building with a rise in storeys of 5?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 201,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 7 Type B building with a rise in storeys of 5?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 202,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 7 Type C building with a rise in storeys of 5?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 203,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 7a Type A building with a rise in storeys of 2?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 204,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 7a Type B building with a rise in storeys of 2?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 205,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 7a Type C building with a rise in storeys of 2?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 206,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 7a Type A building with a rise in storeys of 3?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 207,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 7a Type B building with a rise in storeys of 3?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 208,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 7a Type C building with a rise in storeys of 3?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 209,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 7a Type A building with a rise in storeys of 4?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 210,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 7a Type B building with a rise in storeys of 4?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 211,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 7a Type C building with a rise in storeys of 4?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 212,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 7a Type A building with a rise in storeys of 5?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 213,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 7a Type B building with a rise in storeys of 5?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 214,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 7a Type C building with a rise in storeys of 5?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 215,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 8 Type A building with a rise in storeys of 2?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 216,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 8 Type B building with a rise in storeys of 2?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 217,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 8 Type C building with a rise in storeys of 2?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 218,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 8 Type A building with a rise in storeys of 3?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 219,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 8 Type B building with a rise in storeys of 3?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 220,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 8 Type C building with a rise in storeys of 3?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 221,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 8 Type A building with a rise in storeys of 4?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 222,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 8 Type B building with a rise in storeys of 4?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 223,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 8 Type C building with a rise in storeys of 4?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 224,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 8 Type A building with a rise in storeys of 5?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 225,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 8 Type B building with a rise in storeys of 5?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 226,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 8 Type C building with a rise in storeys of 5?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 227,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 9a Type A building with a rise in storeys of 2?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 228,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 9a Type B building with a rise in storeys of 2?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 229,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 9a Type C building with a rise in storeys of 2?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 230,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 9a Type A building with a rise in storeys of 3?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 231,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 9a Type B building with a rise in storeys of 3?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 232,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 9a Type C building with a rise in storeys of 3?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 233,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 9a Type A building with a rise in storeys of 4?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 234,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 9a Type B building with a rise in storeys of 4?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 235,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 9a Type C building with a rise in storeys of 4?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 236,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 9a Type A building with a rise in storeys of 5?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 237,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 9a Type B building with a rise in storeys of 5?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 238,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 9a Type C building with a rise in storeys of 5?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 239,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 9c Type A building with a rise in storeys of 2?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 240,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 9c Type B building with a rise in storeys of 2?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 241,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 9c Type C building with a rise in storeys of 2?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 242,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 9c Type A building with a rise in storeys of 3?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 243,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 9c Type B building with a rise in storeys of 3?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 244,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 9c Type C building with a rise in storeys of 3?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 245,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 9c Type A building with a rise in storeys of 4?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 246,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 9c Type B building with a rise in storeys of 4?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 247,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 9c Type C building with a rise in storeys of 4?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 248,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 9c Type A building with a rise in storeys of 5?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 249,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 9c Type B building with a rise in storeys of 5?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    },
+    {
+      "num": 250,
+      "topic": "frl_external_wall",
+      "question": "What fire-resistance level applies to external walls of a Class 9c Type C building with a rise in storeys of 5?",
+      "expect_prefixes": [
+        "C2D",
+        "C2",
+        "S5C"
+      ],
+      "forbid_prefixes": [
+        "A6G6"
+      ],
+      "need_applicability": false,
+      "need_numeric": true
+    }
+  ]
+}

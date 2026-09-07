@@ -1,0 +1,118 @@
+{
+  "summary": {
+    "pass": 1,
+    "partial": 0,
+    "fail": 2
+  },
+  "results": [
+    {
+      "num": 2,
+      "topic": "room_height",
+      "question": "What is the minimum ceiling height required for a habitable room in a Class 1 building?",
+      "grade": "fail",
+      "confidence": 0.49999999999999994,
+      "used_clauses": [
+        "H4D1",
+        "H4V2",
+        "H4F2",
+        "H4D4",
+        "H4P2",
+        "H4V1",
+        "H4F1",
+        "H4O2",
+        "A6G11",
+        "H8P1",
+        "H8D2",
+        "H8F1"
+      ],
+      "evidence_unit_count": 12,
+      "elapsed_s": 125.2,
+      "notes": [
+        "insufficient_evidence or very low confidence"
+      ],
+      "answer_preview": "**Insufficient evidence in the supplied clauses**\n\nThe evidence does not specify a minimum ceiling height for habitable rooms in a Class 1 building according to the NCC. The provided clauses discuss room heights in general terms but do not provide specific measurements.\n\n**Why:** Missing specific table or clause detailing minimum ceiling height.\n\n**What would help:** Include specific table or clause from the NCC detailing minimum ceiling height for habitable rooms.\n\n**Note:** This text is genera"
+    },
+    {
+      "num": 9,
+      "topic": "stairs",
+      "question": "What are the maximum riser and minimum going dimensions for stairs in a Class 1 building?",
+      "grade": "fail",
+      "confidence": 0.0,
+      "used_clauses": [
+        "H2P3",
+        "H2D5",
+        "H3F2",
+        "H7F4",
+        "H5D2",
+        "H5D1",
+        "H5P1",
+        "SA H5D4",
+        "H4D9",
+        "Table H1D6a",
+        "H3P1",
+        "A5G4",
+        "H7D4",
+        "S3C6",
+        "A6G11",
+        "A3G1",
+        "S1C5",
+        "H1P1",
+        "A6G1",
+        "H6V2",
+        "H7F2",
+        "H7P3",
+        "H7D3",
+        "H7P4",
+        "H2F2",
+        "SA H10D4",
+        "NSW H7D4",
+        "TAS H7P3",
+        "SA H10D3"
+      ],
+      "evidence_unit_count": 29,
+      "elapsed_s": 84.4,
+      "notes": [
+        "insufficient_evidence or very low confidence"
+      ],
+      "answer_preview": "**Insufficient evidence in the supplied clauses**\n\nThe evidence provided does not include specific dimensions for the maximum riser and minimum going for stairs in a Class 1 building. Further information from the relevant standards or tables is needed.\n\n**Why:** Missing table or specific clause detailing stair dimensions.\n\n**What would help:** Include specific table or clause from the NCC or relevant standard detailing stair dimensions.\n\n**Note:** This text is generated only from the cited claus"
+    },
+    {
+      "num": 18,
+      "topic": "garage_separation",
+      "question": "What fire separation is required between a Class 1 dwelling and an attached private garage?",
+      "grade": "pass",
+      "confidence": 0.9,
+      "used_clauses": [
+        "H8F1",
+        "H3F1",
+        "H7O1",
+        "H3D5",
+        "H3D3",
+        "H3D6",
+        "H3D4",
+        "H3D2",
+        "NSW H3D5",
+        "H3P1",
+        "H3F2",
+        "H3V1",
+        "S2C27",
+        "H3V2",
+        "A5G7",
+        "H6V3",
+        "S2C26",
+        "H7P5",
+        "H7F4",
+        "H7P6",
+        "H7D4",
+        "H2D8"
+      ],
+      "evidence_unit_count": 22,
+      "elapsed_s": 75.2,
+      "notes": [
+        "citations ok: ['H8F1', 'H3F1', 'H7O1', 'H3D5']",
+        "route kinds: ['applicability', 'vol2_garage_fire']"
+      ],
+      "answer_preview": "**Practitioner summary**\n\n**Outcome:** Based **only on the cited clauses** - apply the requirements below to the installation and use any verification items as applicable.\n\nThe fire separation requirements between a Class 1 dwelling and an attached private garage depend on compliance with specific parts of the ABCB Housing Provisions. These provisions address fire separation of external walls, separating walls and floors, and garage-top dwellings. Compliance with these parts satisfies the perfor"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "aus-nuz-rag",
+  "version": "1.0.0",
+  "description": "Multi-Domain Engineering RAG Assistant",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\" --names \"backend,frontend\" --prefix-colors \"blue,green\"",
+    "dev:backend": "bash -c 'cd backend && source venv/bin/activate && uvicorn main:app --host 0.0.0.0 --port 8000 --reload'",
+    "dev:frontend": "cd frontend && npm start",
+    "install:all": "npm install && cd frontend && npm install",
+    "backend:setup": "cd backend && python3 -m venv venv && bash -c 'source venv/bin/activate && pip install -r requirements.txt'"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

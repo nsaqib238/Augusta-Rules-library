@@ -1,0 +1,79 @@
+# Dependencies
+node_modules/
+*/node_modules/
+frontend/node_modules/
+package-lock.json
+
+# Frontend
+frontend/.parcel-cache/
+frontend/.next/
+frontend/dist/
+frontend/build/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+backend/venv/
+backend/env/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.coverage
+.mypy_cache/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env
+
+# Backend outputs and vendor dirs
+backend/processed_files/
+backend/Lib/
+backend/Scripts/
+
+# OS/Editor
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+logs/
+debug_logs.json
+
+# Misc
+*.sqlite3
+*.db
+*.coverage
+coverage/
+.cache/
+tmp/
+temp/
+*.tmp
+
+# Supabase
+supabase/.branches/
+supabase/.temp/
+
+# Testing
+.pytest_cache/
+coverage/

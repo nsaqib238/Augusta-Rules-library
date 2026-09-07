@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Augusta Search — Ad V3 Bold (93 × 131 mm)</title>
+  <style>
+  @page { size: 93mm 131mm; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #cbd5e1; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .ad {
+    width: 93mm; height: 131mm; margin: 8px auto; padding: 5mm 5mm 3.5mm;
+    position: relative; overflow: hidden;
+    font-family: Georgia, "Times New Roman", serif;
+    background: #0b1220; color: #fff;
+    box-shadow: 0 8px 28px rgba(15, 23, 42, 0.18);
+  }
+  .variant-tag { position: absolute; top: 2mm; right: 3mm; font-size: 5pt; color: #475569; font-family: system-ui, sans-serif; }
+  .logo-panel { margin-bottom: 4mm; padding: 2mm 2.5mm; background: #fffaf1; display: inline-block; border-radius: 1.5mm; line-height: 0; }
+  .logo-panel img { width: 30mm; height: auto; display: block; }
+  .question { margin: 0; font-size: 19pt; line-height: 1.05; font-weight: 700; color: #f1ddab; letter-spacing: -0.02em; }
+  .answer-line { margin: 3mm 0 4mm; font-family: system-ui, sans-serif; font-size: 8.2pt; line-height: 1.4; color: #cbd5e1; }
+  .answer-line strong { color: #fff; font-weight: 600; }
+  .proof { margin: 0 0 3mm; padding: 2.5mm 3mm; background: rgba(201,164,92,0.12); border: 0.25mm solid rgba(241,221,171,0.35); border-radius: 2mm; font-family: system-ui, sans-serif; }
+  .proof p { margin: 0; font-size: 6.8pt; line-height: 1.35; color: #e2e8f0; }
+  .proof .cite { margin-top: 1.5mm; font-size: 6.2pt; color: #c9a45c; font-weight: 600; }
+  .tags { display: flex; flex-wrap: wrap; gap: 1.2mm; margin-bottom: 2mm; font-family: system-ui, sans-serif; }
+  .tag { font-size: 5.8pt; padding: 0.8mm 1.8mm; border-radius: 10mm; background: rgba(255,255,255,0.1); color: #94a3b8; font-weight: 600; letter-spacing: 0.04em; }
+  .cta { position: absolute; left: 5mm; right: 5mm; bottom: 7.5mm; display: flex; align-items: center; gap: 2.5mm; }
+  .cta-url { flex: 1; margin: 0; font-family: system-ui, sans-serif; font-size: 10pt; font-weight: 700; color: #f1ddab; }
+  #qr { width: 14mm; height: 14mm; background: #fff; border-radius: 1.2mm; padding: 0.8mm; flex-shrink: 0; }
+  #qr canvas { width: 100% !important; height: 100% !important; display: block; }
+  .legal { position: absolute; left: 5mm; right: 5mm; bottom: 2.2mm; margin: 0; font-family: system-ui, sans-serif; font-size: 4.5pt; color: #64748b; text-align: center; }
+  @media print { html, body { background: #fff; } .ad { margin: 0; box-shadow: none; } .variant-tag { display: none; } }
+  </style>
+</head>
+<body>
+  <article class="ad">
+    <span class="variant-tag">SAMPLE V3</span>
+    <div class="logo-panel"><img src="../NewOfficetools.png" alt="Augusta Search" /></div>
+    <p class="question">What's the clause?</p>
+    <p class="answer-line">Ask in <strong>plain English</strong>. Get answers grounded in <strong>NCC, SIR &amp; AS/NZS</strong> — with evidence you can check.</p>
+    <div class="proof">
+      <p>“What is the requirement for emergency lighting in a Class 6 building?”</p>
+      <p class="cite">→ Cited NCC clauses · exportable Q&amp;A</p>
+    </div>
+    <div class="tags">
+      <span class="tag">NCC</span>
+      <span class="tag">SIR</span>
+      <span class="tag">AS/NZS</span>
+      <span class="tag">CITED</span>
+    </div>
+    <div class="cta">
+      <p class="cta-url">augustasearch.com</p>
+      <div id="qr"></div>
+    </div>
+    <p class="legal">Research assistance only — not compliance advice.</p>
+  </article>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+  <script>QRCode.toCanvas(document.createElement("canvas"), "https://augustasearch.com/", { width: 128, margin: 0, color: { dark: "#0b1220", light: "#ffffff" } }, function (e, c) { if (!e && c) document.getElementById("qr").appendChild(c); });</script>
+</body>
+</html>
