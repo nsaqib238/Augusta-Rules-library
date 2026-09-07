@@ -282,7 +282,7 @@ const Dashboard: React.FC = () => {
                     Premium compliance intelligence
                   </h1>
                   <span className="rounded-full border border-[#d6bf82]/70 bg-[#fff7df] px-3 py-1 text-xs font-semibold text-[#7c5f1e]">
-                    NCC &amp; SIR · Australia
+                    Compliance library
                   </span>
                 </div>
               </div>
@@ -388,10 +388,10 @@ const Dashboard: React.FC = () => {
             <div className="max-w-3xl">
               <p className="augusta-eyebrow mb-3">Country library</p>
               <h2 className="text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
-                Ask grounded questions over the Australian rules library.
+                Ask grounded questions over the compliance library.
               </h2>
               <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-600">
-                Pick a country, open a document type, then ask against one document. No user PDF upload in this product.
+                Pick a country, open a document type, then ask against one document.
               </p>
               {usageStats && (
                 <p className="mt-4 inline-flex items-center rounded-full border border-[#c9a45c]/40 bg-[#f1ddab]/30 px-4 py-1.5 text-sm font-medium text-slate-800">

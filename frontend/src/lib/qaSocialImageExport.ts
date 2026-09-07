@@ -156,14 +156,8 @@ function citationCardsHtml(citations: Array<{ ref: string; detail: string }>, so
     .join('')}</div>`;
 }
 
-function profileFooterNote(profile: QaExportProfile): string {
-  if (profile === 'ncc') {
-    return 'Information is evidence-bound from the cited NCC 2022 clauses only. | Use professional judgment. | Always verify on site.';
-  }
-  if (profile === 'sir') {
-    return 'Information is evidence-bound from the cited SIR clauses only. | Use professional judgment. | Always verify on site.';
-  }
-  return 'Information is evidence-bound from the cited clauses only. | Use professional judgment. | Always verify on site.';
+function profileFooterNote(_profile: QaExportProfile): string {
+  return 'Information is evidence-bound from the cited clauses only. | Use professional judgment. | Always verify against official sources.';
 }
 
 function buildSocialCardHtml(payload: QaExportPayload, logoUrl: string): string {

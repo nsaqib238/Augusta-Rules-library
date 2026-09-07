@@ -1,6 +1,6 @@
-# Augusta Search — NCC & SIR
+# Augusta Search — compliance library
 
-Q&A over shared **National Construction Code (NCC)** volumes and **Service & Installation Rules (SIR)** editions. Users ask questions; admins ingest the libraries. There is **no user PDF upload**.
+Q&A over shared **codes, standards, and rules**. Users ask questions; admins ingest the libraries.
 
 A **simpler Q&A pipeline** rephrases questions with OpenAI, retrieves clauses with multi-signal RRF search, and answers in parcels.
 
@@ -248,21 +248,249 @@ All five stages are done. Re-run verification with the command above anytime.
 
 ## VPS production deploy
 
-- **Routine updates:** [update vps.md](update%20vps.md)
-- **New VPS migration:** [deploy/NEW_VPS_MIGRATION.md](deploy/NEW_VPS_MIGRATION.md) (scripts in `deploy/scripts/`)
-- **Soft-launch / scale plan:** [`500 parallel users.md`](500%20parallel%20users.md)
+This app shares Contabo VPS `vmi3407636` (`37.60.238.78`) with **ausstd**, TradeCyrus, and `www.augustasearch.com`.
 
-### Production topology (1 Contabo VPS)
+| App | Domain | Path | API port | systemd | nginx site | frontend files |
+|-----|--------|------|----------|---------|------------|----------------|
+| **This app (NCC/SIR)** | `library.augustasearch.com` | `/home/ragadmin/ragadmin/projects/Augusta-Rules-library` | **8083** | `aus-rules-backend` | `library.augustasearch.com.conf` | `/var/www/aus-rules-frontend` |
+| ausstd (do not touch) | `ausstd.augustasearch.com` | `.../Augusta-Australia` | **8082** | `aus-augusta-backend` | `ausstd.augustasearch.com.conf` | `/var/www/aus-augusta-frontend` |
 
-This product is NCC/SIR Q&A only — **no user PDF upload**, so **VPS 2 is not needed**.
+**Do not** run `deploy/scripts/03-deploy-services.sh` — it still points at Augusta-Australia / port 8082 / ausstd and would overwrite the live code-search site.
 
-| Role | Host | Runs |
-|------|------|------|
-| **VPS1** | Current Contabo (`ausstd.augustasearch.com`) | nginx, API, Redis |
+SSH: `ssh root@37.60.238.78` (or `ragadmin@37.60.238.78`). Git as root uses `/root/.ssh/`.
 
-Admin library ingest is CSV on VPS1. Do not deploy a dedicated PDF worker box or Modal.
+---
 
-**Extra API capacity later:** copy the same app + `.env` as VPS1 (point `REDIS_URL` at a shared Redis). Provision only when load tests say you need it.
+### First-time deploy (commands used 2026-09-07)
+
+Run **one command at a time** so pastes do not merge.
+
+#### 1. GitHub deploy key (this repo only)
+
+Keep ausstd’s existing `~/.ssh/github_deploy`. Create a **second** key:
+
+```bash
+ssh-keygen -t ed25519 -C "vps-augusta-rules" -f ~/.ssh/github_deploy_rules -N ""
+
+cat > ~/.ssh/config << 'EOF'
+Host github.com
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/github_deploy
+  IdentitiesOnly yes
+
+Host github.com-rules
+  HostName github.com
+  User git
+  IdentityFile ~/.ssh/github_deploy_rules
+  IdentitiesOnly yes
+EOF
+
+chmod 600 ~/.ssh/config ~/.ssh/github_deploy ~/.ssh/github_deploy_rules
+chmod 700 ~/.ssh
+cat ~/.ssh/github_deploy_rules.pub
+```
+
+GitHub → this repo → **Settings → Deploy keys → Add deploy key**. Title `vps-contabo-rules`. Paste the `.pub` line. Leave write access **off**.
+
+```bash
+ssh -T git@github.com-rules
+# expect: Hi nsaqib238/Augusta-Rules-library! You've successfully authenticated...
+```
+
+#### 2. Clone (sibling of Augusta-Australia — never pull into that folder)
+
+```bash
+cd /home/ragadmin/ragadmin/projects
+git clone git@github.com-rules:nsaqib238/Augusta-Rules-library.git
+chown -R ragadmin:ragadmin Augusta-Rules-library
+cd Augusta-Rules-library
+git config --global --add safe.directory /home/ragadmin/ragadmin/projects/Augusta-Rules-library
+git status
+git log -1 --oneline
+```
+
+#### 3. Env files
+
+```bash
+cd /home/ragadmin/ragadmin/projects/Augusta-Rules-library
+cp backend/.env.example backend/.env
+chmod 600 backend/.env
+
+cat > frontend/.env << 'EOF'
+REACT_APP_API_URL=
+REACT_APP_SUPABASE_URL=
+REACT_APP_SUPABASE_ANON_KEY=
+REACT_APP_ADMIN_EMAIL_ALLOWLIST=
+REACT_APP_SUPPORT_EMAIL=naajm@augustasearch.com
+REACT_APP_RECAPTCHA_SITE_KEY=
+EOF
+chmod 600 frontend/.env
+
+sed -i 's|^ALLOWED_ORIGINS=.*|ALLOWED_ORIGINS=https://library.augustasearch.com,https://www.augustasearch.com|' backend/.env
+sed -i 's|^FRONTEND_URL=.*|FRONTEND_URL=https://library.augustasearch.com|' backend/.env
+sed -i 's|^UVICORN_PORT=.*|UVICORN_PORT=8083|' backend/.env
+sed -i 's|^WORKER_MODE=.*|WORKER_MODE=api|' backend/.env
+sed -i 's|^EXTERNAL_PDF_WORKER=.*|EXTERNAL_PDF_WORKER=false|' backend/.env
+sed -i 's|^# REDIS_URL=redis://127.0.0.1:6379/0|REDIS_URL=redis://127.0.0.1:6379/0|' backend/.env
+sed -i 's|^HEALTH_REQUIRE_REDIS=.*|HEALTH_REQUIRE_REDIS=true|' backend/.env
+chown ragadmin:ragadmin backend/.env frontend/.env
+grep -E '^(ALLOWED_ORIGINS|FRONTEND_URL|UVICORN_PORT|WORKER_MODE|REDIS_URL)=' backend/.env
+```
+
+Must be `UVICORN_PORT=8083`. Then `nano backend/.env` and `nano frontend/.env` and fill secrets (`SUPABASE_*`, `OPENAI_API_KEY`, Stripe). Frontend needs the same `REACT_APP_SUPABASE_URL` and `REACT_APP_SUPABASE_ANON_KEY`. Do not copy Augusta-Australia `.env` unless this app uses that same Supabase project.
+
+In Supabase SQL Editor for this project, run **`supabase/combined_setup.sql`** (idempotent). `/health/ready` fails with missing `profiles` until this is done.
+
+#### 4. Python venv
+
+```bash
+systemctl stop aus-rules-backend 2>/dev/null || true
+cd /home/ragadmin/ragadmin/projects/Augusta-Rules-library/backend
+sudo -u ragadmin python3 -m venv venv
+sudo -u ragadmin bash -c 'cd /home/ragadmin/ragadmin/projects/Augusta-Rules-library/backend && source venv/bin/activate && pip install --upgrade pip && pip install -r requirements.txt'
+ls -l venv/bin/uvicorn
+```
+
+#### 5. systemd (`aus-rules-backend` — not `aus-augusta-backend`)
+
+```bash
+cd /home/ragadmin/ragadmin/projects/Augusta-Rules-library
+chmod +x deploy/scripts/start-api.sh
+
+cat > /etc/systemd/system/aus-rules-backend.service << 'EOF'
+[Unit]
+Description=Augusta Rules Library FastAPI backend
+After=network.target redis-server.service
+Wants=redis-server.service
+
+[Service]
+User=ragadmin
+WorkingDirectory=/home/ragadmin/ragadmin/projects/Augusta-Rules-library/backend
+Environment="PYTHONUNBUFFERED=1"
+Environment="WORKER_MODE=api"
+EnvironmentFile=-/home/ragadmin/ragadmin/projects/Augusta-Rules-library/backend/.env
+Environment="UVICORN_PORT=8083"
+ExecStart=/home/ragadmin/ragadmin/projects/Augusta-Rules-library/deploy/scripts/start-api.sh
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+systemctl daemon-reload
+systemctl enable aus-rules-backend
+systemctl restart aus-rules-backend
+sleep 4
+systemctl status aus-rules-backend --no-pager -l
+curl -sS -m 8 http://127.0.0.1:8083/health
+echo
+ss -tlnp | grep 8083
+```
+
+Expect `Active: active (running)`, `{"status":"healthy"}`, and 8083 listening. If you see `Address already in use`, the port is still 8082 — fix `.env` and the systemd `Environment="UVICORN_PORT=8083"` line.
+
+```bash
+curl -sS -m 8 http://127.0.0.1:8083/health/ready
+```
+
+Expect `"database":"ok"` and `"redis":"ok"` after `combined_setup.sql`.
+
+#### 6. Frontend build + nginx
+
+```bash
+cd /home/ragadmin/ragadmin/projects/Augusta-Rules-library/frontend
+sudo -u ragadmin npm install
+sudo -u ragadmin npm run build
+ls -l build/index.html
+
+mkdir -p /var/www/aus-rules-frontend
+rsync -a --delete /home/ragadmin/ragadmin/projects/Augusta-Rules-library/frontend/build/ /var/www/aus-rules-frontend/
+chown -R www-data:www-data /var/www/aus-rules-frontend
+
+cat > /etc/nginx/sites-available/library.augustasearch.com.conf << 'EOF'
+server {
+    listen 80;
+    listen [::]:80;
+    server_name library.augustasearch.com;
+
+    client_max_body_size 20m;
+
+    root /var/www/aus-rules-frontend;
+    index index.html;
+
+    location /health {
+        proxy_pass http://127.0.0.1:8083/health;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+    }
+
+    location /api/ {
+        proxy_pass http://127.0.0.1:8083;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_read_timeout 600s;
+        proxy_connect_timeout 60s;
+        proxy_send_timeout 600s;
+    }
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+}
+EOF
+
+ln -sfn /etc/nginx/sites-available/library.augustasearch.com.conf /etc/nginx/sites-enabled/
+nginx -t && systemctl reload nginx
+```
+
+Local check (no DNS yet):
+
+```bash
+curl -sS -m 8 -H "Host: library.augustasearch.com" http://127.0.0.1/health
+curl -sS -m 8 -H "Host: library.augustasearch.com" http://127.0.0.1/ | head -c 200
+```
+
+#### 7. DNS + HTTPS
+
+DNS **A record**: `library.augustasearch.com` → `37.60.238.78`
+
+```bash
+getent hosts library.augustasearch.com
+certbot --nginx -d library.augustasearch.com
+```
+
+Stripe webhook: `https://library.augustasearch.com/api/v1/webhooks/stripe`
+
+---
+
+### Routine update (after first deploy)
+
+```bash
+cd /home/ragadmin/ragadmin/projects/Augusta-Rules-library
+git pull origin main
+
+cd backend
+sudo -u ragadmin bash -c 'source venv/bin/activate && pip install -r requirements.txt'
+sudo systemctl restart aus-rules-backend
+sudo systemctl status aus-rules-backend --no-pager
+curl -sS http://127.0.0.1:8083/health
+
+cd ../frontend
+sudo -u ragadmin npm install
+sudo -u ragadmin npm run build
+sudo rsync -a --delete build/ /var/www/aus-rules-frontend/
+sudo chown -R www-data:www-data /var/www/aus-rules-frontend
+sudo nginx -t && sudo systemctl reload nginx
+```
+
+Logs: `journalctl -u aus-rules-backend -n 80 --no-pager -l`
+
+Also: [update vps.md](update%20vps.md) (ausstd commands — different path/port). Soft-launch: [`500 parallel users.md`](500%20parallel%20users.md).
 
 ### Scaling — production checklist (S0–S1)
 
@@ -322,86 +550,26 @@ Then in `backend/.env`: `REDIS_URL=redis://127.0.0.1:6379/0`
 
 ---
 
-#### C. Production — Ubuntu VPS (Contabo)
+#### C. Production notes (this VPS)
 
-SSH into the VPS, then run **all** steps below (`apt`, `systemctl`, `journalctl`).
-
-##### C1. Install Redis
+Redis is **already running** on this box (shared with ausstd). Do not change ausstd’s Redis.
 
 ```bash
-sudo apt update
-sudo apt install -y redis-server
-sudo systemctl enable redis-server
-sudo systemctl start redis-server
-redis-cli ping   # → PONG
+redis-cli ping   # PONG
 ```
-
-##### C2. Backend env (`backend/.env`)
-
-Copy from `backend/.env.example`. On the VPS, set **production** values:
-
-```env
-# S0 — runtime (already in code; set explicitly in production)
-ASK_EXECUTOR_MAX_WORKERS=32
-OPENAI_TIMEOUT_SECONDS=60
-OPENAI_MAX_RETRIES=2
-SESSION_CHECK_CACHE_SECONDS=30
-HEALTH_REQUIRE_OPENAI=false
-
-# S1 — infrastructure scale
-WORKER_MODE=api
-UVICORN_WORKERS=3
-UVICORN_PORT=8082
-UVICORN_LIMIT_CONCURRENCY=96
-REDIS_URL=redis://127.0.0.1:6379/0
-ASK_MAX_CONCURRENT_PER_USER=2
-ASK_GLOBAL_MAX_INFLIGHT=80
-HEALTH_REQUIRE_REDIS=true
-```
-
-##### C3. Install Python deps (includes `redis`)
-
-```bash
-cd backend
-source venv/bin/activate
-pip install -r requirements.txt
-```
-
-##### C4. Deploy systemd services
-
-`deploy/scripts/03-deploy-services.sh` installs on Ubuntu:
-
-- **API** — `aus-augusta-backend.service` → runs `deploy/scripts/start-api.sh` (multi-worker)
-
-Do **not** enable the PDF worker service. This product has no user PDF upload.
-
-```bash
-sudo bash deploy/scripts/03-deploy-services.sh
-sudo systemctl disable --now aus-augusta-pdf-worker
-```
-
-Manual start (debug):
-
-```bash
-bash deploy/scripts/start-api.sh
-```
-
-##### C5. Verify S1 (on VPS1)
 
 | Check | Command | Expected |
 |-------|---------|----------|
 | Redis | `redis-cli ping` | `PONG` |
-| API health | `curl http://127.0.0.1:8082/health` | `{"status":"healthy"}` |
-| Ready probe | `curl http://127.0.0.1:8082/health/ready` | `"redis":"ok"`, `"database":"ok"` |
-| API service | `sudo systemctl status aus-augusta-backend` | `active (running)` |
-| Logs | `journalctl -u aus-augusta-backend -n 50 --no-pager` | no crash loop |
-| Ask NCC/SIR | App UI | Answer with citations |
-
-Useful Ubuntu commands if something fails:
+| API health | `curl -sS http://127.0.0.1:8083/health` | `{"status":"healthy"}` |
+| Ready probe | `curl -sS http://127.0.0.1:8083/health/ready` | `"redis":"ok"`, `"database":"ok"` |
+| API service | `systemctl status aus-rules-backend` | `active (running)` |
+| Logs | `journalctl -u aus-rules-backend -n 50 --no-pager` | no crash loop |
+| Nginx | `curl -sS -H "Host: library.augustasearch.com" http://127.0.0.1/health` | `{"status":"healthy"}` |
 
 ```bash
-sudo systemctl restart aus-augusta-backend
-sudo journalctl -u aus-augusta-backend -f
+systemctl restart aus-rules-backend
+journalctl -u aus-rules-backend -f
 ```
 
 ---
@@ -436,7 +604,7 @@ Billing schema is included in **`supabase/combined_setup.sql`** (section 11 — 
 
 | Plan | Access |
 |------|--------|
-| **Sole** (free, default) | NCC + SIR Q&A |
+| **Sole** (free, default) | Compliance library Q&A |
 | **Professional** (Stripe) | Same libraries, higher limits, billing portal |
 | **Professional** (passcode) | Admin-generated code — same access for 3 or 6 months, then Sole |
 
@@ -538,7 +706,7 @@ backend/
   services/        database client, CSV ingest, storage, redis, ask rate limits
 deploy/
   scripts/start-api.sh # Multi-worker uvicorn launcher (S1)
-  systemd/           aus-augusta-backend.service
+  systemd/           leftover aus-augusta-* units — live service is aus-rules-backend
 frontend/
   src/
     pages/         SimpleLogin, SignupPage, Dashboard

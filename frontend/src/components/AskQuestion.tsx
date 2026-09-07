@@ -30,14 +30,14 @@ interface AskQuestionProps {
 
 const LIBRARY_META: Record<SharedLibraryFamily, { name: string; icon: string; blurb: string }> = {
   sir: {
-    name: 'SIR',
+    name: 'Rules library',
     icon: '📋',
-    blurb: 'Ask evidence-led questions across shared Service Installation Rules editions.',
+    blurb: 'Ask evidence-led questions across shared installation-rule editions.',
   },
   ncc: {
-    name: 'NCC',
+    name: 'Code library',
     icon: '🏛️',
-    blurb: 'Ask evidence-led questions across shared National Construction Code volumes.',
+    blurb: 'Ask evidence-led questions across shared code volumes.',
   },
 };
 

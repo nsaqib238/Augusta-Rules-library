@@ -50,6 +50,19 @@ interface StripeSubscription {
   trial_period_days: number | null;
 }
 
+/** Stripe product names may still say NCC/SIR; do not show that in the UI. */
+function displayPlanName(raw: string | undefined | null): string {
+  const name = (raw || '').trim();
+  if (!name) return 'Plan';
+  if (!/NCC|\bSIR\b|Australia/i.test(name)) return name;
+  const lower = name.toLowerCase();
+  if (lower.includes('company large')) return 'Company Large';
+  if (lower.includes('company')) return 'Company Small';
+  if (lower.includes('professional')) return 'Professional';
+  if (lower.includes('sole')) return 'Sole';
+  return 'Compliance library';
+}
+
 const StripeSubscriptionDetails: React.FC = () => {
   const [subscriptions, setSubscriptions] = useState<StripeSubscription[]>([]);
   const [loading, setLoading] = useState(false);
@@ -239,9 +252,13 @@ const StripeSubscriptionDetails: React.FC = () => {
     if (planType.includes('sole trader') || planType.includes('sole_trader') || planType === 'free') {
       return '$0.00 / month';
     } else if (planType.includes('individual')) {
-      return '$29.00 / month';
+      return '$19.00 / month';
+    } else if (planType.includes('company large')) {
+      return '$299.00 / month';
+    } else if (planType.includes('company')) {
+      return '$199.00 / month';
     } else if (planType.includes('professional')) {
-      return '$49.00 / month';
+      return '$19.00 / month';
     }
     
     // Fallback: use price from Stripe if available
@@ -303,7 +320,7 @@ const StripeSubscriptionDetails: React.FC = () => {
     }
   };
 
-  const getStatusColor = (status: string): string => {
+const getStatusColor = (status: string): string => {
     switch (status) {
       case 'active':
         return 'text-green-600 bg-green-50';
@@ -460,14 +477,14 @@ const StripeSubscriptionDetails: React.FC = () => {
                     <div className="flex items-center gap-2 flex-wrap">
                       {sub.items?.data?.[0]?.plan_display_name && (
                         <span className="font-bold text-lg text-blue-900">
-                          {sub.items.data[0].plan_display_name}
+                          {displayPlanName(sub.items.data[0].plan_display_name)}
                         </span>
                       )}
                       {!sub.items?.data?.[0]?.plan_display_name && sub.items?.data?.[0]?.price?.product && (
                         <span className="font-bold text-lg text-blue-900">
                           {typeof sub.items.data[0].price.product === 'string'
                             ? 'Professional'
-                            : sub.items.data[0].price.product.name || 'Plan'}
+                            : displayPlanName(sub.items.data[0].price.product.name)}
                         </span>
                       )}
                       <span className={`px-2 py-1 rounded text-xs font-medium ${getStatusColor(sub.status)}`}>
@@ -552,10 +569,12 @@ const StripeSubscriptionDetails: React.FC = () => {
                         <h3 className="font-semibold text-gray-900 mb-3">Plan</h3>
                         <div className="space-y-3">
                           {sub.items.data.map((item: any, index: number) => {
-                            const subscriptionType = item.plan_display_name ||
-                              (item.price?.product && typeof item.price.product === 'object'
-                                ? item.price.product.name
-                                : 'Professional');
+                            const subscriptionType = displayPlanName(
+                              item.plan_display_name ||
+                                (item.price?.product && typeof item.price.product === 'object'
+                                  ? item.price.product.name
+                                  : 'Professional')
+                            );
 
                             return (
                               <div key={index} className="border border-gray-200 rounded p-3">

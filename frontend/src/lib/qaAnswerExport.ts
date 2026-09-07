@@ -46,20 +46,20 @@ export const PROFILE_META: Record<
     filenamePrefix: 'augusta-search-qna',
   },
   ncc: {
-    defaultTitle: 'NCC Q&A Assistant',
+    defaultTitle: 'Augusta Search Q&A',
     icon: '🏗️',
-    sourcesTitle: 'Supporting NCC provisions',
+    sourcesTitle: 'Supporting provisions',
     footerNote:
-      'This export is generated only from the NCC provisions cited for your question. It is not a certificate of compliance or a performance solution. Confirm applicability to your building class, state/territory variations, and on-site conditions; engage a qualified person where required.',
-    filenamePrefix: 'augusta-search-ncc',
+      'This export is generated only from the cited clauses in the document(s) you selected. It is not a certificate of compliance. Confirm applicability to your project, jurisdiction, and on-site conditions; engage a qualified person where required.',
+    filenamePrefix: 'augusta-search-qna',
   },
   sir: {
-    defaultTitle: 'Services & Installation Rules (SIR)',
+    defaultTitle: 'Augusta Search Q&A',
     icon: '⚡',
-    sourcesTitle: 'Supporting SIR provisions',
+    sourcesTitle: 'Supporting provisions',
     footerNote:
-      'This export is generated only from the SIR clauses cited for your question. It is not a certificate of compliance or network approval. Confirm with your distributor, site conditions, and applicable standards; engage a qualified person where required.',
-    filenamePrefix: 'augusta-search-sir',
+      'This export is generated only from the cited clauses in the document(s) you selected. It is not a certificate of compliance. Confirm with applicable standards, site conditions, and a qualified person where required.',
+    filenamePrefix: 'augusta-search-qna',
   },
 };
 

@@ -36,9 +36,9 @@ const Pricing: React.FC = () => {
       price: 0,
       interval: 'month',
       features: [
-        'Q&A on NCC (National Construction Code) volumes',
-        'Q&A on Service & Installation Rules (SIR) editions',
+        'Q&A on shared codes, standards, and rules',
         'Cited, evidence-bound answers',
+        'Country and document-type libraries',
       ],
       popular: false,
       isFree: true,
@@ -47,10 +47,10 @@ const Pricing: React.FC = () => {
     {
       id: 'professional',
       name: 'Professional',
-      price: 49,
+      price: 19,
       interval: 'month',
       features: [
-        'Full NCC and SIR Q&A access',
+        'Full compliance library Q&A',
         'Higher usage limits than Sole',
         'Priority support',
       ],
@@ -61,11 +61,11 @@ const Pricing: React.FC = () => {
     {
       id: 'company_small',
       name: 'Company Small',
-      price: 599,
+      price: 199,
       interval: 'month',
       features: [
         'Up to 25 seats (owner + staff)',
-        'NCC and SIR Q&A for every seat',
+        'Compliance Q&A for every seat',
         'Each employee uses their own login',
         'All Professional features for every seat',
       ],
@@ -76,11 +76,11 @@ const Pricing: React.FC = () => {
     {
       id: 'company_large',
       name: 'Company Large',
-      price: 1099,
+      price: 299,
       interval: 'month',
       features: [
         'Up to 50 seats (owner + staff)',
-        'NCC and SIR Q&A for every seat',
+        'Compliance Q&A for every seat',
         'Each employee uses their own login',
         'All Professional features for every seat',
       ],
@@ -194,9 +194,9 @@ const Pricing: React.FC = () => {
         </div>
         <div className="augusta-glass mx-auto max-w-4xl rounded-[34px] px-6 py-10 text-center">
           <p className="augusta-eyebrow mb-3">Augusta Search pricing</p>
-          <h1 className="text-4xl font-semibold tracking-tight text-slate-950">Choose your NCC &amp; SIR plan</h1>
+          <h1 className="text-4xl font-semibold tracking-tight text-slate-950">Choose your plan</h1>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-slate-600">
-            Free Sole access for NCC and SIR Q&amp;A, upgrade to Professional for higher limits, or seat your team on a
+            Free Sole access for compliance Q&amp;A, upgrade to Professional for higher limits, or seat your team on a
             Company plan.
           </p>
         </div>
@@ -348,7 +348,7 @@ const Pricing: React.FC = () => {
                 Can I switch plans later?
               </h3>
               <p className="mt-2 text-slate-600">
-                Yes. Sole is free for NCC and SIR Q&amp;A. Upgrade to Professional for higher limits and priority support,
+                Yes. Sole is free for compliance Q&amp;A. Upgrade to Professional for higher limits and priority support,
                 or choose a Company plan for team seats.
               </p>
             </div>
@@ -359,7 +359,7 @@ const Pricing: React.FC = () => {
               </h3>
               <p className="mt-2 text-slate-600">
                 The buyer is the owner and counts as one seat. They share a join code with staff. Each person signs in
-                with their own account and gets NCC and SIR Q&amp;A access.
+                with their own account and gets compliance Q&amp;A access.
               </p>
             </div>
           </div>

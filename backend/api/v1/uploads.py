@@ -305,11 +305,11 @@ async def process_file(
     current_user: str = Depends(get_current_user),
 ):
     """
-    User PDF upload is disabled in this product (NCC & SIR shared libraries only).
+    User PDF upload is disabled in this product.
     """
     raise HTTPException(
         status_code=403,
-        detail="PDF upload is not available in this product. Use NCC and SIR Q&A only.",
+        detail="PDF upload is not available in this product.",
     )
     try:
         # Prepare progress tracking

@@ -1,7 +1,7 @@
 import React from 'react';
 
 /**
- * About / Product Overview — Australian NCC & SIR Q&A only (no PDF upload / discipline tabs).
+ * About / Product Overview — shared compliance-library Q&A (no PDF upload / discipline tabs).
  */
 const AboutApp: React.FC = () => {
   return (
@@ -9,13 +9,11 @@ const AboutApp: React.FC = () => {
       <div className="augusta-card mx-auto max-w-4xl space-y-8 p-8 sm:p-12">
         <div className="space-y-3">
           <p className="augusta-eyebrow">Overview</p>
-          <h1 className="text-3xl font-semibold tracking-tight text-slate-950">Augusta Search — NCC &amp; SIR</h1>
+          <h1 className="text-3xl font-semibold tracking-tight text-slate-950">Augusta Search — compliance library</h1>
           <p className="text-base text-slate-600 leading-relaxed">
-            <strong>Augusta Search</strong> for Australia provides evidence-led Q&amp;A over shared{' '}
-            <strong>National Construction Code (NCC)</strong> volumes and{' '}
-            <strong>Service &amp; Installation Rules (SIR)</strong> editions. There is no PDF upload and no Electrical /
-            Mechanical / Fire / Hydraulics discipline library in this product. Answers use retrieval-augmented AI and are
-            a <strong>research aid only</strong>—not a substitute for official publications or professional advice.
+            <strong>Augusta Search</strong> provides evidence-led Q&amp;A over shared codes, standards, and installation
+            rules. Answers use retrieval-augmented AI and are a <strong>research aid only</strong>—not a substitute for
+            official publications or professional advice.
           </p>
         </div>
 
@@ -33,16 +31,19 @@ const AboutApp: React.FC = () => {
               standards.
             </li>
             <li>
-              <strong>Official sources rule.</strong> Always check requirements against the current official NCC, SIR,
-              and other publications and amendments for your project, building class, and state/territory.
+              <strong>No affiliation.</strong> Augusta Search is not affiliated with, endorsed by, or an official
+              publisher of any standards body, regulator, or code authority.
+            </li>
+            <li>
+              <strong>Official sources rule.</strong> Always check requirements against the current official publications
+              and amendments for your project, jurisdiction, and document edition.
             </li>
             <li>
               <strong>AI limitations.</strong> Responses can be incomplete, outdated, or wrong. Do not rely on the app
               for safety-critical or contractual decisions without independent verification.
             </li>
             <li>
-              <strong>Shared libraries only.</strong> This product searches admin-ingested NCC and SIR libraries. It
-              does not accept user PDF uploads of standards.
+              <strong>Shared libraries only.</strong> This product searches admin-ingested compliance libraries.
             </li>
             <li>
               <strong>Availability.</strong> Features, content coverage, and response times depend on your plan and
@@ -55,14 +56,14 @@ const AboutApp: React.FC = () => {
           <h2 className="text-xl font-semibold text-slate-950">What you can do</h2>
           <ul className="space-y-2 text-slate-700 list-disc list-inside leading-relaxed">
             <li>
-              <strong>NCC Q&amp;A.</strong> Ask questions against indexed NCC volumes with cited clause references.
+              <strong>Library Q&amp;A.</strong> Ask questions against indexed documents with cited clause references.
             </li>
             <li>
-              <strong>SIR Q&amp;A.</strong> Ask questions against shared Service &amp; Installation Rules editions.
+              <strong>Country coverage.</strong> Open a country, pick a document type, then ask against one document.
             </li>
             <li>
-              <strong>Billing.</strong> Sole includes NCC and SIR access. Professional and Company plans are paid via
-              Stripe on the Pricing page (higher limits / team seats). Admins may issue promotional passcodes.
+              <strong>Billing.</strong> Sole includes library Q&amp;A. Professional and Company plans are paid via Stripe
+              on the Pricing page (higher limits / team seats). Admins may issue promotional passcodes.
             </li>
           </ul>
         </section>
@@ -71,12 +72,12 @@ const AboutApp: React.FC = () => {
           <h2 className="text-xl font-semibold text-slate-950">How it works (high level)</h2>
           <ol className="space-y-2 text-slate-700 list-decimal list-inside leading-relaxed">
             <li>
-              <span className="font-semibold">Sign up.</span> New accounts start on <strong>Sole</strong> with NCC and
-              SIR Q&amp;A. Upgrade on Pricing, join with a company code, or redeem a passcode if you have one.
+              <span className="font-semibold">Sign up.</span> New accounts start on <strong>Sole</strong> with compliance
+              Q&amp;A. Upgrade on Pricing, join with a company code, or redeem a passcode if you have one.
             </li>
             <li>
-              <span className="font-semibold">Choose NCC or SIR.</span> Open the matching Q&amp;A tab and select a volume
-              or edition from the shared library.
+              <span className="font-semibold">Choose a document.</span> Pick a country and document type, then select one
+              edition from the shared library.
             </li>
             <li>
               <span className="font-semibold">Search and answer.</span> The system retrieves relevant clauses/tables and
@@ -99,34 +100,34 @@ const AboutApp: React.FC = () => {
               {
                 name: 'Sole',
                 price: 'Free',
-                features: ['NCC Q&A', 'SIR Q&A', 'Cited answers'],
-                description: 'Free access to shared NCC and SIR libraries.',
+                features: ['Library Q&A', 'Cited answers', 'Country libraries'],
+                description: 'Free access to shared compliance libraries.',
               },
               {
                 name: 'Professional',
-                price: '$49 / month',
-                features: ['Full NCC and SIR Q&A', 'Higher usage limits', 'Priority support'],
-                description: 'For practitioners who need more capacity on the same NCC/SIR product.',
+                price: '$19 / month',
+                features: ['Full library Q&A', 'Higher usage limits', 'Priority support'],
+                description: 'For practitioners who need more capacity on the same product.',
               },
               {
                 name: 'Company Small',
-                price: '$599 / month',
+                price: '$199 / month',
                 features: [
                   'Up to 25 seats',
-                  'NCC and SIR for every seat',
+                  'Library Q&A for every seat',
                   'Owner join code for staff',
                 ],
-                description: 'For firms that need shared NCC/SIR access across a team.',
+                description: 'For firms that need shared access across a team.',
               },
               {
                 name: 'Company Large',
-                price: '$1,099 / month',
+                price: '$299 / month',
                 features: [
                   'Up to 50 seats',
-                  'NCC and SIR for every seat',
+                  'Library Q&A for every seat',
                   'Owner join code for staff',
                 ],
-                description: 'Larger teams on the same NCC/SIR product.',
+                description: 'Larger teams on the same product.',
               },
             ].map((plan) => (
               <div
@@ -151,8 +152,8 @@ const AboutApp: React.FC = () => {
         <section className="space-y-3">
           <h2 className="text-xl font-semibold text-slate-950">Get started</h2>
           <p className="text-slate-700 leading-relaxed">
-            Create an account, open Q&amp;A NCC or Q&amp;A SIR, and verify answers against official publications and
-            qualified professionals.
+            Create an account, open the country library, and verify answers against official publications and qualified
+            professionals.
           </p>
           <div className="flex flex-wrap gap-3">
             <a href="/signup" className="augusta-button-primary inline-flex items-center px-5 py-3">

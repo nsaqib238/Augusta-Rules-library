@@ -129,18 +129,17 @@ const SignupPage: React.FC = () => {
               <div className="flex items-center gap-4">
                 <BrandLogo variant="auth" />
                 <div>
-                  <div className="mt-1 text-xs text-white/55">NCC &amp; SIR · Australia</div>
+                  <div className="mt-1 text-xs text-white/55">Compliance library</div>
                 </div>
               </div>
 
               <div className="mt-20 max-w-lg space-y-6">
-                <p className="text-[12px] font-semibold uppercase tracking-[0.28em] text-[#f1ddab]">Australian building &amp; electrical rules</p>
+                <p className="text-[12px] font-semibold uppercase tracking-[0.28em] text-[#f1ddab]">Codes, standards &amp; rules</p>
                 <h2 className="text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl">
-                  Start with NCC and SIR intelligence.
+                  Get started with the compliance library.
                 </h2>
                 <p className="text-sm leading-7 text-slate-300">
-                  Create your account and ask grounded questions over shared National Construction Code and Service &amp;
-                  Installation Rules libraries.
+                  Create your account and ask grounded questions over shared codes, standards, and rules.
                 </p>
               </div>
             </div>
@@ -160,7 +159,7 @@ const SignupPage: React.FC = () => {
             <div className="mb-6">
               <p className="augusta-eyebrow mb-3">Create workspace</p>
               <h1 className="text-3xl font-semibold tracking-tight text-slate-950">Start with Augusta Search</h1>
-              <p className="mt-2 text-sm leading-6 text-slate-500">Set up your account for NCC and SIR search and Q&amp;A.</p>
+              <p className="mt-2 text-sm leading-6 text-slate-500">Set up your account for compliance search and Q&amp;A.</p>
             </div>
 
             {success && (

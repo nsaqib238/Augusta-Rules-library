@@ -1244,7 +1244,7 @@ class SubscriptionService:
         cid = (codebook_id or "").strip().upper()
         if not is_shared_library_codebook(cid):
             raise ValueError(
-                "This product allows NCC and SIR Q&A only."
+                "This codebook is not in the shared compliance library."
             )
 
     async def enforce_usage_limits(self, user_id: str, action_type: str) -> bool:

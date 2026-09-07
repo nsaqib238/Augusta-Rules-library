@@ -244,7 +244,7 @@ const QaChatPanel: React.FC<QaChatPanelProps> = ({
       (isLibraryMode || codebook !== OTHER_CODEBOOK || customCodebook.trim().length > 0)
   );
 
-  const libraryDropdownLabel = libraryFamily === 'sir' ? 'SIR editions' : 'NCC editions';
+  const libraryDropdownLabel = 'Library editions';
 
   return (
     <div className="flex flex-col rounded-[28px] border border-white/70 bg-white/82 shadow-[0_22px_70px_rgba(15,23,42,0.10)] backdrop-blur-xl">
