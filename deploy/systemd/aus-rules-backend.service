@@ -1,0 +1,17 @@
+[Unit]
+Description=Augusta-Rules-library FastAPI backend (NCC/SIR)
+After=network.target redis-server.service
+Wants=redis-server.service
+
+[Service]
+User=ragadmin
+WorkingDirectory=/home/ragadmin/ragadmin/projects/Augusta-Rules-library/backend
+Environment="PYTHONUNBUFFERED=1"
+Environment="WORKER_MODE=api"
+EnvironmentFile=-/home/ragadmin/ragadmin/projects/Augusta-Rules-library/backend/.env
+ExecStart=/bin/bash /home/ragadmin/ragadmin/projects/Augusta-Rules-library/deploy/scripts/start-api.sh
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

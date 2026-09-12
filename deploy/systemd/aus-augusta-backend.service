@@ -1,17 +1,4 @@
-[Unit]
-Description=Augusta-Australia FastAPI backend
-After=network.target redis-server.service
-Wants=redis-server.service
-
-[Service]
-User=ragadmin
-WorkingDirectory=/home/ragadmin/ragadmin/projects/Augusta-Australia/backend
-Environment="PYTHONUNBUFFERED=1"
-Environment="WORKER_MODE=api"
-EnvironmentFile=-/home/ragadmin/ragadmin/projects/Augusta-Australia/backend/.env
-ExecStart=/home/ragadmin/ragadmin/projects/Augusta-Australia/deploy/scripts/start-api.sh
-Restart=always
-RestartSec=5
-
-[Install]
-WantedBy=multi-user.target
+# DEPRECATED — do not install on the VPS.
+# This file pointed at Augusta-Australia paths and ausstd / port 8082.
+# Use: deploy/systemd/aus-rules-backend.service
+# See APP_SEPARATION.md
