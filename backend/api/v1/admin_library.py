@@ -25,7 +25,7 @@ from services.library_catalog_service import (
     update_type,
 )
 from services.shared_library_service import (
-    clear_library,
+    delete_edition,
     create_edition,
     export_library_clauses_csv,
     export_library_tables_csv,
@@ -520,12 +520,12 @@ async def sync_edition_embeddings(
 
 
 @router.delete("/editions/{codebook}")
-async def clear_edition_data(
+async def delete_edition_data(
     codebook: str,
     current_admin: str = Depends(check_admin_access),
 ):
     meta = _require_edition(codebook)
     try:
-        return {"ok": True, **clear_library(meta["codebook"])}
+        return {"ok": True, **delete_edition(meta["codebook"])}
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc

@@ -180,6 +180,26 @@ const LibraryAdminPanel: React.FC = () => {
     }
   };
 
+  const handleDeleteEdition = async (codebook: string, label: string) => {
+    const ok = window.confirm(
+      `Delete “${label}”? This removes uploaded clauses, tables, and search data for this edition. This cannot be undone.`
+    );
+    if (!ok) return;
+    try {
+      setBusy(true);
+      setMessage(null);
+      await authFetch(`api/v1/admin/library/editions/${encodeURIComponent(codebook)}`, {
+        method: 'DELETE',
+      });
+      setMessage(`Deleted ${label}`);
+      await refresh();
+    } catch (err) {
+      alert(err instanceof Error ? err.message : 'Could not delete edition');
+    } finally {
+      setBusy(false);
+    }
+  };
+
   const handleHideDocument = async () => {
     if (!selectedDoc) return;
     try {
@@ -542,6 +562,14 @@ const LibraryAdminPanel: React.FC = () => {
                   className="rounded-full border border-slate-300 px-4 py-2 text-xs font-semibold disabled:opacity-50"
                 >
                   Download tables
+                </button>
+                <button
+                  type="button"
+                  disabled={busy || processing}
+                  onClick={() => void handleDeleteEdition(ed.codebook, ed.label)}
+                  className="rounded-full border border-red-300 px-4 py-2 text-xs font-semibold text-red-700 disabled:opacity-50"
+                >
+                  Delete
                 </button>
               </div>
               <details className="mt-4">

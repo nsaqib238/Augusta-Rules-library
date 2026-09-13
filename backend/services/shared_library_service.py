@@ -698,6 +698,17 @@ def clear_library(codebook_id: str) -> Dict[str, Any]:
     }
 
 
+def delete_edition(codebook_id: str) -> Dict[str, Any]:
+    """Wipe ingested library data and remove the edition from the catalog."""
+    meta = get_edition(codebook_id)
+    if not meta:
+        raise ValueError(f"Unknown shared library codebook: {codebook_id}")
+    cleared = clear_library(codebook_id)
+    supabase = get_supabase_client()
+    supabase.table("shared_library_editions").delete().eq("codebook", meta["codebook"]).execute()
+    return {**cleared, "edition_removed": True}
+
+
 def shared_library_document_ids(codebook_id: str) -> List[str]:
     """Document ids for a shared codebook (0 or 1)."""
     if not is_shared_library_codebook(codebook_id):
