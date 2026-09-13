@@ -10,6 +10,8 @@ import logging
 import sys
 from typing import Any, Dict, List, Optional
 
+from services.codebooks import clause_record_id
+
 logger = logging.getLogger(__name__)
 
 # NCC clause CSVs can have very long text fields (default csv limit is 128KB).
@@ -194,6 +196,18 @@ async def parse_uploaded_chunks_content(
         if codebook:
             for row in chunks_data:
                 row["codebook"] = codebook
+                new_id = clause_record_id(codebook, row.get("clause_number"))
+                if not new_id:
+                    continue
+                raw_meta = row.get("metadata")
+                try:
+                    meta_obj = json.loads(raw_meta) if isinstance(raw_meta, str) and raw_meta else (raw_meta or {})
+                except Exception:
+                    meta_obj = {}
+                if not isinstance(meta_obj, dict):
+                    meta_obj = {}
+                meta_obj["id"] = new_id
+                row["metadata"] = json.dumps(meta_obj)
         if discipline:
             for row in chunks_data:
                 row["discipline"] = discipline

@@ -12,7 +12,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
 from services.chunk_embedding_service import delete_document_embeddings, sync_document_embeddings
-from services.codebooks import sanitize_custom_codebook_id
+from services.codebooks import clause_record_id, sanitize_custom_codebook_id
 from services.pdf_ingest_parsers import parse_uploaded_chunks_content, parse_uploaded_tables_content
 from services.standard_families import infer_standard_family
 from services.supabase_client import get_supabase_client
@@ -599,7 +599,7 @@ def export_library_clauses_csv(codebook_id: str) -> Tuple[bytes, str]:
             ent_obj = {}
         writer.writerow(
             {
-                "id": meta_obj.get("id") or "",
+                "id": clause_record_id(meta["codebook"], row.get("clause_number")) or meta_obj.get("id") or "",
                 "clause_number": row.get("clause_number") or "",
                 "heading": row.get("heading") or "",
                 "body": row.get("text") or "",

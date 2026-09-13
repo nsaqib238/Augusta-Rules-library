@@ -639,7 +639,7 @@ const LibraryAdminPanel: React.FC = () => {
           className="augusta-input sm:col-span-2"
           value={newEdition.codebook}
           onChange={(e) => setNewEdition((p) => ({ ...p, codebook: e.target.value }))}
-          placeholder="Codebook id (optional)"
+          placeholder="Code name (used as clause id, e.g. NCC2022_VOL3)"
         />
         <button type="submit" disabled={busy} className="rounded-full bg-[#0b1220] px-4 py-2 text-sm font-semibold text-white">
           Add edition

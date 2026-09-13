@@ -6,7 +6,7 @@ Modal.com extracts both tables and clauses, backend validates and saves.
 
 import logging
 from pathlib import Path
-from typing import Dict, Any
+from typing import Any, Dict, Optional
 
 from pdf_pipeline.settings import settings
 from pdf_pipeline.services.modal_service import ModalService
@@ -274,6 +274,7 @@ class PDFProcessor:
         *,
         force_modal: bool = False,
         standard_family: str = DEFAULT_STANDARD_FAMILY,
+        document_title: Optional[str] = None,
     ) -> Dict[str, Any]:
         """
         Complete PDF processing pipeline.
@@ -582,7 +583,7 @@ class PDFProcessor:
 
             # Step 4: Generate outputs
             logger.info("Step 4: Generating output files...")
-            document_title = self._extract_document_title(clauses)
+            document_title = (document_title or "").strip() or self._extract_document_title(clauses)
             self.output_generator.generate_all(clauses, tables, output_dir, document_title)
 
             result["steps"]["output_generation"] = {

@@ -120,6 +120,15 @@ def sanitize_custom_codebook_id(raw: str) -> str:
     return (s[:64] if s else "CUSTOM")
 
 
+def clause_record_id(codebook: Optional[str], clause_number: Optional[str]) -> str:
+    """Stable clause id: the codebook name the admin entered, then the clause number."""
+    number = (clause_number or "").strip()
+    if not number:
+        return ""
+    prefix = sanitize_custom_codebook_id(codebook or "")
+    return f"{prefix}:{number}"
+
+
 def resolve_upload_codebook(
     codebook_id: str,
     *,

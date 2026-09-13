@@ -9,7 +9,14 @@ if str(BACKEND_ROOT) not in sys.path:
     sys.path.insert(0, str(BACKEND_ROOT))
 
 from pdf_pipeline.services.standard_clause_patterns import match_clause_header
+from services.codebooks import clause_record_id
 from services.standard_families import infer_standard_family
+
+
+def test_clause_id_uses_entered_code_name():
+    assert clause_record_id("NCC2022_VOL3", "C3P1") == "NCC2022_VOL3:C3P1"
+    assert clause_record_id("ncc 2022 volume three", "Part C3") == "NCC_2022_VOLUME_THREE:Part C3"
+    assert clause_record_id("NCC2022_VOL3", "") == ""
 
 
 def test_infer_nbn_family_from_label():

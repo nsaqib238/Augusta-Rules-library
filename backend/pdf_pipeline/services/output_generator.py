@@ -5,6 +5,7 @@ from typing import List
 from pathlib import Path
 from pdf_pipeline.models.clause import Clause
 from pdf_pipeline.models.table import Table
+from services.codebooks import clause_record_id, sanitize_custom_codebook_id
 
 logger = logging.getLogger(__name__)
 
@@ -16,6 +17,7 @@ class OutputGenerator:
     def generate_all(self, clauses: List[Clause], tables: List[Table], output_dir: str, document_title: str = "Document", export_csv: bool = True):
         output_path = Path(output_dir)
         output_path.mkdir(exist_ok=True, parents=True)
+        codebook = sanitize_custom_codebook_id(document_title)
         txt_path = output_path / "normalized_document.txt"
         self.generate_normalized_text(clauses, tables, str(txt_path), document_title)
         clauses_path = output_path / "clauses.json"
@@ -25,7 +27,7 @@ class OutputGenerator:
         if export_csv and clauses:
             csv_path = output_path / "clauses.csv"
             try:
-                self.generate_clauses_csv(clauses, str(csv_path))
+                self.generate_clauses_csv(clauses, str(csv_path), standard_prefix=codebook)
                 logger.info(f"✅ Generated clauses CSV: {csv_path} ({len(clauses)} clauses)")
             except Exception as e:
                 logger.warning(f"Failed to generate clauses CSV: {e}")
@@ -34,7 +36,7 @@ class OutputGenerator:
         if export_csv and tables:
             tables_csv_path = output_path / "tables.csv"
             try:
-                self.generate_tables_csv(tables, str(tables_csv_path), document_title)
+                self.generate_tables_csv(tables, str(tables_csv_path), codebook, codebook)
                 logger.info(f"✅ Generated tables CSV: {tables_csv_path} ({len(tables)} tables)")
             except Exception as e:
                 logger.warning(f"Failed to generate tables CSV: {e}")
@@ -226,14 +228,14 @@ class OutputGenerator:
         
         return description
     
-    def generate_clauses_csv(self, clauses: List[Clause], output_path: str, standard_prefix: str = "as3000"):
+    def generate_clauses_csv(self, clauses: List[Clause], output_path: str, standard_prefix: str = ""):
         """
         Export clauses to CSV format following the reference structure.
         
         Args:
             clauses: List of Clause objects
             output_path: Path to output CSV file
-            standard_prefix: Standard identifier prefix (default: "as3000")
+            standard_prefix: Codebook name entered for this edition (used in clause ids)
         """
         def get_parent_number(clause_number: str) -> str:
             """Extract parent number from clause number."""
@@ -278,7 +280,8 @@ class OutputGenerator:
             'embeddable',
             'is_heading_only',
             'had_duplicate_merge',
-            'source_rows'
+            'source_rows',
+            'codebook',
         ]
         
         csv_rows = []
@@ -286,9 +289,9 @@ class OutputGenerator:
             clause_number = clause.clause_number or ""
             parent_number = get_parent_number(clause_number)
             
-            # Generate semantic IDs
-            clause_id = f"{standard_prefix}:{clause_number}" if clause_number else ""
-            parent_id = f"{standard_prefix}:{parent_number}" if parent_number else ""
+            # Generate semantic IDs from the codebook name the admin entered
+            clause_id = clause_record_id(standard_prefix, clause_number)
+            parent_id = clause_record_id(standard_prefix, parent_number)
             
             # Format page range
             if clause.page_start and clause.page_end:
@@ -319,7 +322,8 @@ class OutputGenerator:
                 'embeddable': True,  # Could be enhanced with logic
                 'is_heading_only': is_heading,
                 'had_duplicate_merge': False,
-                'source_rows': '[]'
+                'source_rows': '[]',
+                'codebook': sanitize_custom_codebook_id(standard_prefix),
             }
             csv_rows.append(row)
         

@@ -213,6 +213,7 @@ async def run_pdf_pipeline_and_ingest_from_path(
             enable_enhancement=enable_enhancement,
             force_modal=force_modal,
             standard_family=parser_family,
+            document_title=ingest_codebook,
         )
 
         _assert_outputs_quality(output_dir)
@@ -491,6 +492,7 @@ async def run_hybrid_word_pdf_ingest_from_paths(
             enable_enhancement=pdf_settings.pdf_pipeline_enhancement,
             force_modal=force_modal,
             standard_family=parser_family,
+            document_title=default_standard_name,
         )
         _assert_outputs_quality(word_dir)
         _assert_outputs_quality(pdf_dir)
