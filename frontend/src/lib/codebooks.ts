@@ -8,7 +8,8 @@ export type StandardFamily =
   | 'NFPA'
   | 'API'
   | 'IEEE'
-  | 'NBN';
+  | 'NBN'
+  | 'NCC';
 
 export interface CodebookOption {
   id: string;
@@ -29,6 +30,7 @@ export const STANDARD_FAMILIES: { id: StandardFamily; label: string }[] = [
   { id: 'API', label: 'API-style numbering' },
   { id: 'IEEE', label: 'IEEE-style numbering' },
   { id: 'NBN', label: 'Telecom guideline numbering' },
+  { id: 'NCC', label: 'NCC clause style (C3P1, A1G4, S2C26)' },
 ];
 
 /** Fallback parser family when the code name does not match a known pattern. */
@@ -36,6 +38,7 @@ export const DEFAULT_STANDARD_FAMILY: StandardFamily = 'AS_NZS';
 
 export function inferFamilyFromCodebookId(id: string, label?: string): StandardFamily {
   const cid = (id || '').toUpperCase();
+  if (cid.startsWith('NCC')) return 'NCC';
   if (cid.startsWith('NBN')) return 'NBN';
   if (cid.startsWith('IEC')) return 'IEC';
   if (cid.startsWith('ISO')) return 'ISO';
@@ -44,6 +47,7 @@ export function inferFamilyFromCodebookId(id: string, label?: string): StandardF
   if (cid.startsWith('API')) return 'API';
   if (cid.startsWith('IEEE')) return 'IEEE';
   const text = `${label || ''} ${id}`;
+  if (/\bNCC\b/i.test(text) || /National Construction Code/i.test(text)) return 'NCC';
   if (/\bNBN\b/i.test(text)) return 'NBN';
   if (/\b(MDU|SDU)\b/i.test(text) && /\b(NBN|TELECOM|FIBRE|FIBER)\b/i.test(text)) return 'NBN';
   if (/\bIEC\b/i.test(text)) return 'IEC';
@@ -143,9 +147,9 @@ export const CODEBOOKS: CodebookOption[] = [
   { id: 'ASTM_A36', label: 'ASTM A36 (Structural steel)', discipline: 'mechanical', family: 'ASTM' },
 
   // Shared library (admin upload — not shown on discipline upload/Q&A tabs)
-  { id: 'NCC2022_VOL1', label: 'NCC 2022 Vol 1 — Class 2–9', discipline: 'fire', family: 'AS_NZS' },
-  { id: 'NCC2022_VOL2', label: 'NCC 2022 Vol 2 — Class 1 & 10', discipline: 'fire', family: 'AS_NZS' },
-  { id: 'NCC2022_VOL3', label: 'NCC 2022 Vol 3 — Plumbing Code', discipline: 'hydraulics', family: 'AS_NZS' },
+  { id: 'NCC2022_VOL1', label: 'NCC 2022 Vol 1 — Class 2–9', discipline: 'fire', family: 'NCC' },
+  { id: 'NCC2022_VOL2', label: 'NCC 2022 Vol 2 — Class 1 & 10', discipline: 'fire', family: 'NCC' },
+  { id: 'NCC2022_VOL3', label: 'NCC 2022 Vol 3 — Plumbing Code', discipline: 'hydraulics', family: 'NCC' },
   { id: 'NSW_SIR_2018', label: 'NSW SIR 2018', discipline: 'electrical', family: 'AS_NZS' },
   { id: 'SA_SIR_2025', label: 'South Australia SIR 2025', discipline: 'electrical', family: 'AS_NZS' },
   { id: 'TASNETWORK_SIR_V85', label: 'TasNetwork SIR V8-5', discipline: 'electrical', family: 'AS_NZS' },

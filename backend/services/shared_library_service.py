@@ -270,10 +270,12 @@ def get_or_create_library_document(codebook_id: str, admin_user_id: str) -> str:
 
 def library_parser_family(codebook_id: str, explicit: Optional[str] = None) -> str:
     meta = get_edition(codebook_id) or {}
+    catalogue = (meta.get("family") or "").strip().upper()
     return infer_standard_family(
         meta.get("codebook") or codebook_id,
         codebook_label=meta.get("label"),
         explicit=explicit,
+        catalogue_family=catalogue if catalogue in {"NCC"} else None,
     )
 
 

@@ -788,7 +788,7 @@ class PDFProcessor:
     ) -> str:
         """
         Format raw PDF text into normalized_document.txt format with clause markers.
-        Uses family-specific regex (AS/NZS, ISO, IEC, ASTM, NFPA, API, IEEE).
+        Uses family-specific regex (AS/NZS, ISO, IEC, ASTM, NFPA, API, IEEE, NBN, NCC).
         """
         family = normalize_standard_family(standard_family)
         formatted_lines = []
@@ -820,10 +820,16 @@ class PDFProcessor:
             matched = match_clause_header(line, family)
             if matched:
                 number, title = matched
+                j = i + 1
+                if family == "NCC" and not title and j < len(lines):
+                    nxt = lines[j].strip()
+                    if nxt and not match_clause_header(nxt, family):
+                        title = nxt
+                        j += 1
+                title = title or number
                 level, parent = clause_level_and_parent(number, family)
 
                 body_lines = []
-                j = i + 1
                 max_scan = min(len(lines), i + 800)
                 while j < max_scan:
                     next_line = lines[j].strip()

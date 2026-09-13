@@ -5,7 +5,7 @@ import re
 from typing import Optional
 
 STANDARD_FAMILIES = frozenset(
-    {"AS_NZS", "ISO", "IEC", "ASTM", "NFPA", "API", "IEEE", "NBN"}
+    {"AS_NZS", "ISO", "IEC", "ASTM", "NFPA", "API", "IEEE", "NBN", "NCC"}
 )
 DEFAULT_STANDARD_FAMILY = "AS_NZS"
 
@@ -18,9 +18,11 @@ FAMILY_LABELS = {
     "API": "API — American Petroleum Institute",
     "IEEE": "IEEE — Institute of Electrical and Electronics Engineers",
     "NBN": "NBN — NBN Co guidelines (SDU / MDU / telecom)",
+    "NCC": "NCC — National Construction Code (A1G1, C3P1, S2C26)",
 }
 
 _LABEL_INFER = [
+    (re.compile(r"\bNCC\b|\bNational Construction Code\b|\bPlumbing Code of Australia\b", re.I), "NCC"),
     (re.compile(r"\bNBN\b", re.I), "NBN"),
     (re.compile(r"\b(MDU|SDU)\b.*\b(TELECOM|FIBRE|FIBER|NBN)\b|\b(TELECOM|FIBRE|FIBER|NBN)\b.*\b(MDU|SDU)\b", re.I), "NBN"),
     (re.compile(r"\bAS/?NZS\b|\bAS\s+\d", re.I), "AS_NZS"),
@@ -33,6 +35,7 @@ _LABEL_INFER = [
 ]
 
 _ID_PREFIX_INFER = [
+    (re.compile(r"^NCC", re.I), "NCC"),
     (re.compile(r"^NBN", re.I), "NBN"),
     (re.compile(r"^IEC", re.I), "IEC"),
     (re.compile(r"^ISO", re.I), "ISO"),

@@ -1,11 +1,13 @@
 import json
 import csv
 import logging
+import re
 from typing import List
 from pathlib import Path
 from pdf_pipeline.models.clause import Clause
 from pdf_pipeline.models.table import Table
 from services.codebooks import clause_record_id, sanitize_custom_codebook_id
+from pdf_pipeline.services.standard_clause_patterns import parent_clauses_from_table_id
 
 logger = logging.getLogger(__name__)
 
@@ -349,40 +351,41 @@ class OutputGenerator:
         
         def extract_volume_and_section(table_number: str) -> tuple:
             """Extract volume and section code from table number."""
-            if not table_number:
-                return "Vol1", "", ""
-            
-            # Remove "Table " prefix if present
-            num = table_number.replace("Table ", "").strip()
-            
-            # Extract section (e.g., "3.1" -> "3", "C10" -> "C10")
-            if '.' in num:
-                section = num.split('.')[0]
+            codebook = sanitize_custom_codebook_id(document_title)
+            volume = "Vol3" if "VOL3" in codebook else "Vol2" if "VOL2" in codebook else "Vol1"
+            num = re.sub(r"(?i)^table\s+", "", table_number or "").strip()
+            parents = parent_clauses_from_table_id(table_number)
+            section = ""
+            if parents:
+                bare = re.sub(r"^(NSW|QLD|VIC|SA|WA|TAS|NT|ACT)\s+", "", parents[0])
+                section = re.match(r"^([A-Z]+\d+)", bare).group(1) if re.match(r"^([A-Z]+\d+)", bare) else bare.split(".")[0]
+            elif "." in num:
+                section = num.split(".")[0]
             else:
-                section = num
-            
-            # Determine volume (most tables are Vol1)
-            volume = "Vol1"
-            
+                section = num.split("_")[0]
             return volume, section, section
         
         def extract_clause_reference(table: Table) -> str:
             """Extract clause reference from parent_clause_reference or parent_clause_number."""
             if table.parent_clause_reference:
-                # Already formatted (e.g., "Clause 3.2")
                 if table.parent_clause_reference.startswith("Clause "):
                     return table.parent_clause_reference
                 return f"Clause {table.parent_clause_reference}"
-            elif table.parent_clause_number:
+            if table.parent_clause_number:
                 return f"Clause {table.parent_clause_number}"
+            parents = parent_clauses_from_table_id(table.table_number)
+            if parents:
+                return f"Clause {parents[0]}"
             return ""
         
         def extract_clause_ids(table: Table) -> tuple:
             """Extract first and last clause IDs."""
             clause_ref = table.parent_clause_number or table.parent_clause_reference or ""
-            # Remove "Clause " prefix if present
             clause_id = clause_ref.replace("Clause ", "").strip()
-            return clause_id, clause_id  # For single table, first = last
+            if not clause_id:
+                parents = parent_clauses_from_table_id(table.table_number)
+                clause_id = parents[0] if parents else ""
+            return clause_id, clause_id
         
         # Define CSV columns matching reference Tables.csv
         fieldnames = [
@@ -441,7 +444,7 @@ class OutputGenerator:
                 'content_parts_total': 1,
                 'called_in': "",  # Could be enhanced with cross-references
                 'clause_reference': clause_reference,
-                'source': f"{document_title} Vol1",
+                'source': document_title,
                 'context': "",  # Additional context if available
                 'clause_count': 1 if first_clause_id else 0,
                 'first_clause_id': first_clause_id,

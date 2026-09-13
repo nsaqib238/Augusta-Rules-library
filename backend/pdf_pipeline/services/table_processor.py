@@ -7,6 +7,7 @@ Modal.com provides complete table extraction, backend just validates.
 import logging
 from typing import List, Dict, Any, Optional
 from pdf_pipeline.models.table import Table
+from pdf_pipeline.services.standard_clause_patterns import parent_clauses_from_table_id
 
 logger = logging.getLogger(__name__)
 
@@ -101,14 +102,17 @@ class TableProcessor:
             
             best_clause = None
             
-            # STRATEGY 1: Exact or prefix match by number
-            if table.table_number and not table.table_number.startswith("MODAL_P"):
-                # Try exact match first
+            # STRATEGY 1: Exact or prefix match by number (AS/NZS 3.6.1 and NCC Table S2C26a)
+            if table.table_number and not str(table.table_number).startswith("MODAL_P"):
                 if table.table_number in clause_by_number:
                     best_clause = clause_by_number[table.table_number]
-                else:
-                    # Try prefix match (e.g., table 3.6.1 → clause 3.6)
-                    parts = table.table_number.split(".")
+                if not best_clause:
+                    for candidate in parent_clauses_from_table_id(table.table_number):
+                        if candidate in clause_by_number:
+                            best_clause = clause_by_number[candidate]
+                            break
+                if not best_clause:
+                    parts = str(table.table_number).replace("Table ", "").split(".")
                     for i in range(len(parts), 0, -1):
                         prefix = ".".join(parts[:i])
                         if prefix in clause_by_number:
