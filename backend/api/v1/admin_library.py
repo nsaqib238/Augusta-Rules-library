@@ -16,6 +16,7 @@ from services.library_catalog_service import (
     create_country,
     create_document,
     create_type,
+    delete_document,
     get_country,
     get_document,
     list_documents,
@@ -213,6 +214,17 @@ async def patch_document(
 ):
     try:
         return {"ok": True, **update_document(document_id, request.model_dump(exclude_unset=True))}
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
+@router.delete("/documents/{document_id}")
+async def delete_catalog_document(
+    document_id: str,
+    current_admin: str = Depends(check_admin_access),
+):
+    try:
+        return {"ok": True, **delete_document(document_id)}
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
 

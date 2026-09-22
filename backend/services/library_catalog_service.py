@@ -6,7 +6,7 @@ import re
 import uuid
 from typing import Any, Dict, List, Optional
 
-from services.shared_library_service import library_catalog
+from services.shared_library_service import delete_edition, library_catalog
 from services.supabase_client import get_supabase_client
 
 logger = logging.getLogger(__name__)
@@ -199,6 +199,29 @@ def get_document(document_id: str) -> Optional[Dict[str, Any]]:
     return result.data[0] if result.data else None
 
 
+def _unique_document_slug(
+    supabase,
+    country_id: str,
+    base: str,
+    *,
+    exclude_id: Optional[str] = None,
+) -> str:
+    slug = slugify(base, "document")
+    for i in range(0, 20):
+        candidate = slug if i == 0 else f"{slug}-{i + 1}"
+        existing = (
+            supabase.table("library_documents")
+            .select("id")
+            .eq("country_id", country_id)
+            .eq("slug", candidate)
+            .execute()
+        )
+        taken = [row for row in (existing.data or []) if row.get("id") != exclude_id]
+        if not taken:
+            return candidate
+    return f"{slug}-{uuid.uuid4().hex[:6]}"
+
+
 def create_document(
     *,
     country_id: str,
@@ -216,12 +239,13 @@ def create_document(
     pri = (priority or "medium").strip().lower()
     if pri not in {"critical", "high", "medium"}:
         raise ValueError("priority must be critical, high, or medium")
+    supabase = get_supabase_client()
     row = {
         "id": str(uuid.uuid4()),
         "country_id": country_id,
         "document_type_id": document_type_id,
         "title": display,
-        "slug": slugify(slug or display, "document"),
+        "slug": _unique_document_slug(supabase, country_id, slug or display),
         "discipline": (discipline or "Electrical").strip() or "Electrical",
         "publisher": (publisher or "").strip() or None,
         "priority": pri,
@@ -229,7 +253,6 @@ def create_document(
         "is_active": True,
         "created_by": admin_user_id,
     }
-    supabase = get_supabase_client()
     inserted = supabase.table("library_documents").insert(row).execute()
     return inserted.data[0] if inserted.data else row
 
@@ -266,6 +289,34 @@ def update_document(document_id: str, patch: Dict[str, Any]) -> Dict[str, Any]:
     return updated.data[0]
 
 
+def delete_document(document_id: str) -> Dict[str, Any]:
+    doc = get_document(document_id)
+    if not doc:
+        raise ValueError("catalog document not found")
+    supabase = get_supabase_client()
+    edition_rows = (
+        supabase.table("shared_library_editions")
+        .select("codebook")
+        .eq("library_document_id", document_id)
+        .execute()
+    )
+    deleted_editions: List[str] = []
+    for row in edition_rows.data or []:
+        codebook = str(row.get("codebook") or "").strip()
+        if not codebook:
+            continue
+        try:
+            delete_edition(codebook)
+            deleted_editions.append(codebook)
+        except Exception as exc:
+            logger.warning("Could not delete edition %s for catalog document %s: %s", codebook, document_id, exc)
+            supabase.table("shared_library_editions").update({"library_document_id": None}).eq(
+                "codebook", codebook
+            ).execute()
+    supabase.table("library_documents").delete().eq("id", document_id).execute()
+    return {"id": document_id, "title": doc.get("title"), "deleted_editions": deleted_editions}
+
+
 def infer_edition_family(type_slug: Optional[str], title: str = "") -> str:
     return "NCC"
 
@@ -283,10 +334,12 @@ def catalog_tree() -> Dict[str, Any]:
         documents = list(doc_rows.data or [])
     editions = [row for row in library_catalog() if str(row.get("family") or "").strip().upper() == "NCC"]
     ncc_doc_ids = {row.get("library_document_id") for row in editions if row.get("library_document_id")}
+    ncc_type_ids = {row.get("id") for row in types if _is_ncc_type(row)}
     documents = [
         row
         for row in documents
         if row.get("id") in ncc_doc_ids
+        or row.get("document_type_id") in ncc_type_ids
         or str(row.get("slug") or "").lower().startswith("ncc")
         or "ncc" in str(row.get("title") or "").lower()
     ]

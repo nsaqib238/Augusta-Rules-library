@@ -29,9 +29,15 @@ const LibraryAdminPanel: React.FC = () => {
   const [newTypeName, setNewTypeName] = useState('');
   const [newDoc, setNewDoc] = useState({
     title: '',
-    discipline: 'Electrical',
-    publisher: '',
-    priority: 'medium',
+    discipline: 'Building',
+    publisher: 'ABCB',
+    priority: 'critical',
+  });
+  const [editDoc, setEditDoc] = useState({
+    title: '',
+    discipline: 'Building',
+    publisher: 'ABCB',
+    priority: 'critical',
   });
   const [newEdition, setNewEdition] = useState({ label: '', codebook: '', edition_year: '' });
   const [pdfFiles, setPdfFiles] = useState<Record<string, File | null>>({});
@@ -99,10 +105,29 @@ const LibraryAdminPanel: React.FC = () => {
   const country = tree.countries.find((c) => c.id === countryId);
   const selectedType = tree.types.find((t) => t.id === typeId) || null;
   const selectedDoc = tree.documents.find((d) => d.id === documentId) || null;
+  const nccTypeId =
+    tree.types.find((t) => t.slug === 'ncc')?.id ||
+    tree.types.find((t) => t.country_id === countryId)?.id ||
+    tree.types[0]?.id ||
+    null;
   const docEditions = useMemo(
     () => (documentId ? editionsForDocument(tree.editions, documentId) : []),
     [tree.editions, documentId]
   );
+
+  useEffect(() => {
+    if (!documentId) return;
+    const doc = tree.documents.find((d) => d.id === documentId);
+    if (!doc) return;
+    setEditDoc({
+      title: doc.title || '',
+      discipline: doc.discipline || 'Building',
+      publisher: doc.publisher || 'ABCB',
+      priority: doc.priority || 'critical',
+    });
+    // Only reset the form when switching volumes, not on background refresh.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [documentId]);
 
   const onCountryChange = (id: string) => {
     setCountryId(id);
@@ -132,7 +157,11 @@ const LibraryAdminPanel: React.FC = () => {
 
   const handleAddDocument = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!country || !typeId) return;
+    const resolvedTypeId = typeId || nccTypeId;
+    if (!country || !resolvedTypeId) {
+      alert('NCC catalog type is missing. Run combined_setup.sql section 10b, then refresh.');
+      return;
+    }
     try {
       setBusy(true);
       const created = await authFetch('api/v1/admin/library/documents', {
@@ -140,17 +169,20 @@ const LibraryAdminPanel: React.FC = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           country_code: country.code,
-          document_type_id: typeId,
+          document_type_id: resolvedTypeId,
           title: newDoc.title.trim(),
           discipline: newDoc.discipline.trim(),
           publisher: newDoc.publisher.trim() || undefined,
           priority: newDoc.priority,
         }),
       });
-      setNewDoc({ title: '', discipline: 'Electrical', publisher: '', priority: 'medium' });
-      setMessage('Document added');
+      setNewDoc({ title: '', discipline: 'Building', publisher: 'ABCB', priority: 'critical' });
+      setMessage(`Added ${created.title || 'NCC volume'}`);
       await refresh();
-      if (created?.id) setDocumentId(created.id);
+      if (created?.id) {
+        setTypeId(created.document_type_id || resolvedTypeId);
+        setDocumentId(created.id);
+      }
     } catch (err) {
       alert(err instanceof Error ? err.message : 'Could not add document');
     } finally {
@@ -173,6 +205,55 @@ const LibraryAdminPanel: React.FC = () => {
       await refresh();
     } catch (err) {
       alert(err instanceof Error ? err.message : 'Could not delete edition');
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const handleRenameDocument = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!selectedDoc) return;
+    try {
+      setBusy(true);
+      await authFetch(`api/v1/admin/library/documents/${selectedDoc.id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          title: editDoc.title.trim(),
+          discipline: editDoc.discipline.trim() || 'Building',
+          publisher: editDoc.publisher.trim() || undefined,
+          priority: editDoc.priority,
+        }),
+      });
+      setMessage(`Renamed to ${editDoc.title.trim()}`);
+      await refresh();
+    } catch (err) {
+      alert(err instanceof Error ? err.message : 'Could not rename volume');
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const handleDeleteDocument = async () => {
+    if (!selectedDoc) return;
+    const editionCount = docEditions.length;
+    const ok = window.confirm(
+      editionCount
+        ? `Delete “${selectedDoc.title}” and its ${editionCount} edition${editionCount === 1 ? '' : 's'}? This cannot be undone.`
+        : `Delete “${selectedDoc.title}”? This cannot be undone.`
+    );
+    if (!ok) return;
+    try {
+      setBusy(true);
+      setMessage(null);
+      await authFetch(`api/v1/admin/library/documents/${selectedDoc.id}`, {
+        method: 'DELETE',
+      });
+      setMessage(`Deleted ${selectedDoc.title}`);
+      setDocumentId(null);
+      await refresh();
+    } catch (err) {
+      alert(err instanceof Error ? err.message : 'Could not delete volume');
     } finally {
       setBusy(false);
     }
@@ -306,6 +387,47 @@ const LibraryAdminPanel: React.FC = () => {
     }
   };
 
+  const renderAddVolumeForm = () => (
+    <form onSubmit={handleAddDocument} className="grid gap-3 rounded-2xl border border-dashed border-slate-300 p-4 sm:grid-cols-2">
+      <div className="sm:col-span-2">
+        <label className="mb-1 block text-xs font-semibold uppercase tracking-wide text-slate-500">
+          Add NCC volume
+        </label>
+        <input
+          className="augusta-input w-full"
+          value={newDoc.title}
+          onChange={(e) => setNewDoc((p) => ({ ...p, title: e.target.value }))}
+          placeholder="e.g. NCC Volume One 2018"
+          required
+        />
+      </div>
+      <input
+        className="augusta-input"
+        value={newDoc.discipline}
+        onChange={(e) => setNewDoc((p) => ({ ...p, discipline: e.target.value }))}
+        placeholder="Discipline"
+      />
+      <input
+        className="augusta-input"
+        value={newDoc.publisher}
+        onChange={(e) => setNewDoc((p) => ({ ...p, publisher: e.target.value }))}
+        placeholder="Publisher"
+      />
+      <select
+        className="augusta-input"
+        value={newDoc.priority}
+        onChange={(e) => setNewDoc((p) => ({ ...p, priority: e.target.value }))}
+      >
+        <option value="critical">Critical</option>
+        <option value="high">High</option>
+        <option value="medium">Medium</option>
+      </select>
+      <button type="submit" disabled={busy} className="rounded-full bg-[#0b1220] px-5 py-2.5 text-sm font-semibold text-white">
+        Add volume
+      </button>
+    </form>
+  );
+
   const renderCountryPane = () => (
     <div className="space-y-6">
       <div>
@@ -314,27 +436,32 @@ const LibraryAdminPanel: React.FC = () => {
           {country?.name || 'NCC — National Construction Code of Australia'}
         </h2>
         <p className={`${typography.helper} mt-2`}>
-          This product hosts NCC volumes only. Click a volume in the tree to add editions, or add a type if you need a
-          grouping.
+          Add volumes such as NCC 2018, 2019, 2022 or 2025 using the form above. Click a volume to rename it, delete it,
+          or add a year edition.
         </p>
       </div>
-      <form onSubmit={handleAddType} className="flex flex-wrap items-end gap-3">
-        <div className="min-w-[220px] flex-1">
-          <label className="mb-1 block text-xs font-semibold uppercase tracking-wide text-slate-500">
-            New document type
-          </label>
-          <input
-            className="augusta-input w-full"
-            value={newTypeName}
-            onChange={(e) => setNewTypeName(e.target.value)}
-            placeholder="e.g. NCC volumes"
-            required
-          />
-        </div>
-        <button type="submit" disabled={busy} className="rounded-full bg-[#0b1220] px-5 py-2.5 text-sm font-semibold text-white">
-          Add type
-        </button>
-      </form>
+      <details>
+        <summary className="cursor-pointer text-xs font-semibold uppercase tracking-wide text-slate-500">
+          Add a grouping (optional)
+        </summary>
+        <form onSubmit={handleAddType} className="mt-3 flex flex-wrap items-end gap-3">
+          <div className="min-w-[220px] flex-1">
+            <label className="mb-1 block text-xs font-semibold uppercase tracking-wide text-slate-500">
+              New document type
+            </label>
+            <input
+              className="augusta-input w-full"
+              value={newTypeName}
+              onChange={(e) => setNewTypeName(e.target.value)}
+              placeholder="e.g. NCC volumes"
+              required
+            />
+          </div>
+          <button type="submit" disabled={busy} className="rounded-full bg-[#0b1220] px-5 py-2.5 text-sm font-semibold text-white">
+            Add type
+          </button>
+        </form>
+      </details>
     </div>
   );
 
@@ -343,44 +470,10 @@ const LibraryAdminPanel: React.FC = () => {
       <div>
         <p className="augusta-eyebrow mb-2">{country?.name}</p>
         <h2 className={`${typography.sectionTitle} text-slate-950`}>{selectedType?.name}</h2>
-        <p className={`${typography.helper} mt-2`}>Add as many catalog documents as you need. Upload Word or PDF on the document page.</p>
+        <p className={`${typography.helper} mt-2`}>
+          Add another NCC volume (2018, 2019, 2022, 2025) using the form above, then open it to upload Word or PDF.
+        </p>
       </div>
-      <form onSubmit={handleAddDocument} className="grid gap-3 rounded-2xl border border-slate-200/80 bg-white/70 p-4 sm:grid-cols-2">
-        <div className="sm:col-span-2">
-          <label className="mb-1 block text-xs font-semibold uppercase tracking-wide text-slate-500">Title</label>
-          <input
-            className="augusta-input w-full"
-            value={newDoc.title}
-            onChange={(e) => setNewDoc((p) => ({ ...p, title: e.target.value }))}
-            placeholder="Ausgrid connection requirements"
-            required
-          />
-        </div>
-        <input
-          className="augusta-input"
-          value={newDoc.discipline}
-          onChange={(e) => setNewDoc((p) => ({ ...p, discipline: e.target.value }))}
-          placeholder="Discipline"
-        />
-        <input
-          className="augusta-input"
-          value={newDoc.publisher}
-          onChange={(e) => setNewDoc((p) => ({ ...p, publisher: e.target.value }))}
-          placeholder="Publisher"
-        />
-        <select
-          className="augusta-input"
-          value={newDoc.priority}
-          onChange={(e) => setNewDoc((p) => ({ ...p, priority: e.target.value }))}
-        >
-          <option value="critical">Critical</option>
-          <option value="high">High</option>
-          <option value="medium">Medium</option>
-        </select>
-        <button type="submit" disabled={busy} className="rounded-full bg-[#0b1220] px-5 py-2.5 text-sm font-semibold text-white">
-          Add document
-        </button>
-      </form>
       <div className="overflow-x-auto">
         <table className="min-w-full text-left text-sm">
           <thead className="text-xs uppercase tracking-wide text-slate-500">
@@ -420,7 +513,7 @@ const LibraryAdminPanel: React.FC = () => {
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <p className="augusta-eyebrow mb-2">
-            {country?.name} / {selectedType?.name || 'Document'}
+            {country?.name} / {selectedType?.name || 'NCC volume'}
           </p>
           <h2 className={`${typography.sectionTitle} text-slate-950`}>{doc.title}</h2>
           <p className={`${typography.helper} mt-2`}>
@@ -429,10 +522,57 @@ const LibraryAdminPanel: React.FC = () => {
             {doc.is_active === false ? ' · hidden from users' : ''}
           </p>
         </div>
-        <button type="button" onClick={() => void handleHideDocument()} className="rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold">
-          {doc.is_active === false ? 'Show to users' : 'Hide from users'}
-        </button>
+        <div className="flex flex-wrap gap-2">
+          <button type="button" onClick={() => void handleHideDocument()} className="rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold">
+            {doc.is_active === false ? 'Show to users' : 'Hide from users'}
+          </button>
+          <button
+            type="button"
+            disabled={busy}
+            onClick={() => void handleDeleteDocument()}
+            className="rounded-full border border-red-300 px-4 py-2 text-sm font-semibold text-red-700 disabled:opacity-50"
+          >
+            Delete volume
+          </button>
+        </div>
       </div>
+
+      <form onSubmit={handleRenameDocument} className="grid gap-3 rounded-2xl border border-slate-200/80 bg-white/70 p-4 sm:grid-cols-2">
+        <div className="sm:col-span-2">
+          <label className="mb-1 block text-xs font-semibold uppercase tracking-wide text-slate-500">Rename volume</label>
+          <input
+            className="augusta-input w-full"
+            value={editDoc.title}
+            onChange={(e) => setEditDoc((p) => ({ ...p, title: e.target.value }))}
+            placeholder="e.g. NCC Volume One 2018"
+            required
+          />
+        </div>
+        <input
+          className="augusta-input"
+          value={editDoc.discipline}
+          onChange={(e) => setEditDoc((p) => ({ ...p, discipline: e.target.value }))}
+          placeholder="Discipline"
+        />
+        <input
+          className="augusta-input"
+          value={editDoc.publisher}
+          onChange={(e) => setEditDoc((p) => ({ ...p, publisher: e.target.value }))}
+          placeholder="Publisher"
+        />
+        <select
+          className="augusta-input"
+          value={editDoc.priority}
+          onChange={(e) => setEditDoc((p) => ({ ...p, priority: e.target.value }))}
+        >
+          <option value="critical">Critical</option>
+          <option value="high">High</option>
+          <option value="medium">Medium</option>
+        </select>
+        <button type="submit" disabled={busy} className="rounded-full bg-[#0b1220] px-4 py-2 text-sm font-semibold text-white disabled:opacity-50">
+          Save name
+        </button>
+      </form>
 
       <div className="space-y-3">
         <h3 className="text-sm font-semibold text-slate-900">Editions</h3>
@@ -580,24 +720,27 @@ const LibraryAdminPanel: React.FC = () => {
       </div>
 
       <form onSubmit={handleAddEdition} className="grid gap-3 rounded-2xl border border-dashed border-slate-300 p-4 sm:grid-cols-3">
+        <p className="sm:col-span-3 text-xs font-semibold uppercase tracking-wide text-slate-500">
+          Add a year under this volume
+        </p>
         <input
           className="augusta-input sm:col-span-2"
           value={newEdition.label}
           onChange={(e) => setNewEdition((p) => ({ ...p, label: e.target.value }))}
-          placeholder="Edition display name (e.g. NCC 2022 Vol 3 — Plumbing Code)"
+          placeholder="Edition display name (e.g. NCC 2018 Vol 1 — Class 2–9)"
           required
         />
         <input
           className="augusta-input"
           value={newEdition.edition_year}
           onChange={(e) => setNewEdition((p) => ({ ...p, edition_year: e.target.value }))}
-          placeholder="Year"
+          placeholder="Year (e.g. 2018)"
         />
         <input
           className="augusta-input sm:col-span-2"
           value={newEdition.codebook}
           onChange={(e) => setNewEdition((p) => ({ ...p, codebook: e.target.value }))}
-          placeholder="Code name (used as clause id, e.g. NCC2022_VOL3)"
+          placeholder="Code name (used as clause id, e.g. NCC2018_VOL1)"
         />
         <button type="submit" disabled={busy} className="rounded-full bg-[#0b1220] px-4 py-2 text-sm font-semibold text-white">
           Add edition
@@ -632,8 +775,8 @@ const LibraryAdminPanel: React.FC = () => {
         <p className="augusta-eyebrow mb-2">Admin</p>
         <h2 className={`${typography.sectionTitle} text-slate-950`}>NCC library</h2>
         <p className={`${typography.helper} mt-2 max-w-3xl`}>
-          National Construction Code of Australia only. Add an edition, then upload a Word file if you have one (better
-          than PDF).
+          Rename or delete a volume if the name is wrong. Add another volume (2018, 2019, 2022, 2025), then upload a
+          Word file if you have one (better than PDF).
         </p>
       </div>
       {message && <p className="text-sm font-medium text-emerald-700">{message}</p>}
@@ -652,12 +795,17 @@ const LibraryAdminPanel: React.FC = () => {
               setTypeId(id);
               setDocumentId(null);
             }}
-            onSelectDocument={setDocumentId}
+            onSelectDocument={(id) => {
+              setDocumentId(id);
+              const doc = tree.documents.find((d) => d.id === id);
+              if (doc) setTypeId(doc.document_type_id);
+            }}
             showUnready
             showEmptyTypes
           />
         </div>
-        <div className="lg:col-span-8">
+        <div className="lg:col-span-8 space-y-6">
+          {renderAddVolumeForm()}
           {selectedDoc
             ? renderDocumentPane(selectedDoc)
             : typeId
