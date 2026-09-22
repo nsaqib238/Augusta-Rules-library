@@ -76,6 +76,51 @@ export function documentIsProcessing(editions: LibraryEditionStatus[], documentI
 
 const LEFTOVER_SIR_SLUGS = new Set(['nsw-sir', 'sa-sir', 'tasnetworks-sir', 'vic-sir']);
 
+const LEFTOVER_TYPE_SLUGS = new Set([
+  'network-rules',
+  'authority-requirements',
+  'technical-specifications',
+  'technical-specs',
+  'tech-specs',
+  'guidance',
+  'sir',
+  'regulatory-requirements',
+]);
+
+const LEFTOVER_TYPE_NAMES = new Set([
+  'network rules',
+  'authority requirements',
+  'technical specifications',
+  'guidance',
+  'sir',
+  'regulatory requirements',
+]);
+
+export function isLeftoverCatalogType(type: Pick<LibraryDocumentType, 'slug' | 'name'>): boolean {
+  const slug = (type.slug || '').toLowerCase();
+  const name = (type.name || '').toLowerCase().trim();
+  return LEFTOVER_TYPE_SLUGS.has(slug) || LEFTOVER_TYPE_NAMES.has(name);
+}
+
+export function isNccNamedType(type: Pick<LibraryDocumentType, 'slug' | 'name'>): boolean {
+  const slug = (type.slug || '').toLowerCase();
+  const name = (type.name || '').toLowerCase();
+  return slug.includes('ncc') || name.includes('ncc') || name.includes('national construction code');
+}
+
+export function nccCatalogTypes(
+  types: LibraryDocumentType[],
+  documents: LibraryCatalogDocument[],
+  options?: { includeEmptyNcc?: boolean }
+): LibraryDocumentType[] {
+  const includeEmptyNcc = options?.includeEmptyNcc ?? false;
+  return types.filter((type) => {
+    if (isLeftoverCatalogType(type)) return false;
+    if (documents.some((d) => d.document_type_id === type.id)) return true;
+    return includeEmptyNcc && isNccNamedType(type);
+  });
+}
+
 export function isNccCatalogDocument(
   doc: LibraryCatalogDocument,
   editions: LibraryEditionStatus[]

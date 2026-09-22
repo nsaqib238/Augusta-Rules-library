@@ -6,6 +6,8 @@ import {
   LibraryEditionStatus,
   documentIsProcessing,
   documentIsReady,
+  isLeftoverCatalogType,
+  isNccNamedType,
 } from '../../lib/libraryCatalog';
 
 interface LibraryTreeProps {
@@ -66,7 +68,12 @@ const LibraryTree: React.FC<LibraryTreeProps> = ({
   const countryTypes = useMemo(() => {
     return types
       .filter((t) => t.country_id === countryId)
-      .filter((t) => showEmptyTypes || filteredDocs.some((d) => d.document_type_id === t.id))
+      .filter((t) => !isLeftoverCatalogType(t))
+      .filter((t) => {
+        const hasDocs = filteredDocs.some((d) => d.document_type_id === t.id);
+        if (hasDocs) return true;
+        return showEmptyTypes && isNccNamedType(t);
+      })
       .sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0));
   }, [types, countryId, filteredDocs, showEmptyTypes]);
 

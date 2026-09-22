@@ -15,6 +15,38 @@ DEFAULT_AU_TYPES = [
     {"slug": "ncc", "name": "National Construction Code", "sort_order": 10},
 ]
 
+LEFTOVER_TYPE_SLUGS = {
+    "network-rules",
+    "authority-requirements",
+    "technical-specifications",
+    "technical-specs",
+    "tech-specs",
+    "guidance",
+    "sir",
+    "regulatory-requirements",
+}
+LEFTOVER_TYPE_NAMES = {
+    "network rules",
+    "authority requirements",
+    "technical specifications",
+    "guidance",
+    "sir",
+    "regulatory requirements",
+}
+
+
+def _is_leftover_type(row: Dict[str, Any]) -> bool:
+    slug = str(row.get("slug") or "").strip().lower()
+    name = str(row.get("name") or "").strip().lower()
+    return slug in LEFTOVER_TYPE_SLUGS or name in LEFTOVER_TYPE_NAMES
+
+
+def _is_ncc_type(row: Dict[str, Any]) -> bool:
+    slug = str(row.get("slug") or "").strip().lower()
+    name = str(row.get("name") or "").strip().lower()
+    return "ncc" in slug or "ncc" in name or "national construction code" in name
+
+
 _SLUG_RE = re.compile(r"[^a-z0-9]+")
 
 
@@ -257,6 +289,12 @@ def catalog_tree() -> Dict[str, Any]:
         if row.get("id") in ncc_doc_ids
         or str(row.get("slug") or "").lower().startswith("ncc")
         or "ncc" in str(row.get("title") or "").lower()
+    ]
+    kept_type_ids = {row.get("document_type_id") for row in documents}
+    types = [
+        row
+        for row in types
+        if not _is_leftover_type(row) and (row.get("id") in kept_type_ids or _is_ncc_type(row))
     ]
     return {
         "countries": countries,

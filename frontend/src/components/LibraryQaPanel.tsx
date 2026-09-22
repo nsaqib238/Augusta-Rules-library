@@ -11,6 +11,7 @@ import {
   editionsForDocument,
   mapCatalogDiscipline,
   nccCatalogDocuments,
+  nccCatalogTypes,
 } from '../lib/libraryCatalog';
 
 const LibraryQaPanel: React.FC = () => {
@@ -70,7 +71,7 @@ const LibraryQaPanel: React.FC = () => {
       const countryRows = (countryRes.data || []) as LibraryCountry[];
       const nccDocs = nccCatalogDocuments((docRes.data || []) as LibraryCatalogDocument[], editionRows);
       setCountries(countryRows);
-      setTypes((typeRes.data || []) as LibraryDocumentType[]);
+      setTypes(nccCatalogTypes((typeRes.data || []) as LibraryDocumentType[], nccDocs));
       setDocuments(nccDocs);
       setEditions(editionRows);
       setCountryId((prev) => prev || countryRows[0]?.id || '');

@@ -1495,7 +1495,7 @@ WHERE c.code = 'AU'
     OR (e.codebook = 'NCC2022_VOL3' AND d.slug = 'ncc-volume-three')
   );
 
--- Leftover SIR catalog rows (older seeds). Unlink, then drop empty folders.
+-- Leftover SIR / AU catalog rows (older seeds). Unlink, then drop empty folders.
 UPDATE library_documents
 SET is_active = false
 WHERE slug IN ('nsw-sir', 'sa-sir', 'tasnetworks-sir', 'vic-sir');
@@ -1507,14 +1507,90 @@ WHERE codebook IN ('NSW_SIR_2018', 'SA_SIR_2025', 'TASNETWORK_SIR_V85', 'VIC_SIR
 DELETE FROM library_documents
 WHERE slug IN ('nsw-sir', 'sa-sir', 'tasnetworks-sir', 'vic-sir');
 
+-- Drop leftover SIR / rules / specs / guidance folders and any docs still in them.
+UPDATE shared_library_editions e
+SET library_document_id = NULL
+FROM library_documents d
+JOIN library_document_types t ON t.id = d.document_type_id
+WHERE e.library_document_id = d.id
+  AND (
+    t.slug IN (
+      'network-rules',
+      'authority-requirements',
+      'technical-specifications',
+      'technical-specs',
+      'tech-specs',
+      'guidance',
+      'sir',
+      'regulatory-requirements'
+    )
+    OR lower(t.name) IN (
+      'network rules',
+      'authority requirements',
+      'technical specifications',
+      'guidance',
+      'sir',
+      'regulatory requirements'
+    )
+  );
+
+DELETE FROM library_documents d
+USING library_document_types t
+WHERE d.document_type_id = t.id
+  AND (
+    t.slug IN (
+      'network-rules',
+      'authority-requirements',
+      'technical-specifications',
+      'technical-specs',
+      'tech-specs',
+      'guidance',
+      'sir',
+      'regulatory-requirements'
+    )
+    OR lower(t.name) IN (
+      'network rules',
+      'authority requirements',
+      'technical specifications',
+      'guidance',
+      'sir',
+      'regulatory requirements'
+    )
+  );
+
 DELETE FROM library_document_types t
 USING library_countries c
 WHERE t.country_id = c.id
   AND c.code = 'AU'
-  AND t.slug <> 'ncc'
-  AND NOT EXISTS (
-      SELECT 1 FROM library_documents d
-      WHERE d.document_type_id = t.id AND COALESCE(d.is_active, true)
+  AND (
+    t.slug IN (
+      'network-rules',
+      'authority-requirements',
+      'technical-specifications',
+      'technical-specs',
+      'tech-specs',
+      'guidance',
+      'sir',
+      'regulatory-requirements'
+    )
+    OR lower(t.name) IN (
+      'network rules',
+      'authority requirements',
+      'technical specifications',
+      'guidance',
+      'sir',
+      'regulatory requirements'
+    )
+    OR (
+      t.slug <> 'ncc'
+      AND t.slug NOT LIKE '%ncc%'
+      AND lower(t.name) NOT LIKE '%ncc%'
+      AND lower(t.name) NOT LIKE '%national construction code%'
+      AND NOT EXISTS (
+          SELECT 1 FROM library_documents d
+          WHERE d.document_type_id = t.id AND COALESCE(d.is_active, true)
+      )
+    )
   );
 
 -- ===========================================

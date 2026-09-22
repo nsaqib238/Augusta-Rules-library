@@ -26,6 +26,7 @@ import {
   documentIsReady,
   editionsForDocument,
   nccCatalogDocuments,
+  nccCatalogTypes,
 } from '../lib/libraryCatalog';
 import {
   downloadDesignPlanningMarkdown,
@@ -347,10 +348,11 @@ const DesignCompliancePanel: React.FC = () => {
           ready: Boolean(readyDoc),
         };
       });
+      const nccDocs = nccCatalogDocuments((docRes.data || []) as LibraryCatalogDocument[], editionRows);
       setDocuments(readyDocs);
       setCountries((countryRes.data || []) as LibraryCountry[]);
-      setLibraryTypes((typeRes.data || []) as LibraryDocumentType[]);
-      setCatalogDocuments(nccCatalogDocuments((docRes.data || []) as LibraryCatalogDocument[], editionRows));
+      setLibraryTypes(nccCatalogTypes((typeRes.data || []) as LibraryDocumentType[], nccDocs));
+      setCatalogDocuments(nccDocs);
       setEditions(editionRows);
       setCountryId((prev) => prev || countryRes.data?.[0]?.id || '');
     } catch (err) {
