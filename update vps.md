@@ -30,7 +30,7 @@ sudo nginx -t && sudo systemctl reload nginx
 curl -s http://127.0.0.1:8083/health
 
 ============================================================
-# Update VPS — Augusta Rules Library (NCC/SIR)
+# Update VPS — Augusta Rules Library (NCC only)
 
 | | VPS1 (edge) | VPS2 (PDF) |
 |--|-------------|------------|

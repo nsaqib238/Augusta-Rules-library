@@ -151,7 +151,7 @@ def prepare_rag_query_retry(
     clause_hints = [s.strip() for s in (first_clause_summaries or []) if s and str(s).strip()]
     catalog = [s.strip() for s in (table_catalog or []) if s and str(s).strip()]
     layout_label = (
-        "standard_tables (NCC/SIR separate tables index)"
+        "standard_tables (NCC separate tables index)"
         if table_layout == "standard_tables"
         else "embedded_chunks (AS/NZS tables inside clause CSV)"
     )

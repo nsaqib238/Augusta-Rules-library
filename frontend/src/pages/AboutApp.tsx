@@ -1,7 +1,7 @@
 import React from 'react';
 
 /**
- * About / Product Overview — shared compliance-library Q&A (no PDF upload / discipline tabs).
+ * About / Product Overview — NCC (National Construction Code of Australia) Q&A.
  */
 const AboutApp: React.FC = () => {
   return (
@@ -9,11 +9,13 @@ const AboutApp: React.FC = () => {
       <div className="augusta-card mx-auto max-w-4xl space-y-8 p-8 sm:p-12">
         <div className="space-y-3">
           <p className="augusta-eyebrow">Overview</p>
-          <h1 className="text-3xl font-semibold tracking-tight text-slate-950">Augusta Search — compliance library</h1>
+          <h1 className="text-3xl font-semibold tracking-tight text-slate-950">
+            Augusta Search — NCC
+          </h1>
           <p className="text-base text-slate-600 leading-relaxed">
-            <strong>Augusta Search</strong> provides evidence-led Q&amp;A over shared codes, standards, and installation
-            rules. Answers use retrieval-augmented AI and are a <strong>research aid only</strong>—not a substitute for
-            official publications or professional advice.
+            <strong>Augusta Search</strong> provides evidence-led Q&amp;A over the{' '}
+            <strong>National Construction Code (NCC) of Australia</strong>. Answers use retrieval-augmented AI and are a{' '}
+            <strong>research aid only</strong>—not a substitute for official publications or professional advice.
           </p>
         </div>
 
@@ -43,7 +45,8 @@ const AboutApp: React.FC = () => {
               for safety-critical or contractual decisions without independent verification.
             </li>
             <li>
-              <strong>Shared libraries only.</strong> This product searches admin-ingested compliance libraries.
+              <strong>NCC library only.</strong> This product searches admin-ingested NCC volumes (National Construction
+              Code of Australia). It does not host other publishers&apos; rules or standards.
             </li>
             <li>
               <strong>Availability.</strong> Features, content coverage, and response times depend on your plan and
@@ -56,13 +59,14 @@ const AboutApp: React.FC = () => {
           <h2 className="text-xl font-semibold text-slate-950">What you can do</h2>
           <ul className="space-y-2 text-slate-700 list-disc list-inside leading-relaxed">
             <li>
-              <strong>Library Q&amp;A.</strong> Ask questions against indexed documents with cited clause references.
+              <strong>NCC Q&amp;A.</strong> Ask questions against indexed NCC volumes with cited clause references.
             </li>
             <li>
-              <strong>Country coverage.</strong> Open a country, pick a document type, then ask against one document.
+              <strong>NCC volumes.</strong> Pick Volume One, Two, or Three (Plumbing Code), then ask against that
+              document.
             </li>
             <li>
-              <strong>Billing.</strong> Sole includes library Q&amp;A. Professional and Company plans are paid via Stripe
+              <strong>Billing.</strong> Sole includes NCC Q&amp;A. Professional and Company plans are paid via Stripe
               on the Pricing page (higher limits / team seats). Admins may issue promotional passcodes.
             </li>
           </ul>
@@ -72,12 +76,12 @@ const AboutApp: React.FC = () => {
           <h2 className="text-xl font-semibold text-slate-950">How it works (high level)</h2>
           <ol className="space-y-2 text-slate-700 list-decimal list-inside leading-relaxed">
             <li>
-              <span className="font-semibold">Sign up.</span> New accounts start on <strong>Sole</strong> with compliance
+              <span className="font-semibold">Sign up.</span> New accounts start on <strong>Sole</strong> with NCC
               Q&amp;A. Upgrade on Pricing, join with a company code, or redeem a passcode if you have one.
             </li>
             <li>
-              <span className="font-semibold">Choose a document.</span> Pick a country and document type, then select one
-              edition from the shared library.
+              <span className="font-semibold">Choose a volume.</span> Select an NCC volume from the library, then pick
+              an edition if more than one is available.
             </li>
             <li>
               <span className="font-semibold">Search and answer.</span> The system retrieves relevant clauses/tables and
@@ -100,13 +104,13 @@ const AboutApp: React.FC = () => {
               {
                 name: 'Sole',
                 price: 'Free',
-                features: ['Library Q&A', 'Cited answers', 'Country libraries'],
-                description: 'Free access to shared compliance libraries.',
+                features: ['NCC Q&A', 'Cited answers', 'NCC volumes'],
+                description: 'Free access to the National Construction Code library.',
               },
               {
                 name: 'Professional',
                 price: '$19 / month',
-                features: ['Full library Q&A', 'Higher usage limits', 'Priority support'],
+                features: ['NCC Q&A', 'Higher usage limits', 'Priority support'],
                 description: 'For practitioners who need more capacity on the same product.',
               },
               {
@@ -114,7 +118,7 @@ const AboutApp: React.FC = () => {
                 price: '$199 / month',
                 features: [
                   'Up to 25 seats',
-                  'Library Q&A for every seat',
+                  'NCC Q&A for every seat',
                   'Owner join code for staff',
                 ],
                 description: 'For firms that need shared access across a team.',
@@ -124,7 +128,7 @@ const AboutApp: React.FC = () => {
                 price: '$299 / month',
                 features: [
                   'Up to 50 seats',
-                  'Library Q&A for every seat',
+                  'NCC Q&A for every seat',
                   'Owner join code for staff',
                 ],
                 description: 'Larger teams on the same product.',
@@ -152,7 +156,7 @@ const AboutApp: React.FC = () => {
         <section className="space-y-3">
           <h2 className="text-xl font-semibold text-slate-950">Get started</h2>
           <p className="text-slate-700 leading-relaxed">
-            Create an account, open the country library, and verify answers against official publications and qualified
+            Create an account, open an NCC volume, and verify answers against official publications and qualified
             professionals.
           </p>
           <div className="flex flex-wrap gap-3">

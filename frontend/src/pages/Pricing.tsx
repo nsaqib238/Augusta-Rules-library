@@ -36,9 +36,9 @@ const Pricing: React.FC = () => {
       price: 0,
       interval: 'month',
       features: [
-        'Q&A on shared codes, standards, and rules',
+        'Q&A on NCC volumes',
         'Cited, evidence-bound answers',
-        'Country and document-type libraries',
+        'National Construction Code of Australia',
       ],
       popular: false,
       isFree: true,
@@ -50,7 +50,7 @@ const Pricing: React.FC = () => {
       price: 19,
       interval: 'month',
       features: [
-        'Full compliance library Q&A',
+        'NCC library Q&A',
         'Higher usage limits than Sole',
         'Priority support',
       ],
@@ -65,7 +65,7 @@ const Pricing: React.FC = () => {
       interval: 'month',
       features: [
         'Up to 25 seats (owner + staff)',
-        'Compliance Q&A for every seat',
+        'NCC Q&A for every seat',
         'Each employee uses their own login',
         'All Professional features for every seat',
       ],
@@ -80,7 +80,7 @@ const Pricing: React.FC = () => {
       interval: 'month',
       features: [
         'Up to 50 seats (owner + staff)',
-        'Compliance Q&A for every seat',
+        'NCC Q&A for every seat',
         'Each employee uses their own login',
         'All Professional features for every seat',
       ],
@@ -196,8 +196,8 @@ const Pricing: React.FC = () => {
           <p className="augusta-eyebrow mb-3">Augusta Search pricing</p>
           <h1 className="text-4xl font-semibold tracking-tight text-slate-950">Choose your plan</h1>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-slate-600">
-            Free Sole access for compliance Q&amp;A, upgrade to Professional for higher limits, or seat your team on a
-            Company plan.
+            Free Sole access for NCC Q&amp;A, upgrade to Professional for higher limits, or seat your team on a Company
+            plan.
           </p>
         </div>
 

@@ -150,26 +150,17 @@ export const CODEBOOKS: CodebookOption[] = [
   { id: 'NCC2022_VOL1', label: 'NCC 2022 Vol 1 — Class 2–9', discipline: 'fire', family: 'NCC' },
   { id: 'NCC2022_VOL2', label: 'NCC 2022 Vol 2 — Class 1 & 10', discipline: 'fire', family: 'NCC' },
   { id: 'NCC2022_VOL3', label: 'NCC 2022 Vol 3 — Plumbing Code', discipline: 'hydraulics', family: 'NCC' },
-  { id: 'NSW_SIR_2018', label: 'NSW SIR 2018', discipline: 'electrical', family: 'AS_NZS' },
-  { id: 'SA_SIR_2025', label: 'South Australia SIR 2025', discipline: 'electrical', family: 'AS_NZS' },
-  { id: 'TASNETWORK_SIR_V85', label: 'TasNetwork SIR V8-5', discipline: 'electrical', family: 'AS_NZS' },
-  { id: 'VIC_SIR_2025', label: 'Victorian SIR 2025', discipline: 'electrical', family: 'AS_NZS' },
 ];
 
 export const OTHER_CODEBOOK = 'OTHER';
 
-export const SIR_CODEBOOK_IDS = [
-  'NSW_SIR_2018',
-  'SA_SIR_2025',
-  'TASNETWORK_SIR_V85',
-  'VIC_SIR_2025',
-] as const;
+export const SIR_CODEBOOK_IDS = [] as const;
 
 export const NCC_CODEBOOK_IDS = ['NCC2022_VOL1', 'NCC2022_VOL2', 'NCC2022_VOL3'] as const;
 
-export type SharedLibraryFamily = 'sir' | 'ncc';
+export type SharedLibraryFamily = 'ncc';
 
-const SHARED_LIBRARY_CODEBOOK_IDS = new Set<string>([...SIR_CODEBOOK_IDS, ...NCC_CODEBOOK_IDS]);
+const SHARED_LIBRARY_CODEBOOK_IDS = new Set<string>([...NCC_CODEBOOK_IDS]);
 
 export function codebooksForDiscipline(discipline: string, family?: StandardFamily): CodebookOption[] {
   const d = discipline as Discipline;
@@ -178,7 +169,7 @@ export function codebooksForDiscipline(discipline: string, family?: StandardFami
   );
 }
 
-/** User PDF upload / discipline Q&A — same discipline, excludes admin NCC/SIR library. */
+/** User PDF upload / discipline Q&A — same discipline, excludes admin NCC library. */
 export function codebooksForUserUploads(discipline: string, family?: StandardFamily): CodebookOption[] {
   return codebooksForDiscipline(discipline, family).filter((c) => !SHARED_LIBRARY_CODEBOOK_IDS.has(c.id));
 }

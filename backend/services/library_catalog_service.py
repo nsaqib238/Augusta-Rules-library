@@ -1,4 +1,4 @@
-"""Country → document-type → catalog document tree (admin library)."""
+"""Australia → NCC volume catalog (admin library)."""
 from __future__ import annotations
 
 import logging
@@ -12,12 +12,7 @@ from services.supabase_client import get_supabase_client
 logger = logging.getLogger(__name__)
 
 DEFAULT_AU_TYPES = [
-    {"slug": "legislation", "name": "Legislation", "sort_order": 10},
-    {"slug": "regulatory-instruments", "name": "Regulatory instruments", "sort_order": 20},
-    {"slug": "network-rules", "name": "Network rules", "sort_order": 30},
-    {"slug": "authority-requirements", "name": "Authority requirements", "sort_order": 40},
-    {"slug": "technical-specifications", "name": "Technical specifications", "sort_order": 50},
-    {"slug": "guidance", "name": "Guidance", "sort_order": 60},
+    {"slug": "ncc", "name": "National Construction Code", "sort_order": 10},
 ]
 
 _SLUG_RE = re.compile(r"[^a-z0-9]+")
@@ -97,8 +92,6 @@ def create_country(code: str, name: str, *, is_active: bool = True) -> Dict[str,
         .execute()
     )
     country = inserted.data[0]
-    for row in DEFAULT_AU_TYPES:
-        supabase.table("library_document_types").insert({**row, "country_id": country["id"]}).execute()
     return country
 
 
@@ -242,14 +235,7 @@ def update_document(document_id: str, patch: Dict[str, Any]) -> Dict[str, Any]:
 
 
 def infer_edition_family(type_slug: Optional[str], title: str = "") -> str:
-    slug = (type_slug or "").lower()
-    text = f"{title} {slug}".lower()
-    if "ncc" in text or slug == "regulatory-instruments":
-        if "ncc" in text:
-            return "NCC"
-    if slug == "network-rules" or "sir" in text:
-        return "SIR"
-    return "LIB"
+    return "NCC"
 
 
 def catalog_tree() -> Dict[str, Any]:
@@ -263,7 +249,15 @@ def catalog_tree() -> Dict[str, Any]:
         types = list(type_rows.data or [])
         doc_rows = supabase.table("library_documents").select("*").in_("country_id", ids).execute()
         documents = list(doc_rows.data or [])
-    editions = library_catalog()
+    editions = [row for row in library_catalog() if str(row.get("family") or "").strip().upper() == "NCC"]
+    ncc_doc_ids = {row.get("library_document_id") for row in editions if row.get("library_document_id")}
+    documents = [
+        row
+        for row in documents
+        if row.get("id") in ncc_doc_ids
+        or str(row.get("slug") or "").lower().startswith("ncc")
+        or "ncc" in str(row.get("title") or "").lower()
+    ]
     return {
         "countries": countries,
         "types": types,

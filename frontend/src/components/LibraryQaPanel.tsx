@@ -10,6 +10,7 @@ import {
   LibraryEditionStatus,
   editionsForDocument,
   mapCatalogDiscipline,
+  nccCatalogDocuments,
 } from '../lib/libraryCatalog';
 
 const LibraryQaPanel: React.FC = () => {
@@ -33,7 +34,10 @@ const LibraryQaPanel: React.FC = () => {
         supabase.from('library_countries').select('*').eq('is_active', true).order('sort_order'),
         supabase.from('library_document_types').select('*').order('sort_order'),
         supabase.from('library_documents').select('*').eq('is_active', true).order('sort_order'),
-        supabase.from('shared_library_editions').select('codebook, label, family, library_document_id, discipline'),
+        supabase
+          .from('shared_library_editions')
+          .select('codebook, label, family, library_document_id, discipline')
+          .eq('family', 'NCC'),
         supabase
           .from('documents')
           .select('id, codebook, status, source, original_filename, filename')
@@ -64,9 +68,10 @@ const LibraryQaPanel: React.FC = () => {
       });
 
       const countryRows = (countryRes.data || []) as LibraryCountry[];
+      const nccDocs = nccCatalogDocuments((docRes.data || []) as LibraryCatalogDocument[], editionRows);
       setCountries(countryRows);
       setTypes((typeRes.data || []) as LibraryDocumentType[]);
-      setDocuments((docRes.data || []) as LibraryCatalogDocument[]);
+      setDocuments(nccDocs);
       setEditions(editionRows);
       setCountryId((prev) => prev || countryRows[0]?.id || '');
     } catch (e) {
@@ -80,8 +85,6 @@ const LibraryQaPanel: React.FC = () => {
     void loadTree();
   }, [loadTree]);
 
-  const country = countries.find((c) => c.id === countryId);
-  const selectedType = types.find((t) => t.id === typeId);
   const selectedDoc = documents.find((d) => d.id === documentId);
 
   const docEditions = useMemo(
@@ -113,7 +116,7 @@ const LibraryQaPanel: React.FC = () => {
     setSelectedDocumentId(edition?.document_id || '');
   };
 
-  const crumb = [country?.name, selectedType?.name, selectedDoc?.title].filter(Boolean).join(' / ');
+  const crumb = selectedDoc?.title || '';
   const discipline = mapCatalogDiscipline(selectedDoc?.discipline);
 
   if (loading) {
@@ -130,7 +133,7 @@ const LibraryQaPanel: React.FC = () => {
         <p className="font-semibold">Library is not ready yet.</p>
         <p className="mt-2">
           An admin must run <code className="rounded bg-white px-1">supabase/combined_setup.sql</code> (section 10b)
-          so the country / type catalog exists.
+          so the NCC catalog exists.
         </p>
         {error && <p className="mt-2">{error}</p>}
       </div>
@@ -140,10 +143,10 @@ const LibraryQaPanel: React.FC = () => {
   return (
     <div className="space-y-4">
       <div className="rounded-[26px] border border-white/70 bg-white/75 p-6 shadow-sm backdrop-blur">
-        <p className="augusta-eyebrow mb-3">Library Q&amp;A</p>
+        <p className="augusta-eyebrow mb-3">NCC Q&amp;A</p>
         <h1 className={`${typography.sectionTitle} tracking-tight text-slate-950`}>Ask a question</h1>
         <p className={`${typography.helper} mt-2 max-w-2xl`}>
-          Choose a country, open a document type, then pick one document. Answers are grounded in that document only.
+          Choose an NCC volume. Answers are grounded in that National Construction Code document only.
         </p>
         {crumb && <p className="mt-3 text-sm font-medium text-slate-700">{crumb}</p>}
       </div>
@@ -179,7 +182,7 @@ const LibraryQaPanel: React.FC = () => {
               selectedCodebook={selectedCodebook}
               selectedCodebookSource={selectedDoc.title}
               exportProfile="qna"
-              libraryFamily={readyEditions[0]?.family === 'NCC' ? 'ncc' : 'sir'}
+              libraryFamily="ncc"
               libraryEditions={readyEditions.map((e) => ({ codebook: e.codebook, label: e.label }))}
               onLibraryEditionChange={handleEditionChange}
             />
@@ -190,7 +193,7 @@ const LibraryQaPanel: React.FC = () => {
             </div>
           ) : (
             <div className="rounded-[26px] border border-dashed border-slate-200 bg-slate-50/80 p-8 text-sm text-slate-600">
-              Open a document type, then pick a document with a green status dot.
+              Pick an NCC volume with a green status dot.
             </div>
           )}
         </div>

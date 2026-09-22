@@ -25,6 +25,7 @@ import {
   LibraryEditionStatus,
   documentIsReady,
   editionsForDocument,
+  nccCatalogDocuments,
 } from '../lib/libraryCatalog';
 import {
   downloadDesignPlanningMarkdown,
@@ -313,7 +314,10 @@ const DesignCompliancePanel: React.FC = () => {
         supabase.from('library_countries').select('*').eq('is_active', true).order('sort_order'),
         supabase.from('library_document_types').select('*').order('sort_order'),
         supabase.from('library_documents').select('*').eq('is_active', true).order('sort_order'),
-        supabase.from('shared_library_editions').select('codebook, label, family, library_document_id, discipline'),
+        supabase
+          .from('shared_library_editions')
+          .select('codebook, label, family, library_document_id, discipline')
+          .eq('family', 'NCC'),
         supabase
           .from('documents')
           .select('id, filename, original_filename, codebook, source, discipline, status, created_at, is_shared_library')
@@ -324,29 +328,30 @@ const DesignCompliancePanel: React.FC = () => {
       if (countryRes.error) {
         throw new Error(countryRes.error.message);
       }
-      const readyDocs = ((readyRes.data || []) as ReviewDocument[]).map((document) => ({
-        ...document,
-        is_shared_library: true,
-      }));
+      const readyDocs = ((readyRes.data || []) as ReviewDocument[])
+        .filter((document) => String(document.codebook || '').toUpperCase().startsWith('NCC'))
+        .map((document) => ({
+          ...document,
+          is_shared_library: true,
+        }));
       const readyByCodebook = new Map(readyDocs.map((row) => [String(row.codebook || '').toUpperCase(), row]));
+      const editionRows: LibraryEditionStatus[] = (editionRes.data || []).map((row) => {
+        const readyDoc = readyByCodebook.get(String(row.codebook || '').toUpperCase());
+        return {
+          codebook: row.codebook,
+          label: row.label || row.codebook,
+          family: row.family,
+          library_document_id: row.library_document_id,
+          document_id: readyDoc?.id || null,
+          status: readyDoc?.status || null,
+          ready: Boolean(readyDoc),
+        };
+      });
       setDocuments(readyDocs);
       setCountries((countryRes.data || []) as LibraryCountry[]);
       setLibraryTypes((typeRes.data || []) as LibraryDocumentType[]);
-      setCatalogDocuments((docRes.data || []) as LibraryCatalogDocument[]);
-      setEditions(
-        (editionRes.data || []).map((row) => {
-          const readyDoc = readyByCodebook.get(String(row.codebook || '').toUpperCase());
-          return {
-            codebook: row.codebook,
-            label: row.label || row.codebook,
-            family: row.family,
-            library_document_id: row.library_document_id,
-            document_id: readyDoc?.id || null,
-            status: readyDoc?.status || null,
-            ready: Boolean(readyDoc),
-          };
-        })
-      );
+      setCatalogDocuments(nccCatalogDocuments((docRes.data || []) as LibraryCatalogDocument[], editionRows));
+      setEditions(editionRows);
       setCountryId((prev) => prev || countryRes.data?.[0]?.id || '');
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unable to load the library catalog');
@@ -649,8 +654,8 @@ const DesignCompliancePanel: React.FC = () => {
             <p className="augusta-eyebrow text-[#f1ddab]">Planner-first briefing</p>
             <h2 className="mt-1 text-2xl font-semibold">Design Planning Report</h2>
             <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-300">
-              Give an early project brief — not drawings. Select library documents from the country tree, then
-              Augusta Search identifies which requirements apply and what the design must address.
+              Give an early project brief — not drawings. Select NCC volumes, then Augusta Search identifies which
+              National Construction Code requirements apply and what the design must address.
             </p>
           </div>
         </div>
@@ -683,7 +688,7 @@ const DesignCompliancePanel: React.FC = () => {
 
           <div>
             <div className="mb-2 flex items-center justify-between gap-3">
-              <label className="block text-sm font-semibold text-slate-800">2. Select library documents</label>
+              <label className="block text-sm font-semibold text-slate-800">2. Select NCC volumes</label>
               <span className="text-xs font-medium text-slate-500">{selectedDocumentIds.length} selected</span>
             </div>
             {loadingDocuments ? (

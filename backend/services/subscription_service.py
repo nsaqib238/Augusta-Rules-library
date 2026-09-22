@@ -11,7 +11,7 @@ import time
 
 logger = logging.getLogger(__name__)
 
-# Two plans only: sole (NCC + SIR) | professional (all)
+# Two plans only: sole (NCC library) | professional (NCC library, higher limits)
 DEFAULT_PLAN = {
     'plan_name': 'sole',
     'display_name': 'Sole',
@@ -166,7 +166,7 @@ class SubscriptionService:
         return PLAN_DISPLAY_NAMES.get(plan_name, plan_name.replace('_', ' ').title())
 
     def _activate_sole_plan(self, user_id: str, profile: Optional[Dict] = None) -> Dict:
-        """Ensure the user has the Sole plan (NCC + SIR only)."""
+        """Ensure the user has the Sole plan (NCC library)."""
         try:
             profile_data = profile or self.ensure_profile(user_id) or {}
             if not profile_data:
@@ -845,7 +845,7 @@ class SubscriptionService:
 
     async def check_user_access(self, user_id: str) -> Dict:
         """
-        Two plans only: sole (NCC + SIR) | professional (all). Read from profile;
+        Two plans only: sole (NCC library) | professional (NCC library, higher limits). Read from profile;
         if profile says sole but user has an active subscription in DB, sync profile to professional.
         """
         try:
@@ -1236,7 +1236,7 @@ class SubscriptionService:
 
     async def enforce_sole_codebook_access(self, user_id: str, codebook_id: str) -> None:
         """
-        This product only allows NCC/SIR shared-library codebooks (all plan types).
+        This product only allows NCC shared-library codebooks (all plan types).
         Raises ValueError when the codebook is not permitted.
         """
         from services.shared_library_service import is_shared_library_codebook
@@ -1244,7 +1244,7 @@ class SubscriptionService:
         cid = (codebook_id or "").strip().upper()
         if not is_shared_library_codebook(cid):
             raise ValueError(
-                "This codebook is not in the shared compliance library."
+                "This codebook is not in the NCC library."
             )
 
     async def enforce_usage_limits(self, user_id: str, action_type: str) -> bool:

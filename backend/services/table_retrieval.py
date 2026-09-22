@@ -1,4 +1,4 @@
-"""Table-focused retrieval for retry passes (NCC/SIR standard_tables + AS/NZS table rows in chunks)."""
+"""Table-focused retrieval for retry passes (NCC standard_tables + table rows in chunks)."""
 from __future__ import annotations
 
 import logging
@@ -28,13 +28,13 @@ TABLE_LABEL_RE = re.compile(r"\btable\s+[\d\.]+[a-z]?", re.IGNORECASE)
 def resolve_table_layout(codebook_id: str) -> str:
     """
     Where table content lives for this codebook:
-    - standard_tables: NCC / SIR shared library (separate tables CSV)
-    - embedded_chunks: AS/NZS-style tables ingested as clause rows
+    - standard_tables: NCC shared library (separate tables CSV)
+    - embedded_chunks: tables ingested as clause rows
     - both: search both pools when present
     """
     if is_shared_library_codebook(codebook_id):
         meta = get_edition(codebook_id) or {}
-        if meta.get("family") in ("NCC", "SIR"):
+        if meta.get("family") == "NCC":
             return "standard_tables"
     return "embedded_chunks"
 

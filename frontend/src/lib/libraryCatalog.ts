@@ -73,3 +73,25 @@ export function documentIsProcessing(editions: LibraryEditionStatus[], documentI
     (e) => e.processing || e.status === 'pdf_processing' || e.status === 'admin_processing'
   );
 }
+
+const LEFTOVER_SIR_SLUGS = new Set(['nsw-sir', 'sa-sir', 'tasnetworks-sir', 'vic-sir']);
+
+export function isNccCatalogDocument(
+  doc: LibraryCatalogDocument,
+  editions: LibraryEditionStatus[]
+): boolean {
+  const slug = (doc.slug || '').toLowerCase();
+  if (LEFTOVER_SIR_SLUGS.has(slug)) return false;
+  if (editions.some((e) => e.library_document_id === doc.id && (e.family || '').toUpperCase() === 'NCC')) {
+    return true;
+  }
+  const title = (doc.title || '').toLowerCase();
+  return slug.includes('ncc') || title.includes('ncc') || title.includes('national construction code');
+}
+
+export function nccCatalogDocuments(
+  documents: LibraryCatalogDocument[],
+  editions: LibraryEditionStatus[]
+): LibraryCatalogDocument[] {
+  return documents.filter((doc) => isNccCatalogDocument(doc, editions));
+}

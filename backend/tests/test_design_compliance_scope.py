@@ -32,7 +32,7 @@ def test_scope_blocks_large_topic_and_code_product():
 
 def test_scope_ok_for_small_report():
     requirements = [{"id": "req_1", "domain": "supply", "question": "q", "preferred_sources": ["AS3000"]}]
-    documents = [_doc("AS3000"), _doc("VIC_SIR_2025"), _doc("NCC2022_VOL1")]
+    documents = [_doc("AS3000"), _doc("NCC2022_VOL2"), _doc("NCC2022_VOL1")]
     scope = estimate_report_scope(requirements, documents)
     assert scope["level"] == "ok"
     validate_report_scope_or_raise(requirements, documents)

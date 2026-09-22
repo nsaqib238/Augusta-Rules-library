@@ -87,10 +87,6 @@ CODEBOOKS: List[CodebookEntry] = [
     {"id": "NCC2022_VOL1", "label": "NCC 2022 Vol 1 — Class 2–9", "discipline": "fire"},
     {"id": "NCC2022_VOL2", "label": "NCC 2022 Vol 2 — Class 1 & 10", "discipline": "fire"},
     {"id": "NCC2022_VOL3", "label": "NCC 2022 Vol 3 — Plumbing Code", "discipline": "hydraulics"},
-    {"id": "NSW_SIR_2018", "label": "NSW SIR 2018", "discipline": "electrical"},
-    {"id": "SA_SIR_2025", "label": "South Australia SIR 2025", "discipline": "electrical"},
-    {"id": "TASNETWORK_SIR_V85", "label": "TasNetwork SIR V8-5", "discipline": "electrical"},
-    {"id": "VIC_SIR_2025", "label": "Victorian SIR 2025", "discipline": "electrical"},
 ]
 
 _CODEBOOK_BY_ID: Dict[str, CodebookEntry] = {c["id"].upper(): c for c in CODEBOOKS}
@@ -102,10 +98,6 @@ SHARED_LIBRARY_IDS = frozenset(
         "NCC2022_VOL1",
         "NCC2022_VOL2",
         "NCC2022_VOL3",
-        "NSW_SIR_2018",
-        "SA_SIR_2025",
-        "TASNETWORK_SIR_V85",
-        "VIC_SIR_2025",
     }
 )
 

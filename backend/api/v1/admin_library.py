@@ -1,4 +1,4 @@
-"""Admin API — country → type → catalog document library."""
+"""Admin API — NCC catalog (Australia volumes)."""
 from __future__ import annotations
 
 import logging
@@ -18,7 +18,6 @@ from services.library_catalog_service import (
     create_type,
     get_country,
     get_document,
-    infer_edition_family,
     list_documents,
     list_types,
     update_document,
@@ -227,16 +226,7 @@ async def post_document_edition(
     doc = get_document(document_id)
     if not doc:
         raise HTTPException(status_code=404, detail="Catalog document not found")
-    country = get_country_by_id(doc["country_id"])
-    type_slug = None
-    if country:
-        for t in list_types(country["id"]):
-            if t["id"] == doc["document_type_id"]:
-                type_slug = t.get("slug")
-                break
-    family = (request.family or infer_edition_family(type_slug, doc.get("title") or "")).upper()
-    if family == "NCC" and (request.edition_year is None or not request.volume):
-        family = "LIB"
+    family = "NCC"
     try:
         row = create_edition(
             family=family,

@@ -1,4 +1,4 @@
-"""Shared NCC / SIR library documents — upload once, searchable by all users."""
+"""Shared NCC library documents — upload once, searchable by all users."""
 from __future__ import annotations
 
 import csv
@@ -19,12 +19,7 @@ from services.supabase_client import get_supabase_client
 
 logger = logging.getLogger(__name__)
 
-DEFAULT_SIR_LIBRARY: List[Dict[str, Any]] = [
-    {"family": "SIR", "codebook": "NSW_SIR_2018", "label": "NSW SIR 2018", "discipline": "electrical", "edition_year": 2018},
-    {"family": "SIR", "codebook": "SA_SIR_2025", "label": "South Australia SIR 2025", "discipline": "electrical", "edition_year": 2025},
-    {"family": "SIR", "codebook": "TASNETWORK_SIR_V85", "label": "TasNetwork SIR V8-5", "discipline": "electrical", "volume": "V8-5"},
-    {"family": "SIR", "codebook": "VIC_SIR_2025", "label": "Victorian SIR 2025", "discipline": "electrical", "edition_year": 2025},
-]
+DEFAULT_SIR_LIBRARY: List[Dict[str, Any]] = []
 
 DEFAULT_NCC_LIBRARY: List[Dict[str, Any]] = [
     {"family": "NCC", "codebook": "NCC2022_VOL1", "label": "NCC 2022 Vol 1 — Class 2–9", "discipline": "fire", "edition_year": 2022, "volume": "Vol1", "part": "All"},
@@ -65,9 +60,22 @@ def _fetch_editions(*, family: Optional[str] = None) -> List[Dict[str, Any]]:
     return list(result.data or [])
 
 
+def _is_ncc_family(row: Optional[Dict[str, Any]]) -> bool:
+    return bool(row) and str(row.get("family") or "").strip().upper() == "NCC"
+
+
+def _require_ncc_ingest(codebook_id: str) -> Dict[str, Any]:
+    meta = get_edition(codebook_id)
+    if not meta:
+        raise ValueError(f"Unknown shared library codebook: {codebook_id}")
+    if not _is_ncc_family(meta):
+        raise ValueError("This library hosts NCC editions only")
+    return meta
+
+
 def _seed_default_editions() -> None:
     supabase = get_supabase_client()
-    for row in DEFAULT_SIR_LIBRARY + DEFAULT_NCC_LIBRARY:
+    for row in DEFAULT_NCC_LIBRARY:
         try:
             supabase.table("shared_library_editions").upsert(row, on_conflict="codebook").execute()
         except Exception as exc:
@@ -91,14 +99,15 @@ def get_edition(codebook_id: str) -> Optional[Dict[str, Any]]:
         if (row.get("codebook") or "").upper() == cid:
             return row
     fallback = next(
-        (e for e in DEFAULT_SIR_LIBRARY + DEFAULT_NCC_LIBRARY if e["codebook"].upper() == cid),
+        (e for e in DEFAULT_NCC_LIBRARY if e["codebook"].upper() == cid),
         None,
     )
     return fallback
 
 
 def is_shared_library_codebook(codebook_id: str) -> bool:
-    return get_edition(codebook_id) is not None
+    """User-searchable library is NCC only."""
+    return _is_ncc_family(get_edition(codebook_id))
 
 
 def create_edition(
@@ -113,28 +122,21 @@ def create_edition(
     part: Optional[str] = None,
     library_document_id: Optional[str] = None,
 ) -> Dict[str, Any]:
-    fam = (family or "").strip().upper()
-    if fam not in {"SIR", "NCC", "LIB"}:
-        raise ValueError("family must be SIR, NCC, or LIB")
+    fam = (family or "NCC").strip().upper()
+    if fam != "NCC":
+        raise ValueError("This library hosts NCC editions only")
 
     display = (label or "").strip()
     if not display:
         raise ValueError("label is required")
 
-    if fam == "NCC":
-        if edition_year is None:
-            raise ValueError("edition_year is required for NCC editions")
-        if not volume:
-            raise ValueError("volume is required for NCC editions (Vol1, Vol2, Vol3)")
-        cid = (codebook or suggest_ncc_codebook(edition_year, volume)).strip().upper()
-        disc = (discipline or default_ncc_discipline(volume)).strip().lower()
-        part_val = (part or "All").strip() or "All"
-        volume_val = volume.strip()
-    else:
-        cid = (codebook or sanitize_custom_codebook_id(display)).strip().upper()
-        disc = (discipline or "electrical").strip().lower()
-        part_val = (part or None)
-        volume_val = (volume or None)
+    year = edition_year if edition_year is not None else 2022
+    vol = (volume or "Vol1").strip() or "Vol1"
+    cid = (codebook or suggest_ncc_codebook(year, vol)).strip().upper()
+    disc = (discipline or default_ncc_discipline(vol)).strip().lower()
+    part_val = (part or "All").strip() or "All"
+    volume_val = vol
+    edition_year = year
 
     if not re.match(r"^[A-Z0-9_\-]{2,64}$", cid):
         raise ValueError("codebook must be 2–64 characters (letters, numbers, underscore, hyphen)")
@@ -329,9 +331,7 @@ async def ingest_library_source_from_path(
         run_word_pipeline_and_ingest_from_path,
     )
 
-    meta = get_edition(codebook_id)
-    if not meta:
-        raise ValueError(f"Unknown shared library codebook: {codebook_id}")
+    meta = _require_ncc_ingest(codebook_id)
 
     doc_id = get_or_create_library_document(codebook_id, admin_user_id)
     parser_family = library_parser_family(codebook_id, standard_family)
@@ -434,9 +434,7 @@ async def ingest_clauses_csv(
     *,
     replace: bool = True,
 ) -> Dict[str, Any]:
-    meta = get_edition(codebook_id)
-    if not meta:
-        raise ValueError(f"Unknown shared library codebook: {codebook_id}")
+    meta = _require_ncc_ingest(codebook_id)
 
     doc_id = get_or_create_library_document(codebook_id, admin_user_id)
     supabase = get_supabase_client()
@@ -480,9 +478,7 @@ async def ingest_tables_csv(
     *,
     replace: bool = True,
 ) -> Dict[str, Any]:
-    meta = get_edition(codebook_id)
-    if not meta:
-        raise ValueError(f"Unknown shared library codebook: {codebook_id}")
+    meta = _require_ncc_ingest(codebook_id)
 
     doc_id = get_or_create_library_document(codebook_id, admin_user_id)
     supabase = get_supabase_client()

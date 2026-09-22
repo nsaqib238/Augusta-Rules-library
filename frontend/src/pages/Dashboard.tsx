@@ -66,7 +66,7 @@ const Dashboard: React.FC = () => {
       ? `Professional (passcode until ${new Date(usageStats.access_expires_at).toLocaleDateString()})`
       : usageStats?.account_type === 'professional'
         ? 'Professional'
-        : 'Sole (library Q&A)';
+        : 'Sole (NCC Q&A)';
 
   const isAdminUser =
     isAdminEmailAllowlisted(user?.email || profile?.email) ||
@@ -279,10 +279,10 @@ const Dashboard: React.FC = () => {
               <div className="min-w-0">
                 <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
                   <h1 className="text-lg font-semibold tracking-tight text-slate-950 sm:text-xl">
-                    Premium compliance intelligence
+                    NCC — National Construction Code of Australia
                   </h1>
                   <span className="rounded-full border border-[#d6bf82]/70 bg-[#fff7df] px-3 py-1 text-xs font-semibold text-[#7c5f1e]">
-                    Compliance library
+                    NCC library
                   </span>
                 </div>
               </div>
@@ -386,12 +386,12 @@ const Dashboard: React.FC = () => {
           <div className="absolute right-0 top-0 h-40 w-40 rounded-full bg-[#c9a45c]/20 blur-3xl" />
           <div className="relative">
             <div className="max-w-3xl">
-              <p className="augusta-eyebrow mb-3">Country library</p>
+              <p className="augusta-eyebrow mb-3">NCC library</p>
               <h2 className="text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">
-                Ask grounded questions over the compliance library.
+                Ask grounded questions over the National Construction Code of Australia.
               </h2>
               <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-600">
-                Pick a country, open a document type, then ask against one document.
+                Choose an NCC volume, then ask against that document.
               </p>
               {usageStats && (
                 <p className="mt-4 inline-flex items-center rounded-full border border-[#c9a45c]/40 bg-[#f1ddab]/30 px-4 py-1.5 text-sm font-medium text-slate-800">

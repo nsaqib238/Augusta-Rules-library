@@ -84,17 +84,17 @@ const SimpleLogin: React.FC = () => {
               <div className="flex items-center gap-4">
                 <BrandLogo variant="auth" />
                 <div>
-                  <div className="mt-1 text-xs text-white/55">Compliance library</div>
+                  <div className="mt-1 text-xs text-white/55">NCC — National Construction Code of Australia</div>
                 </div>
               </div>
 
               <div className="mt-20 max-w-lg space-y-6">
-                <p className="text-[12px] font-semibold uppercase tracking-[0.28em] text-[#f1ddab]">Codes, standards &amp; rules</p>
+                <p className="text-[12px] font-semibold uppercase tracking-[0.28em] text-[#f1ddab]">NCC library</p>
                 <h2 className="text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl">
-                  Ask grounded questions over your compliance library.
+                  Ask grounded questions over the National Construction Code of Australia.
                 </h2>
                 <p className="text-sm leading-7 text-slate-300">
-                  Evidence-led Q&amp;A across shared codes, standards, and installation rules.
+                  Evidence-led Q&amp;A across NCC volumes.
                 </p>
               </div>
             </div>
@@ -114,7 +114,7 @@ const SimpleLogin: React.FC = () => {
             <div className="mb-6">
               <p className="augusta-eyebrow mb-3">Secure sign in</p>
               <h1 className="text-3xl font-semibold tracking-tight text-slate-950">Welcome back</h1>
-              <p className="mt-2 text-sm leading-6 text-slate-500">Sign in to your compliance workspace.</p>
+              <p className="mt-2 text-sm leading-6 text-slate-500">Sign in to your NCC library workspace.</p>
             </div>
 
             {error && (

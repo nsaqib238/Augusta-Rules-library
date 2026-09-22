@@ -476,15 +476,15 @@ const SharedLibraryPanel: React.FC<SharedLibraryPanelProps> = ({ family, title, 
 export const SIRLibraryPanel: React.FC = () => (
   <SharedLibraryPanel
     family="SIR"
-    title="SIR shared library"
-    description="Upload clause and table CSVs once. All users can search these editions via Q&A (prepare → search → answer)."
+    title="SIR is not hosted"
+    description="SIR editions are not hosted. Clear any leftover SIR data, then use the NCC library."
   />
 );
 
 export const NCCLibraryPanel: React.FC = () => (
   <SharedLibraryPanel
     family="NCC"
-    title="NCC shared library"
+    title="NCC — National Construction Code of Australia"
     description="Upload NCC clause and table CSVs once. All users can search these volumes via Q&A (prepare → search → answer)."
   />
 );

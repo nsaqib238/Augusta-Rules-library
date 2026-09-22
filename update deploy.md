@@ -1,6 +1,6 @@
 # Update / deploy — library.augustasearch.com
 
-**Product:** Augusta Rules Library (NCC/SIR shared library)  
+**Product:** Augusta Rules Library (NCC library only)  
 **Repo:** `nsaqib238/Augusta-Rules-library`  
 **Folder on VPS:** `/home/ragadmin/ragadmin/projects/Augusta-Rules-library`  
 **Full isolation table:** [APP_SEPARATION.md](APP_SEPARATION.md)

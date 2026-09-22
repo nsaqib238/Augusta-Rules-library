@@ -115,7 +115,7 @@ def test_deterministic_merge_groups_supply_topics():
             "design_scope": _empty_design_scope(),
             "design_actions": [],
             "evidence_ids": ["c1"],
-            "source_section": "SIR",
+            "source_section": "NCC",
         },
         {
             "requirement_id": "req_b",
@@ -145,7 +145,7 @@ def test_deterministic_merge_groups_der_topics():
             "design_scope": {"deliverables": ["DER SLD"], "design_checks": [], "coordination": [], "confirm": []},
             "design_actions": [],
             "evidence_ids": ["c1"],
-            "source_section": "SIR",
+            "source_section": "NCC",
         },
         {
             "requirement_id": "req_b",
@@ -156,18 +156,18 @@ def test_deterministic_merge_groups_der_topics():
             "design_scope": _empty_design_scope(),
             "design_actions": [],
             "evidence_ids": [],
-            "source_section": "AS 1670.4",
+            "source_section": "NCC Vol 1",
         },
         {
             "requirement_id": "req_c",
             "domain": "embedded generation",
             "status": "conditional",
             "summary": "Anti-islanding and export limits.",
-            "reason": "VSIR embedded generation.",
+            "reason": "NCC energy provisions.",
             "design_scope": {"deliverables": [], "design_checks": ["Export limit"], "coordination": [], "confirm": []},
             "design_actions": [],
             "evidence_ids": ["c2"],
-            "source_section": "SIR",
+            "source_section": "NCC",
         },
     ]
     merged = _deterministic_merge_items(items)

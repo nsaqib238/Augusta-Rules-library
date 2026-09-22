@@ -29,15 +29,10 @@ interface AskQuestionProps {
 }
 
 const LIBRARY_META: Record<SharedLibraryFamily, { name: string; icon: string; blurb: string }> = {
-  sir: {
-    name: 'Rules library',
-    icon: '📋',
-    blurb: 'Ask evidence-led questions across shared installation-rule editions.',
-  },
   ncc: {
-    name: 'Code library',
+    name: 'NCC library',
     icon: '🏛️',
-    blurb: 'Ask evidence-led questions across shared code volumes.',
+                blurb: 'Ask evidence-led questions across the National Construction Code of Australia.',
   },
 };
 
@@ -61,11 +56,10 @@ const AskQuestion: React.FC<AskQuestionProps> = ({ discipline, libraryFamily }) 
       setLibraryEditions([]);
       return;
     }
-    const family = libraryFamily === 'sir' ? 'SIR' : 'NCC';
     void supabase
       .from('shared_library_editions')
       .select('codebook, label')
-      .eq('family', family)
+      .eq('family', 'NCC')
       .order('label', { ascending: true })
       .then(({ data, error }) => {
         if (error) {

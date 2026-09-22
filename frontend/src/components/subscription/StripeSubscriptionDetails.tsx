@@ -50,7 +50,7 @@ interface StripeSubscription {
   trial_period_days: number | null;
 }
 
-/** Stripe product names may still say NCC/SIR; do not show that in the UI. */
+/** Stripe product names may still say SIR or a long NCC label; show the plan name. */
 function displayPlanName(raw: string | undefined | null): string {
   const name = (raw || '').trim();
   if (!name) return 'Plan';
@@ -60,7 +60,7 @@ function displayPlanName(raw: string | undefined | null): string {
   if (lower.includes('company')) return 'Company Small';
   if (lower.includes('professional')) return 'Professional';
   if (lower.includes('sole')) return 'Sole';
-  return 'Compliance library';
+  return 'NCC library';
 }
 
 const StripeSubscriptionDetails: React.FC = () => {

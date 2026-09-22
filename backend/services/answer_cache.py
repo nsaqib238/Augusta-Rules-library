@@ -1,4 +1,4 @@
-"""Redis cache for shared-library (NCC/SIR) ask answers.
+"""Redis cache for shared-library (NCC) ask answers.
 
 Only caches asks without a private document_id. Keyed by codebook + normalized
 question + RAG config version. Skipped when ANSWER_CACHE_ENABLED=false or Redis

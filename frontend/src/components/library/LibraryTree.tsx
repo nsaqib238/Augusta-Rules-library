@@ -23,6 +23,8 @@ interface LibraryTreeProps {
   onSelectDocument: (documentId: string) => void;
   showUnready?: boolean;
   searchEnabled?: boolean;
+  /** Admin can keep empty folders; user trees hide them. */
+  showEmptyTypes?: boolean;
 }
 
 const LibraryTree: React.FC<LibraryTreeProps> = ({
@@ -40,14 +42,11 @@ const LibraryTree: React.FC<LibraryTreeProps> = ({
   onSelectDocument,
   showUnready = true,
   searchEnabled = true,
+  showEmptyTypes = false,
 }) => {
   const [query, setQuery] = useState('');
   const [openTypes, setOpenTypes] = useState<Record<string, boolean>>({});
-
-  const countryTypes = useMemo(
-    () => types.filter((t) => t.country_id === countryId).sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0)),
-    [types, countryId]
-  );
+  const showCountrySelect = countries.length > 1;
 
   const filteredDocs = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -64,6 +63,22 @@ const LibraryTree: React.FC<LibraryTreeProps> = ({
     });
   }, [documents, countryId, editions, query, showUnready]);
 
+  const countryTypes = useMemo(() => {
+    return types
+      .filter((t) => t.country_id === countryId)
+      .filter((t) => showEmptyTypes || filteredDocs.some((d) => d.document_type_id === t.id))
+      .sort((a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0));
+  }, [types, countryId, filteredDocs, showEmptyTypes]);
+
+  const flattenTypes = countryTypes.length <= 1;
+  const flatDocs = useMemo(
+    () =>
+      [...filteredDocs].sort(
+        (a, b) => (a.sort_order ?? 0) - (b.sort_order ?? 0) || a.title.localeCompare(b.title)
+      ),
+    [filteredDocs]
+  );
+
   const toggleType = (id: string) => {
     setOpenTypes((prev) => ({ ...prev, [id]: !(prev[id] ?? id === typeId) }));
     onSelectType(id);
@@ -71,36 +86,90 @@ const LibraryTree: React.FC<LibraryTreeProps> = ({
 
   const isTypeOpen = (id: string) => openTypes[id] ?? id === typeId;
 
+  const renderDocumentButton = (doc: LibraryCatalogDocument) => {
+    const ready = documentIsReady(editions, doc.id);
+    const processing = documentIsProcessing(editions, doc.id);
+    const selected = multiSelect
+      ? Boolean(selectedDocumentIds?.includes(doc.id))
+      : documentId === doc.id;
+    return (
+      <button
+        key={doc.id}
+        type="button"
+        disabled={!showUnready && !ready}
+        onClick={() => onSelectDocument(doc.id)}
+        className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-sm transition ${
+          selected
+            ? 'bg-[#fff7df] font-medium text-slate-950 ring-1 ring-[#c9a45c]'
+            : ready
+              ? 'text-slate-700 hover:bg-slate-50'
+              : 'text-slate-400 hover:bg-slate-50'
+        }`}
+      >
+        <span className="flex min-w-0 items-center gap-2">
+          {multiSelect && (
+            <span
+              className={`flex h-4 w-4 shrink-0 items-center justify-center rounded border text-[10px] ${
+                selected ? 'border-[#c9a45c] bg-[#c9a45c] text-white' : 'border-slate-300 bg-white'
+              }`}
+            >
+              {selected ? '✓' : ''}
+            </span>
+          )}
+          <span className="truncate">{doc.title}</span>
+        </span>
+        <span
+          className={`ml-2 h-2 w-2 shrink-0 rounded-full ${
+            processing ? 'bg-amber-400' : ready ? 'bg-emerald-500' : 'bg-slate-300'
+          }`}
+          title={processing ? 'Extracting PDF' : ready ? 'Ready' : 'Not ingested yet'}
+        />
+      </button>
+    );
+  };
+
   return (
     <div className="flex h-full min-h-[420px] flex-col rounded-[26px] border border-white/70 bg-white/80 p-4 shadow-[0_18px_55px_rgba(15,23,42,0.08)] backdrop-blur-xl">
-      <label className="mb-1 block text-[11px] font-semibold uppercase tracking-wide text-slate-500">
-        Country
-      </label>
-      <select
-        value={countryId}
-        onChange={(e) => onCountryChange(e.target.value)}
-        className="augusta-input mb-3 w-full"
-      >
-        {countries.map((c) => (
-          <option key={c.id} value={c.id}>
-            {c.name}
-          </option>
-        ))}
-      </select>
+      {showCountrySelect && (
+        <>
+          <label className="mb-1 block text-[11px] font-semibold uppercase tracking-wide text-slate-500">
+            Country
+          </label>
+          <select
+            value={countryId}
+            onChange={(e) => onCountryChange(e.target.value)}
+            className="augusta-input mb-3 w-full"
+          >
+            {countries.map((c) => (
+              <option key={c.id} value={c.id}>
+                {c.name}
+              </option>
+            ))}
+          </select>
+        </>
+      )}
 
       {searchEnabled && (
         <input
           type="search"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search documents…"
+          placeholder="Search NCC volumes…"
           className="augusta-input mb-4 w-full"
         />
       )}
 
       <div className="min-h-0 flex-1 space-y-2 overflow-y-auto pr-1">
-        {countryTypes.length === 0 ? (
-          <p className="px-2 py-6 text-center text-sm text-slate-500">No document types yet.</p>
+        {flatDocs.length === 0 && countryTypes.length === 0 ? (
+          <p className="px-2 py-6 text-center text-sm text-slate-500">No NCC volumes yet.</p>
+        ) : flattenTypes ? (
+          <div className="space-y-1">
+            {flatDocs.length === 0 ? (
+              <p className="px-2 py-6 text-center text-sm text-slate-500">No NCC volumes yet.</p>
+            ) : (
+              flatDocs.map(renderDocumentButton)
+            )}
+          </div>
         ) : (
           countryTypes.map((type) => {
             const docs = filteredDocs
@@ -124,47 +193,7 @@ const LibraryTree: React.FC<LibraryTreeProps> = ({
                     {docs.length === 0 ? (
                       <p className="px-2 py-2 text-xs text-slate-400">No documents in this type.</p>
                     ) : (
-                      docs.map((doc) => {
-                        const ready = documentIsReady(editions, doc.id);
-                        const processing = documentIsProcessing(editions, doc.id);
-                        const selected = multiSelect
-                          ? Boolean(selectedDocumentIds?.includes(doc.id))
-                          : documentId === doc.id;
-                        return (
-                          <button
-                            key={doc.id}
-                            type="button"
-                            disabled={!showUnready && !ready}
-                            onClick={() => onSelectDocument(doc.id)}
-                            className={`flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-sm transition ${
-                              selected
-                                ? 'bg-[#fff7df] font-medium text-slate-950 ring-1 ring-[#c9a45c]'
-                                : ready
-                                  ? 'text-slate-700 hover:bg-slate-50'
-                                  : 'text-slate-400 hover:bg-slate-50'
-                            }`}
-                          >
-                            <span className="flex min-w-0 items-center gap-2">
-                              {multiSelect && (
-                                <span
-                                  className={`flex h-4 w-4 shrink-0 items-center justify-center rounded border text-[10px] ${
-                                    selected ? 'border-[#c9a45c] bg-[#c9a45c] text-white' : 'border-slate-300 bg-white'
-                                  }`}
-                                >
-                                  {selected ? '✓' : ''}
-                                </span>
-                              )}
-                              <span className="truncate">{doc.title}</span>
-                            </span>
-                            <span
-                              className={`ml-2 h-2 w-2 shrink-0 rounded-full ${
-                                processing ? 'bg-amber-400' : ready ? 'bg-emerald-500' : 'bg-slate-300'
-                              }`}
-                              title={processing ? 'Extracting PDF' : ready ? 'Ready' : 'Not ingested yet'}
-                            />
-                          </button>
-                        );
-                      })
+                      docs.map(renderDocumentButton)
                     )}
                   </div>
                 )}

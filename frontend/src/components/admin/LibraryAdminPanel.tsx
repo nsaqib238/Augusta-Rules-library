@@ -26,8 +26,6 @@ const LibraryAdminPanel: React.FC = () => {
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
 
-  const [newCountryCode, setNewCountryCode] = useState('');
-  const [newCountryName, setNewCountryName] = useState('');
   const [newTypeName, setNewTypeName] = useState('');
   const [newDoc, setNewDoc] = useState({
     title: '',
@@ -110,26 +108,6 @@ const LibraryAdminPanel: React.FC = () => {
     setCountryId(id);
     setTypeId(null);
     setDocumentId(null);
-  };
-
-  const handleAddCountry = async (e: React.FormEvent) => {
-    e.preventDefault();
-    try {
-      setBusy(true);
-      await authFetch('api/v1/admin/library/countries', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ code: newCountryCode.trim(), name: newCountryName.trim() }),
-      });
-      setNewCountryCode('');
-      setNewCountryName('');
-      setMessage('Country added');
-      await refresh();
-    } catch (err) {
-      alert(err instanceof Error ? err.message : 'Could not add country');
-    } finally {
-      setBusy(false);
-    }
   };
 
   const handleAddType = async (e: React.FormEvent) => {
@@ -331,10 +309,13 @@ const LibraryAdminPanel: React.FC = () => {
   const renderCountryPane = () => (
     <div className="space-y-6">
       <div>
-        <p className="augusta-eyebrow mb-2">Country</p>
-        <h2 className={`${typography.sectionTitle} text-slate-950`}>{country?.name || 'Select a country'}</h2>
+        <p className="augusta-eyebrow mb-2">NCC</p>
+        <h2 className={`${typography.sectionTitle} text-slate-950`}>
+          {country?.name || 'NCC — National Construction Code of Australia'}
+        </h2>
         <p className={`${typography.helper} mt-2`}>
-          Manage document types for this country. Click a type in the tree to add documents.
+          This product hosts NCC volumes only. Click a volume in the tree to add editions, or add a type if you need a
+          grouping.
         </p>
       </div>
       <form onSubmit={handleAddType} className="flex flex-wrap items-end gap-3">
@@ -346,35 +327,12 @@ const LibraryAdminPanel: React.FC = () => {
             className="augusta-input w-full"
             value={newTypeName}
             onChange={(e) => setNewTypeName(e.target.value)}
-            placeholder="e.g. Codes of practice"
+            placeholder="e.g. NCC volumes"
             required
           />
         </div>
         <button type="submit" disabled={busy} className="rounded-full bg-[#0b1220] px-5 py-2.5 text-sm font-semibold text-white">
           Add type
-        </button>
-      </form>
-      <form onSubmit={handleAddCountry} className="rounded-2xl border border-slate-200/80 bg-white/70 p-4">
-        <h3 className="mb-3 text-sm font-semibold text-slate-900">Add another country</h3>
-        <div className="grid gap-3 sm:grid-cols-3">
-          <input
-            className="augusta-input"
-            value={newCountryCode}
-            onChange={(e) => setNewCountryCode(e.target.value.toUpperCase())}
-            placeholder="NZ"
-            maxLength={2}
-            required
-          />
-          <input
-            className="augusta-input sm:col-span-2"
-            value={newCountryName}
-            onChange={(e) => setNewCountryName(e.target.value)}
-            placeholder="New Zealand"
-            required
-          />
-        </div>
-        <button type="submit" disabled={busy} className="mt-3 rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold">
-          Add country
         </button>
       </form>
     </div>
@@ -626,7 +584,7 @@ const LibraryAdminPanel: React.FC = () => {
           className="augusta-input sm:col-span-2"
           value={newEdition.label}
           onChange={(e) => setNewEdition((p) => ({ ...p, label: e.target.value }))}
-          placeholder="Edition display name (e.g. NSW SIR April 2026)"
+          placeholder="Edition display name (e.g. NCC 2022 Vol 3 — Plumbing Code)"
           required
         />
         <input
@@ -672,9 +630,10 @@ const LibraryAdminPanel: React.FC = () => {
     <div className="space-y-4">
       <div>
         <p className="augusta-eyebrow mb-2">Admin</p>
-        <h2 className={`${typography.sectionTitle} text-slate-950`}>Library</h2>
+        <h2 className={`${typography.sectionTitle} text-slate-950`}>NCC library</h2>
         <p className={`${typography.helper} mt-2 max-w-3xl`}>
-          Country → document type → document. Add an edition, then upload a Word file if you have one (better than PDF).
+          National Construction Code of Australia only. Add an edition, then upload a Word file if you have one (better
+          than PDF).
         </p>
       </div>
       {message && <p className="text-sm font-medium text-emerald-700">{message}</p>}
@@ -695,6 +654,7 @@ const LibraryAdminPanel: React.FC = () => {
             }}
             onSelectDocument={setDocumentId}
             showUnready
+            showEmptyTypes
           />
         </div>
         <div className="lg:col-span-8">

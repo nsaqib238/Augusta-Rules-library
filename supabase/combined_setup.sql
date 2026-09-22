@@ -1368,22 +1368,18 @@ DROP POLICY IF EXISTS "Authenticated users can read shared library editions" ON 
 CREATE POLICY "Authenticated users can read shared library editions" ON shared_library_editions
     FOR SELECT TO authenticated USING (true);
 
-COMMENT ON TABLE shared_library_editions IS 'Admin-defined SIR/NCC editions; CSV upload targets codebook id';
+COMMENT ON TABLE shared_library_editions IS 'Admin-defined NCC editions; CSV upload targets codebook id';
 
 INSERT INTO shared_library_editions (family, codebook, label, discipline, edition_year, volume, part)
 VALUES
-    ('SIR', 'NSW_SIR_2018', 'NSW SIR 2018', 'electrical', 2018, NULL, NULL),
-    ('SIR', 'SA_SIR_2025', 'South Australia SIR 2025', 'electrical', 2025, NULL, NULL),
-    ('SIR', 'TASNETWORK_SIR_V85', 'TasNetwork SIR V8-5', 'electrical', NULL, 'V8-5', NULL),
-    ('SIR', 'VIC_SIR_2025', 'Victorian SIR 2025', 'electrical', 2025, NULL, NULL),
     ('NCC', 'NCC2022_VOL1', 'NCC 2022 Vol 1 — Class 2–9', 'fire', 2022, 'Vol1', 'All'),
     ('NCC', 'NCC2022_VOL2', 'NCC 2022 Vol 2 — Class 1 & 10', 'fire', 2022, 'Vol2', 'All'),
     ('NCC', 'NCC2022_VOL3', 'NCC 2022 Vol 3 — Plumbing Code', 'hydraulics', 2022, 'Vol3', 'All')
 ON CONFLICT (codebook) DO NOTHING;
 
 -- ===========================================
--- 10b. LIBRARY CATALOG (country → type → document)
--- Idempotent — safe to re-run. Does not wipe existing rows.
+-- 10b. LIBRARY CATALOG (Australia → NCC volumes)
+-- Idempotent — safe to re-run. Does not wipe existing NCC rows.
 -- ===========================================
 
 CREATE TABLE IF NOT EXISTS library_countries (
@@ -1463,12 +1459,7 @@ INSERT INTO library_document_types (country_id, slug, name, sort_order)
 SELECT c.id, v.slug, v.name, v.sort_order
 FROM library_countries c
 CROSS JOIN (VALUES
-    ('legislation', 'Legislation', 10),
-    ('regulatory-instruments', 'Regulatory instruments', 20),
-    ('network-rules', 'Network rules', 30),
-    ('authority-requirements', 'Authority requirements', 40),
-    ('technical-specifications', 'Technical specifications', 50),
-    ('guidance', 'Guidance', 60)
+    ('ncc', 'National Construction Code', 10)
 ) AS v(slug, name, sort_order)
 WHERE c.code = 'AU'
 ON CONFLICT (country_id, slug) DO UPDATE SET name = EXCLUDED.name, sort_order = EXCLUDED.sort_order;
@@ -1478,13 +1469,9 @@ SELECT c.id, t.id, v.slug, v.title, v.discipline, v.publisher, v.priority, v.sor
 FROM library_countries c
 JOIN library_document_types t ON t.country_id = c.id
 JOIN (VALUES
-    ('regulatory-instruments', 'ncc-volume-one', 'NCC Volume One', 'Building', 'ABCB', 'critical', 10),
-    ('regulatory-instruments', 'ncc-volume-two', 'NCC Volume Two', 'Residential', 'ABCB', 'critical', 20),
-    ('regulatory-instruments', 'ncc-volume-three', 'NCC Volume Three – Plumbing Code', 'Hydraulic', 'ABCB', 'critical', 30),
-    ('network-rules', 'nsw-sir', 'NSW Service & Installation Rules', 'Electrical', 'NSW Govt', 'critical', 10),
-    ('network-rules', 'sa-sir', 'SA Power Networks Service & Installation Rules', 'Electrical', 'SAPN', 'critical', 20),
-    ('network-rules', 'tasnetworks-sir', 'TasNetworks connection / service requirements', 'Electrical', 'TasNetworks', 'high', 30),
-    ('network-rules', 'vic-sir', 'Victorian Service & Installation Rules', 'Electrical', 'Victorian distributors', 'critical', 40)
+    ('ncc', 'ncc-volume-one', 'NCC Volume One', 'Building', 'ABCB', 'critical', 10),
+    ('ncc', 'ncc-volume-two', 'NCC Volume Two', 'Residential', 'ABCB', 'critical', 20),
+    ('ncc', 'ncc-volume-three', 'NCC Volume Three – Plumbing Code', 'Hydraulic', 'ABCB', 'critical', 30)
 ) AS v(type_slug, slug, title, discipline, publisher, priority, sort_order)
     ON t.slug = v.type_slug
 WHERE c.code = 'AU'
@@ -1501,20 +1488,38 @@ SET library_document_id = d.id
 FROM library_documents d
 JOIN library_countries c ON c.id = d.country_id
 WHERE c.code = 'AU'
-  AND e.library_document_id IS NULL
+  AND e.family = 'NCC'
   AND (
     (e.codebook = 'NCC2022_VOL1' AND d.slug = 'ncc-volume-one')
     OR (e.codebook = 'NCC2022_VOL2' AND d.slug = 'ncc-volume-two')
     OR (e.codebook = 'NCC2022_VOL3' AND d.slug = 'ncc-volume-three')
-    OR (e.codebook = 'NSW_SIR_2018' AND d.slug = 'nsw-sir')
-    OR (e.codebook = 'SA_SIR_2025' AND d.slug = 'sa-sir')
-    OR (e.codebook = 'TASNETWORK_SIR_V85' AND d.slug = 'tasnetworks-sir')
-    OR (e.codebook = 'VIC_SIR_2025' AND d.slug = 'vic-sir')
+  );
+
+-- Leftover SIR catalog rows (older seeds). Unlink, then drop empty folders.
+UPDATE library_documents
+SET is_active = false
+WHERE slug IN ('nsw-sir', 'sa-sir', 'tasnetworks-sir', 'vic-sir');
+
+UPDATE shared_library_editions
+SET library_document_id = NULL
+WHERE codebook IN ('NSW_SIR_2018', 'SA_SIR_2025', 'TASNETWORK_SIR_V85', 'VIC_SIR_2025');
+
+DELETE FROM library_documents
+WHERE slug IN ('nsw-sir', 'sa-sir', 'tasnetworks-sir', 'vic-sir');
+
+DELETE FROM library_document_types t
+USING library_countries c
+WHERE t.country_id = c.id
+  AND c.code = 'AU'
+  AND t.slug <> 'ncc'
+  AND NOT EXISTS (
+      SELECT 1 FROM library_documents d
+      WHERE d.document_type_id = t.id AND COALESCE(d.is_active, true)
   );
 
 -- ===========================================
 -- 11. SUBSCRIPTION / BILLING (Stripe, passcodes, views)
--- Plans: sole (free, NCC+SIR) | professional (paid, all features)
+-- Plans: sole (free, NCC) | professional (paid, all features)
 -- Idempotent — safe to re-run with the rest of this file
 -- ===========================================
 

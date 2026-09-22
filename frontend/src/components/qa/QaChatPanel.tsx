@@ -255,7 +255,7 @@ const QaChatPanel: React.FC<QaChatPanelProps> = ({
               <MessageSquare className="h-6 w-6 text-[#f1ddab]" />
             </div>
             <div>
-              <h2 className="text-xl font-semibold tracking-tight text-white">Augusta Search Q&A</h2>
+              <h2 className="text-xl font-semibold tracking-tight text-white">NCC Q&A</h2>
               {selectedDocumentName ? (
                 <p className="text-sm font-medium text-slate-300">Document: {selectedDocumentName}</p>
               ) : (
@@ -330,9 +330,9 @@ const QaChatPanel: React.FC<QaChatPanelProps> = ({
               </h3>
               <p className="mx-auto max-w-lg text-slate-600">
                 {selectedDocumentId
-                  ? 'Ask your engineering question in plain English below. Augusta Search will answer from the standard you have selected, with cited clauses.'
+                  ? 'Ask your engineering question in plain English below. Augusta Search will answer from the NCC volume you have selected, with cited clauses.'
                   : isLibraryMode
-                    ? 'Choose an edition from the sidebar, confirm the code label in the dropdown, then ask your engineering question in plain English.'
+                    ? 'Choose an NCC volume from the sidebar, confirm the code label in the dropdown, then ask your question in plain English.'
                     : 'Select a standard from the sidebar, pick the matching code label from the dropdown, then ask your engineering question in plain English.'}
               </p>
               <ul className="mx-auto mt-6 max-w-md space-y-2 text-left text-sm text-slate-700">
