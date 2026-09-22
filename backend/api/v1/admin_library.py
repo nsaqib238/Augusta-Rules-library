@@ -31,6 +31,7 @@ from services.shared_library_service import (
     export_library_tables_csv,
     get_edition,
     get_or_create_library_document,
+    infer_ncc_volume,
     ingest_clauses_csv,
     ingest_library_source_from_path,
     ingest_tables_csv,
@@ -247,7 +248,7 @@ async def post_document_edition(
             codebook=request.codebook,
             discipline=_map_edition_discipline(doc.get("discipline")),
             edition_year=request.edition_year,
-            volume=request.volume,
+            volume=request.volume or infer_ncc_volume(doc.get("title"), request.label),
             part=request.part,
             library_document_id=document_id,
         )

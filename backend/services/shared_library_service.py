@@ -32,14 +32,30 @@ SIR_LIBRARY = DEFAULT_SIR_LIBRARY
 NCC_LIBRARY = DEFAULT_NCC_LIBRARY
 
 
+def infer_ncc_volume(*texts: Optional[str]) -> str:
+    blob = " ".join(str(t or "") for t in texts).lower()
+    compact = re.sub(r"[\s._-]+", "", blob)
+    if "housing" in blob:
+        return "HOUSING"
+    if "vol3" in compact or "volume3" in compact or "volumethree" in compact or "plumbing" in blob:
+        return "VOL3"
+    if "vol2" in compact or "volume2" in compact or "volumetwo" in compact:
+        return "VOL2"
+    if "vol1" in compact or "volume1" in compact or "volumeone" in compact:
+        return "VOL1"
+    return "VOL1"
+
+
+def _year_from_text(text: str) -> Optional[int]:
+    match = re.search(r"\b((?:19|20)\d{2})\b", text or "")
+    return int(match.group(1)) if match else None
+
+
 def _normalize_volume(volume: str) -> str:
     v = (volume or "").strip().upper().replace(" ", "")
-    if not v:
-        return "VOL1"
-    if v.startswith("VOL"):
-        suffix = re.sub(r"^VOL", "", v) or "1"
-        return f"VOL{suffix}"
-    return f"VOL{v}"
+    if re.fullmatch(r"VOL\d+", v) or v == "HOUSING":
+        return v
+    return infer_ncc_volume(volume)
 
 
 def suggest_ncc_codebook(edition_year: int, volume: str) -> str:
@@ -130,19 +146,29 @@ def create_edition(
     if not display:
         raise ValueError("label is required")
 
-    year = edition_year if edition_year is not None else 2022
-    vol = (volume or "Vol1").strip() or "Vol1"
-    cid = (codebook or suggest_ncc_codebook(year, vol)).strip().upper()
+    year = edition_year if edition_year is not None else _year_from_text(display) or 2022
+    vol = _normalize_volume(volume or infer_ncc_volume(display, codebook))
+    raw_codebook = (codebook or "").strip()
+    cid = sanitize_custom_codebook_id(raw_codebook) if raw_codebook else suggest_ncc_codebook(year, vol)
+    cid = re.sub(r"[^A-Z0-9_-]", "", (cid or "").upper())
+    if len(cid) < 2:
+        cid = suggest_ncc_codebook(year, vol)
     disc = (discipline or default_ncc_discipline(vol)).strip().lower()
     part_val = (part or "All").strip() or "All"
     volume_val = vol
     edition_year = year
 
     if not re.match(r"^[A-Z0-9_\-]{2,64}$", cid):
-        raise ValueError("codebook must be 2–64 characters (letters, numbers, underscore, hyphen)")
+        cid = suggest_ncc_codebook(year, vol)
 
     if get_edition(cid):
-        raise ValueError(f"Codebook id already exists: {cid}")
+        base = cid[:60]
+        suffix = 2
+        while suffix < 50 and get_edition(f"{base}_{suffix}"):
+            suffix += 1
+        if suffix >= 50:
+            raise ValueError(f"Codebook id already exists: {cid}")
+        cid = f"{base}_{suffix}"
 
     row = {
         "family": fam,

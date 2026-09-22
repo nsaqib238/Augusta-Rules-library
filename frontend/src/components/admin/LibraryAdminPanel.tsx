@@ -11,6 +11,22 @@ import {
 import { inferFamilyFromCodebookId, STANDARD_FAMILIES } from '../../lib/codebooks';
 import { formatDocumentStatus, isDocumentProcessing } from '../../lib/uploadDisplay';
 
+function suggestEditionCodebook(title: string, year: string, label: string): string {
+  const source = `${title} ${label}`.toLowerCase();
+  const compact = source.replace(/[\s._-]+/g, '');
+  let vol = 'VOL1';
+  if (source.includes('housing')) vol = 'HOUSING';
+  else if (source.includes('plumbing') || /vol3|volume3|volumethree/.test(compact)) vol = 'VOL3';
+  else if (/vol2|volume2|volumetwo/.test(compact)) vol = 'VOL2';
+  else if (/vol1|volume1|volumeone/.test(compact)) vol = 'VOL1';
+  const yearMatch = year.trim() || `${title} ${label}`.match(/\b((?:19|20)\d{2})\b/)?.[1] || '2022';
+  return `NCC${yearMatch}_${vol}`;
+}
+
+function sanitizeCodebookInput(raw: string): string {
+  return raw.trim().replace(/\s+/g, '_').replace(/[^A-Za-z0-9_-]/g, '').toUpperCase().slice(0, 64);
+}
+
 const LibraryAdminPanel: React.FC = () => {
   const [tree, setTree] = useState<LibraryTreeData>({
     countries: [],
@@ -279,6 +295,9 @@ const LibraryAdminPanel: React.FC = () => {
   const handleAddEdition = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!selectedDoc) return;
+    const codebook =
+      sanitizeCodebookInput(newEdition.codebook) ||
+      suggestEditionCodebook(selectedDoc.title, newEdition.edition_year, newEdition.label);
     try {
       setBusy(true);
       await authFetch(`api/v1/admin/library/documents/${selectedDoc.id}/editions`, {
@@ -286,7 +305,7 @@ const LibraryAdminPanel: React.FC = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           label: newEdition.label.trim(),
-          codebook: newEdition.codebook.trim() || undefined,
+          codebook,
           edition_year: newEdition.edition_year ? Number(newEdition.edition_year) : undefined,
         }),
       });
@@ -739,9 +758,16 @@ const LibraryAdminPanel: React.FC = () => {
         <input
           className="augusta-input sm:col-span-2"
           value={newEdition.codebook}
-          onChange={(e) => setNewEdition((p) => ({ ...p, codebook: e.target.value }))}
-          placeholder="Code name (used as clause id, e.g. NCC2018_VOL1)"
+          onChange={(e) => setNewEdition((p) => ({ ...p, codebook: sanitizeCodebookInput(e.target.value) }))}
+          placeholder={suggestEditionCodebook(doc.title, newEdition.edition_year, newEdition.label || doc.title)}
         />
+        <p className="sm:col-span-3 text-xs text-slate-500">
+          Code name cannot contain spaces. Leave it blank to use{' '}
+          <code className="rounded bg-slate-100 px-1">
+            {suggestEditionCodebook(doc.title, newEdition.edition_year, newEdition.label || doc.title)}
+          </code>
+          .
+        </p>
         <button type="submit" disabled={busy} className="rounded-full bg-[#0b1220] px-4 py-2 text-sm font-semibold text-white">
           Add edition
         </button>
